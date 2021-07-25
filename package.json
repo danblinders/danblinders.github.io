@@ -24,6 +24,12 @@
     "url": "https://github.com/danblinders/danblinders.github.io/issues"
   },
   "homepage": "https://github.com/danblinders/danblinders.github.io#readme",
+  "browserslist": ">= 1% and not dead",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
