@@ -1,11 +1,13 @@
 const path = require("path"),
-      fs = require("fs");
+      fs = require("fs"),
+      MiniCssExtractPlugin = require("mini-css-extract-plugin"),
+      HtmlWebpackPlugin = require("html-webpack-plugin");
 
 
 // declaring constants for paths
 
 const PATH_SRC = path.resolve(__dirname, 'src'),
-      PATH_DIST = path.resolve(__dirname, 'dist'),
+      PATH_BUILD = path.resolve(__dirname, 'build'),
       PAGES = `${PATH_SRC}/pages`,
 //getting path to all subdirs in 'pages' directory
 PAGES_DIRS = fs.readdirSync(PAGES)  
@@ -30,7 +32,10 @@ PAGES_JS = [...PAGES_JS, ...jsContent];
 const config = {
   entry: {},
 
-  output: {},
+  output: {
+    path: PATH_BUILD,
+    clean: true
+  },
 
   module: {
     rules: [
