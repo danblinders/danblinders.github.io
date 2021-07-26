@@ -1,0 +1,114 @@
+@import './variables';
+
+// Mixin for setting the size of the element
+
+@mixin set-size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// Mixin for setting font properties
+
+@mixin set-font($fontSize, $fontWeight, $lineHeight, $color, $fontFamily, $fontFamilyType: "sans-serif") {
+  @if $fontFamily{
+    @if ($fontFamilyType == "sans-serif") {
+      font-family: $fontFamily, Arial, sans-serif;
+    }
+    @if ($fontFamilyType == "serif") {
+      font-family: $fontFamily, Georgia, serif;
+    }
+    @if ($fontFamilyType == "monospace") {
+      font-family: $fontFamily, "Courier New", monospace;
+    }
+    @if ($fontFamilyType == "icons") {
+      font-family: $fontFamily
+    }
+  }
+  @if $fontSize {
+    font-size: $fontSize;
+  }
+  @if $fontWeight {
+    font-weight: $fontWeight;
+  }
+  @if $lineHeight {
+    line-height: $lineHeight;
+  }
+  @if $color {
+    color: $color;
+  }
+}
+
+// Mixin for setting title text
+
+@mixin title-text {
+  @include set-font(2.4rem, 700, 2.9rem, $darkShade100);
+}
+
+// Mixin for setting subtitle text
+
+@mixin subtitle-text {
+  @include set-font(1.9rem, 700, 2.3rem, $darkShade100);
+}
+
+// Mixin for setting label-cta-text
+
+@mixin label-cta-text {
+  @include set-font(1.2rem, 700, 1.5rem, $darkShade100);
+  text-transform: uppercase;
+}
+
+// Mixin for setting body text
+
+@mixin body-text() {
+  @include set-font(1.4rem, 400, 2.4rem, $darkShade75);
+}
+
+// Mixin for setting sentence-case text: first letter of sentence is uppercase, another letters - lowercase
+@mixin sentence-case() {
+  text-transform: lowercase;
+  
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+// Mixin for setting border properties
+@mixin set-border($borderWidth: 1px, $borderStyle: solid, $borderColor: $darkShade25, $borderRadius) {
+  border: $borderWidth $borderStyle $borderColor;
+  @if borderRadius {
+    border-radius: $borderRadius;
+  }
+}
+
+// Mixins for flex layout
+
+// Mixin for setting flex layout
+@mixin set-flex ($mainAxis, $crossAxis, $gap, $flexWrap) {
+  display: flex;
+  @if $mainAxis {
+    justify-content: $mainAxis;
+  }
+  @if $crossAxis {
+    align-items: $crossAxis;
+  }
+  @if $gap {
+    gap: $gap;
+  }
+  @if $flexWrap {
+    flex-wrap: $flexWrap;
+  }
+}
+
+// Mixin for setting flex-direction to column
+@mixin flex-column($mainAxis, $crossAxis, $gap) {
+  @include set-flex($mainAxis, $crossAxis, &gap);
+  flex-direction: column;
+}
+
+// Mixin for centering flex-items
+@mixin flex-center($gap, $flexWrap) {
+  @include set-flex(center, center, $gap, $flexWrap);
+}
+
+
+
