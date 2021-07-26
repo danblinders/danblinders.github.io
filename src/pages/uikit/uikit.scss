@@ -1,0 +1,34 @@
+@import '../../scss/fonts';
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+@import '../../templates/components/colors-item/colors-item';
+
+
+.document {
+  font-size: 62.5%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page-uikit {
+  margin: 0;
+  &__container {
+    width: 80%;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  &__colors-type {
+    &-section {
+      padding: 14.5rem 0;
+    }
+    &-content {
+      @include set-flex($mainAxis: space-between);
+    }
+  }
+  &__colors-block {
+    @include flex-column($gap: 2rem);
+  }
+}

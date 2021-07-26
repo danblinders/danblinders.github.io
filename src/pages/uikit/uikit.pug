@@ -9,6 +9,47 @@ block variables
         docTitle = "Ui-Kit",
         bodyClasses = "page-uikit"
     
-block includes 
+block includes
+  include ../../templates/components/colors-item/colors-item
 
-block content 
+block content
+  .page-uikit__colors-type-section
+    .page-uikit__container
+      .page-uikit__colors-type-content
+        .page-uikit__colors-block
+          +colors-item({
+            color: "darkshade_100",
+            name: "dark shade 100%",
+            code: "#1f2041"
+          })
+          +colors-item({
+            color: "darkshade_75",
+            name: "dark shade 75%",
+            code: "#1f2041"
+          }) 
+          +colors-item({
+            color: "darkshade_50",
+            name: "dark shade 50%",
+            code: "#1f2041"
+          }) 
+          +colors-item({
+            color: "darkshade_25",
+            name: "dark shade 25%",
+            code: "#1f2041"
+          })           
+          +colors-item({
+            color: "darkshade_5",
+            name: "dark shade 5%",
+            code: "#1f2041"
+          }) 
+          +colors-item({
+            color: "purple",
+            name: "purple",
+            code: "#bc9cff"
+          }) 
+          +colors-item({
+            color: "green",
+            name: "green",
+            code: "#6fcf97"
+          }) 
+  

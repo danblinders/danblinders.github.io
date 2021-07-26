@@ -1,0 +1,9 @@
+mixin colors-item(options)
+  if !options
+    - options = {}
+
+  .colors-item 
+    .colors-item__square(class = options.color ? `colors-item__square_${options.color}` : "") 
+    .colors-item__info 
+      .colors-item__name= options.name 
+      .colors-item__code= options.code 

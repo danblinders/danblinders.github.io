@@ -1,0 +1,48 @@
+@import '../../../scss/variables';
+@import "../../../scss/mixins";
+
+.colors-item {
+  @include set-flex($crossAxis: center, $gap: 4rem);
+  &__square {
+    @include set-size(7rem);
+    border-radius: 0.6rem;
+    &_darkshade {
+      &_100 {
+        background-color: $darkShade100;
+      }
+      &_75 {
+        background-color: $darkShade75;
+      }
+      &_50 {
+        background-color: $darkShade50;
+      }
+      &_25 {
+        background-color: $darkShade25;
+      }
+      &_5 {
+        background-color: $darkShade5;
+      }
+    }
+    &_purple {
+      background-color: $purple;
+    }
+    &_green {
+      background-color: $green;
+    }
+  }
+  &__info {
+    @include flex-column();
+  }
+  &__name,
+  &__code {
+    @include set-font($fontSize: 1.9rem, $lineHeight: 2.8rem, $color: $darkShade100, $fontFamily: Montserrat);
+  }
+  &__name {
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+  &__code {
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+}
