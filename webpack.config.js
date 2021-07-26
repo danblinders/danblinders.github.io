@@ -83,7 +83,7 @@ const config = {
 };
 
 // Modifying config object
-module.exports = options => {
+module.exports = (env, options) => {
 
   const isProd = (options.mode === "production") ? true : false;
 
