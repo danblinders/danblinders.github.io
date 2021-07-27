@@ -13,10 +13,12 @@ block includes
   include ../../templates/components/colors-item/colors-item
 
 block content
-  .page-uikit__colors-type-section
+  section.colors-type
     .page-uikit__container
-      .page-uikit__colors-type-content
-        .page-uikit__colors-block
+      .colors-type__content
+        .colors-type__logo 
+          img.colors-type__image(src = "../../icons/toxin-uikit-logo.svg")
+        .colors-type__colors-block
           +colors-item({
             color: "darkshade_100",
             name: "dark shade 100%",

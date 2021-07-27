@@ -5,7 +5,7 @@
 @import '../../templates/components/colors-item/colors-item';
 
 
-.document {
+.document-uikit {
   font-size: 62.5%;
 }
 
@@ -17,18 +17,28 @@
   margin: 0;
   &__container {
     width: 80%;
-    max-width: 1440px;
+    max-width: 1160px;
     margin: 0 auto;
   }
-  &__colors-type {
-    &-section {
-      padding: 14.5rem 0;
-    }
-    &-content {
-      @include set-flex($mainAxis: space-between);
-    }
+}
+
+.colors-type {
+    padding: 14.5rem 0;
+  &__content {
+    @include set-flex($mainAxis: space-between);
+    position: relative;
+  }
+  &__logo {
+    position: absolute;
+    top: -11.5rem;
+    left: -12rem;
+    @include set-size(4.8rem);
+  }
+  &__image {
+    @include set-size(100%);
   }
   &__colors-block {
     @include flex-column($gap: 2rem);
   }
 }
+
