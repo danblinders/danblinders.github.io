@@ -11,6 +11,7 @@ block variables
     
 block includes
   include ../../templates/components/colors-item/colors-item
+  include ../../templates/components/type-item/type-item
 
 block content
   section.colors-type
@@ -18,7 +19,7 @@ block content
       .colors-type__content
         .colors-type__logo
           img.colors-type__image(src = "../../icons/toxin-uikit-logo.svg")
-        .colors-type__colors-block
+        .colors-type__colors-group
           +colors-item({
             color: "darkshade_100",
             name: "dark shade 100%",
@@ -54,4 +55,22 @@ block content
             name: "green",
             code: "#6fcf97"
           }) 
-  
+        .colors-type__type-group
+          +type-item({
+            tag: "h1",
+            descr: "this one is the sub-section or <br> widget title"
+          })
+          +type-item({
+            tag: "h2",
+            descr: "next one is the item title inside <br> widgets"
+          }) 
+          +type-item({
+            tag: "h3",
+            descr: "this is a label or cta text",
+            uppercase: true
+          }) 
+          +type-item({
+            tag: "body",
+            descr: "This is the body text which is used for most <br> of the design, like paragraphs, lists, etc."
+          })           
+          

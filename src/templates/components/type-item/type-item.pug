@@ -1,0 +1,7 @@
+mixin type-item(options)
+  if !options
+    - options = {}
+
+  .type-item(class = options.tag ? `type-item_style_${options.tag}` : "")
+    .type-item__tag= options.tag || "tag"
+    .type-item__description(class = options.uppercase ? "type-item__description_case_uppercase" : "") !{options.descr}

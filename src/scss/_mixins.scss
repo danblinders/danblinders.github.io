@@ -11,28 +11,36 @@
 
 @mixin set-font($fontSize: false, $fontWeight: false, $lineHeight: false, $color: false, $fontFamily: false, $fontFamilyType: "sans-serif") {
   @if $fontFamily{
+
     @if ($fontFamilyType == "sans-serif") {
       font-family: $fontFamily, Arial, sans-serif;
     }
+
     @if ($fontFamilyType == "serif") {
       font-family: $fontFamily, Georgia, serif;
     }
+
     @if ($fontFamilyType == "monospace") {
       font-family: $fontFamily, "Courier New", monospace;
     }
+
     @if ($fontFamilyType == "icons") {
       font-family: $fontFamily
     }
   }
+
   @if $fontSize {
     font-size: $fontSize;
   }
+
   @if $fontWeight {
     font-weight: $fontWeight;
   }
+
   @if $lineHeight {
     line-height: $lineHeight;
   }
+
   @if $color {
     color: $color;
   }
@@ -54,7 +62,6 @@
 
 @mixin label-cta-text() {
   @include set-font(1.2rem, 700, 1.5rem, $darkShade100);
-  text-transform: uppercase;
 }
 
 // Mixin for setting body text
@@ -75,6 +82,7 @@
 // Mixin for setting border properties
 @mixin set-border($borderWidth: 1px, $borderStyle: solid, $borderColor: $darkShade25, $borderRadius: false) {
   border: $borderWidth $borderStyle $borderColor;
+
   @if borderRadius {
     border-radius: $borderRadius;
   }
@@ -85,15 +93,19 @@
 // Mixin for setting flex layout
 @mixin set-flex ($mainAxis: false, $crossAxis: false, $gap: false, $flexWrap: false) {
   display: flex;
+
   @if $mainAxis {
     justify-content: $mainAxis;
   }
+
   @if $crossAxis {
     align-items: $crossAxis;
   }
+
   @if $gap {
     gap: $gap;
   }
+
   @if $flexWrap {
     flex-wrap: $flexWrap;
   }

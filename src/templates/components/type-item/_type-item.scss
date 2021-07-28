@@ -1,0 +1,39 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.type-item {
+  @include set-flex($gap: 3rem);
+
+  &_style {
+    &_h1 {
+      @include title-text();
+    }
+  
+    &_h2 {
+      @include subtitle-text();
+    }
+  
+    &_h3 {
+      @include label-cta-text();
+    }
+  
+    &_body {
+      @include body-text();
+    }
+  }
+
+  &__tag {
+    min-width: 3.7rem;
+    text-align: right;
+    font-weight: 400;
+    color: $darkShade25;
+    @include sentence-case();
+  }
+
+  &__description {
+    @include sentence-case();
+    &_case_uppercase {
+      text-transform: uppercase;
+    }
+  }
+}

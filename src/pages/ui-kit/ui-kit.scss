@@ -2,9 +2,6 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
-@import '../../templates/components/colors-item/colors-item';
-
-
 .document-ui-kit {
   font-size: 62.5%;
   color: $darkShade75;
@@ -20,6 +17,7 @@
   margin: 0;
   @include set-font(1.4rem, 400, 2.4rem, $darkShade75, Montserrat);
   min-height: 100%;
+
   &__container {
     width: 80%;
     max-width: 1160px;
@@ -29,21 +27,33 @@
 
 .colors-type {
     padding: 14.5rem 0;
+
   &__content {
-    @include set-flex($mainAxis: space-between);
     position: relative;
+    padding-left: 1rem;
+    padding-right: 1.8rem;
+    @include set-flex($mainAxis: space-between);
   }
+
   &__logo {
     position: absolute;
     top: -11.5rem;
-    left: -12rem;
+    left: -11rem;
     @include set-size(4.8rem);
   }
+
   &__image {
     @include set-size(100%);
   }
-  &__colors-block {
+
+  &__colors-group {
     @include flex-column($gap: 2rem);
+  }
+
+  &__type-group {
+    @include flex-column($gap: 5.1rem);
   }
 }
 
+@import '../../templates/components/colors-item/colors-item';
+@import '../../templates/components/type-item/type-item';
