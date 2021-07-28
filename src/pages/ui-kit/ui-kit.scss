@@ -5,16 +5,21 @@
 @import '../../templates/components/colors-item/colors-item';
 
 
-.document-uikit {
+.document-ui-kit {
   font-size: 62.5%;
+  color: $darkShade75;
+  font-family: sans-serif;
+  background-color: #fff;
 }
 
 * {
   box-sizing: border-box;
 }
 
-.page-uikit {
+.page-ui-kit {
   margin: 0;
+  @include set-font(1.4rem, 400, 2.4rem, $darkShade75, Montserrat);
+  min-height: 100%;
   &__container {
     width: 80%;
     max-width: 1160px;

@@ -2,21 +2,21 @@ extends ../../templates/layouts/layout-main
 
 block variables 
   -
-    let docClasses = "document-uikit",
+    let docClasses = "document-ui-kit",
         language = "ru",
         keywords = "ui-kit, colors-type, form-elements, cards, headers-footers",
         description = "Ui-Kit page, conataining main components and strctural elements of the website",
         docTitle = "Ui-Kit",
-        bodyClasses = "page-uikit"
+        bodyClasses = "page-ui-kit"
     
 block includes
   include ../../templates/components/colors-item/colors-item
 
 block content
   section.colors-type
-    .page-uikit__container
+    .page-ui-kit__container
       .colors-type__content
-        .colors-type__logo 
+        .colors-type__logo
           img.colors-type__image(src = "../../icons/toxin-uikit-logo.svg")
         .colors-type__colors-block
           +colors-item({
