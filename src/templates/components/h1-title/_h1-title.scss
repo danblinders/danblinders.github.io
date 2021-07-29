@@ -1,0 +1,5 @@
+.h1-title {
+  margin: 0;
+  @include title-text();
+  @include sentence-case();
+}

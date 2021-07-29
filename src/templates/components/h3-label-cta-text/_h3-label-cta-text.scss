@@ -1,0 +1,5 @@
+.h3-label-cta-text {
+  margin: 0;
+  @include label-cta-text();
+  text-transform: uppercase;
+}

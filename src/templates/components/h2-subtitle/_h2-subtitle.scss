@@ -1,0 +1,5 @@
+.h2-subtitle {
+  margin: 0;
+  @include subtitle-text();
+  @include sentence-case();
+}
