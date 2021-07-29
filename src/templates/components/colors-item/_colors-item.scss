@@ -1,6 +1,3 @@
-@import '../../../scss/variables';
-@import "../../../scss/mixins";
-
 .colors-item {
   @include set-flex($crossAxis: center, $gap: 4rem);
 

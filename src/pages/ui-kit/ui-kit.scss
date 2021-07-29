@@ -55,5 +55,22 @@
   }
 }
 
+.form-elements {
+  padding-top: 14.3rem;
+  padding-bottom: 13.1rem;
+
+  &__content {
+    position: relative;
+    @include set-flex($mainAxis: space-between);
+  }
+
+  &__logo {
+    position: absolute;
+    top: -11.5rem;
+    left: -11rem;
+    @include set-size(4.8rem);
+  }
+}
+
 @import '../../templates/components/colors-item/colors-item';
 @import '../../templates/components/type-item/type-item';
