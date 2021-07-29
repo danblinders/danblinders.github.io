@@ -78,7 +78,7 @@
 }
 
 // Mixin for setting border properties
-@mixin set-border($borderWidth: 1px, $borderStyle: solid, $borderColor: $darkShade25, $borderRadius: false) {
+@mixin set-border($borderWidth: 1px, $borderStyle: solid, $borderColor: transparent, $borderRadius: false) {
   border: $borderWidth $borderStyle $borderColor;
 
   @if borderRadius {

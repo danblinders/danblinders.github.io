@@ -15,6 +15,7 @@ block includes
   include ../../templates/components/h3-label-cta-text/h3-label-cta-text
   include ../../templates/components/colors-item/colors-item
   include ../../templates/components/type-item/type-item
+  include ../../templates/components/checkbox/checkbox
 
 block content
   section.colors-type
@@ -81,4 +82,33 @@ block content
       .form-elements__content
         .form-elements__logo
           img.colors-type__image(src = "../../icons/toxin-uikit-logo.svg")
+        .form-elements__checkbox-buttons
+          +checkbox({
+            label: "можно курить",
+            name: "permissions",
+            checked: true
+          })
+          +checkbox({
+            label: "можно с питомцами",
+            name: "permissions",
+            checked: true
+          })
+          +checkbox({
+            label: "можно пригласить гостей (до 10 человек)",
+            name: "permissions",
+            checked: true
+          })
+        .form-elements__rich-checkbox-buttons
+          +checkbox({
+            isRich: true,
+            label: "широкий коридор",
+            description: "ширина коридоров в номере не менее 91 см.",
+            name: "add-ins"
+          })
+          +checkbox({
+            isRich: true,
+            label: "помощник для инвалидов",
+            description: "на 1 этаже вас встретит специалист  и проводит до номера.",
+            name: "add-ins"
+          })
           

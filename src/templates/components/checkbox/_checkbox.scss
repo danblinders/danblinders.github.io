@@ -1,0 +1,56 @@
+.checkbox {
+  @include set-flex($gap: 1rem);
+  cursor: pointer;
+  &__input {
+    position: relative;
+    margin: 0;
+    appearance: none;
+    @include set-size(2rem);
+    @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem);
+    transition: border-color 0.5s;
+    cursor: pointer;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0.4rem;
+      left: 0.6rem;
+      @include set-size(0.4rem, 0.6rem);
+      transform: rotate(45deg);
+      border: none;
+      border-right: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+      background-origin: border-box;
+      background-image: $whiteGradient, $primaryGradient;
+      background-clip: padding-box, border-box;
+      backface-visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    &:checked {
+      border-color: $purple;
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+  &__text {
+    @include flex-column($gap: 0.3rem);
+  }
+  &__label {
+    @include set-font(1.4rem, 400, 2rem, $darkShade50);
+    @include sentence-case();
+    max-width: 200px;
+    &_type {
+      &_rich {
+        font-weight: 700;
+        color: $darkShade75;
+        max-width: 230px;
+      }
+    }
+  }
+  &__description {
+    @include set-font(1.2rem, 400, 1.4rem, $darkShade50);
+    @include sentence-case();
+    max-width: 230px;
+  }
+}

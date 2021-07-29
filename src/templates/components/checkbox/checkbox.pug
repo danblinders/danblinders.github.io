@@ -1,0 +1,12 @@
+mixin checkbox(options)
+  if !options
+    - options = {}
+
+  label.checkbox
+      input.checkbox__input(type = "checkbox", name = options.name, checked = options.checked)
+      if options.isRich
+        span.checkbox__text
+          span.checkbox__label.checkbox__label_type_rich= options.label
+          span.checkbox__description= options.description
+      else 
+        span.checkbox__label= options.label
