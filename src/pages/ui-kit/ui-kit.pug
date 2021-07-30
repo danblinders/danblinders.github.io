@@ -17,6 +17,7 @@ block includes
   include ../../templates/components/type-item/type-item
   include ../../templates/components/checkbox/checkbox
   include ../../templates/components/radio-button/radio-button
+  include ../../templates/components/toggle/toggle
 
 block content
   section.colors-type
@@ -130,5 +131,18 @@ block content
             +radio-button({
               label: "женщина",
               name: "gender"
+            })
+        .form-elements__toggle-buttons
+          .form-elements__toggle-buttons-title 
+            +h3-label-cta-text("toggle")
+          .form-elements__toggle-buttons-content
+            +toggle({
+              label: "получать спецпредложения",
+              name: "special-services",
+              checked: true
+            })
+            +toggle({
+              label: "получать спецпредложения",
+              name: "special-services"
             })
             

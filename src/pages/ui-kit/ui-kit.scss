@@ -89,6 +89,15 @@
       @include set-flex($crossAxis: center, $gap: 2rem, $flexWrap: wrap);
     }
   }
+
+  &__toggle-buttons {
+    &-title {
+      margin-bottom: 1.6rem;
+    }
+    &-content {
+      @include flex-column($gap: 1.4rem);
+    }
+  }
 }
 
 @import '../../templates/components/h1-title/h1-title';
@@ -98,3 +107,4 @@
 @import '../../templates/components/type-item/type-item';
 @import '../../templates/components/checkbox/checkbox';
 @import '../../templates/components/radio-button/radio-button';
+@import '../../templates/components/toggle/toggle';

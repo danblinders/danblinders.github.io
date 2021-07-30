@@ -1,0 +1,35 @@
+.toggle {
+  @include set-flex($gap: 1rem);
+  cursor: pointer;
+  &__input {
+    position: relative;
+    margin: 0;
+    appearance: none;
+    @include set-size(4rem, 2rem);
+    @include set-border($borderColor: $darkShade25, $borderRadius: 1rem);
+    transition: border-color 0.5s;
+    cursor: pointer;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+      @include set-size(1.2rem);
+      background: $darkShade25;
+      border-radius: 50%;
+      transition: left 0.5s;
+    }
+    &:checked {
+      border-color: $purple;
+      &::after {
+        left: 60%;
+        background: $primaryGradient;
+      }
+    }
+  }
+  &__label {
+    line-height: 2rem;
+    @include sentence-case();
+  }
+}

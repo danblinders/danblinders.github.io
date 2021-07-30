@@ -1,0 +1,7 @@
+mixin toggle(options)
+  if !options
+    - options = {}
+
+  label.toggle
+      input.toggle__input(type = "checkbox", name = options.name, checked = options.checked)
+      span.toggle__label= options.label
