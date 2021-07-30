@@ -1,0 +1,37 @@
+.radio-button {
+  @include set-flex($gap: 1rem);
+  cursor: pointer;
+  &__input {
+    margin: 0;
+    appearance: none;
+    @include flex-center();
+    @include set-size(2rem);
+    @include set-border($borderColor: $darkShade25, $borderRadius: 50%);
+    transition: brder-color 0.3s;
+    cursor: pointer;
+    &::after {
+      content: '';
+      @include set-size(1.2rem);
+      border-radius: 50%;
+      background-image: $primaryGradient;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    &:checked {
+      border-color: $purple;
+      &::after {
+        opacity: 1;
+      }
+      &+ .radio-button__label {
+        color: $darkShade75;
+      }
+    }
+  }
+  &__label {
+    line-height: 2rem;
+    color: $darkShade50;
+    @include sentence-case();
+    max-width: 100px;
+    transition: color 0.5s;
+  }
+}

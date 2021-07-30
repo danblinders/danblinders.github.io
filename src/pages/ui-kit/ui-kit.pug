@@ -16,6 +16,7 @@ block includes
   include ../../templates/components/colors-item/colors-item
   include ../../templates/components/type-item/type-item
   include ../../templates/components/checkbox/checkbox
+  include ../../templates/components/radio-button/radio-button
 
 block content
   section.colors-type
@@ -83,32 +84,51 @@ block content
         .form-elements__logo
           img.colors-type__image(src = "../../icons/toxin-uikit-logo.svg")
         .form-elements__checkbox-buttons
-          +checkbox({
-            label: "можно курить",
-            name: "permissions",
-            checked: true
-          })
-          +checkbox({
-            label: "можно с питомцами",
-            name: "permissions",
-            checked: true
-          })
-          +checkbox({
-            label: "можно пригласить гостей (до 10 человек)",
-            name: "permissions",
-            checked: true
-          })
+          .form-elements__checkbox-buttons-title 
+            +h3-label-cta-text("checkbox buttons")
+          .form-elements__checkbox-buttons-content
+            +checkbox({
+              label: "можно курить",
+              name: "permissions",
+              checked: true
+            })
+            +checkbox({
+              label: "можно с питомцами",
+              name: "permissions",
+              checked: true
+            })
+            +checkbox({
+              label: "можно пригласить гостей (до 10 человек)",
+              name: "permissions",
+              checked: true
+            })
         .form-elements__rich-checkbox-buttons
-          +checkbox({
-            isRich: true,
-            label: "широкий коридор",
-            description: "ширина коридоров в номере не менее 91 см.",
-            name: "add-ins"
-          })
-          +checkbox({
-            isRich: true,
-            label: "помощник для инвалидов",
-            description: "на 1 этаже вас встретит специалист  и проводит до номера.",
-            name: "add-ins"
-          })
-          
+          .form-elements__rich-checkbox-buttons-title 
+            +h3-label-cta-text("rich checkbox buttons")
+          .form-elements__rich-checkbox-buttons-content
+            +checkbox({
+              isRich: true,
+              label: "широкий коридор",
+              description: "ширина коридоров в номере не менее 91 см.",
+              name: "add-ins"
+            })
+            +checkbox({
+              isRich: true,
+              label: "помощник для инвалидов",
+              description: "на 1 этаже вас встретит специалист  и проводит до номера.",
+              name: "add-ins"
+            })
+        .form-elements__radio-buttons
+          .form-elements__radio-buttons-title 
+            +h3-label-cta-text("radio buttons")
+          .form-elements__radio-buttons-content
+            +radio-button({
+              label: "мужчина",
+              name: "gender",
+              checked: true
+            })
+            +radio-button({
+              label: "женщина",
+              name: "gender"
+            })
+            

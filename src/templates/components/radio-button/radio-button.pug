@@ -1,0 +1,7 @@
+mixin radio-button(options)
+  if !options
+    - options = {}
+
+  label.radio-button
+    input.radio-button__input(type = "radio", name = options.name, checked = options.checked)
+    span.radio-button__label= options.label

@@ -73,7 +73,21 @@
 
   &__checkbox-buttons,
   &__rich-checkbox-buttons {
-    @include flex-column($gap: 1rem);
+    &-title {
+      margin-bottom: 1.6rem;
+    }
+    &-content {
+      @include flex-column($gap: 1rem);
+    }
+  }
+  
+  &__radio-buttons {
+    &-title {
+      margin-bottom: 1.6rem;
+    }
+    &-content {
+      @include set-flex($crossAxis: center, $gap: 2rem, $flexWrap: wrap);
+    }
   }
 }
 
@@ -83,3 +97,4 @@
 @import '../../templates/components/colors-item/colors-item';
 @import '../../templates/components/type-item/type-item';
 @import '../../templates/components/checkbox/checkbox';
+@import '../../templates/components/radio-button/radio-button';
