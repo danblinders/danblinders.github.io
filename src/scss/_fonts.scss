@@ -3,10 +3,10 @@
 	src: 
 		url("../../fonts/montserrat-regular.woff2") format("woff2"),
 		url("../../fonts/montserrat-regular.woff") format("woff"),
-		url("../../fonts/montserrat-regular.eot"),
-		url("../../fonts/montserrat-regular.eot?#iefix") format("embedded-opentype"),
+		url("../../fonts/montserrat-regular.ttf") format("truetype"),
 		url("../../fonts/montserrat-regular.svg") format("svg"),
-		url("../../fonts/montserrat-regular.ttf") format("truetype");
+		url("../../fonts/montserrat-regular.eot"),
+		url("../../fonts/montserrat-regular.eot?#iefix") format("embedded-opentype");
 	font-weight: 400;
 	font-style: normal;
 }
@@ -16,10 +16,10 @@
 	src: 
 		url("../../fonts/montserrat-bold.woff2") format("woff2"),
 		url("../../fonts/montserrat-bold.woff") format("woff"),
-		url("../../fonts/montserrat-bold.eot"),
-		url("../../fonts/montserrat-bold.eot?#iefix") format("embedded-opentype"),
+		url("../../fonts/montserrat-bold.ttf") format("truetype"),
 		url("../../fonts/montserrat-bold.svg") format("svg"),
-		url("../../fonts/montserrat-bold.ttf") format("truetype");
+		url("../../fonts/montserrat-bold.eot"),
+		url("../../fonts/montserrat-bold.eot?#iefix") format("embedded-opentype");
 	font-weight: 700;
 	font-style: normal;
 }
@@ -29,10 +29,10 @@
 	src: 
 		url("../../fonts/quicksand-regular.woff2") format("woff2"),
 		url("../../fonts/quicksand-regular.woff") format("woff"),
-		url("../../fonts/quicksand-regular.eot"),
-		url("../../fonts/quicksand-regular.eot?#iefix") format("embedded-opentype"),
+		url("../../fonts/quicksand-regular.ttf") format("truetype"),
 		url("../../fonts/quicksand-regular.svg") format("svg"),
-		url("../../fonts/quicksand-regular.ttf") format("truetype");
+		url("../../fonts/quicksand-regular.eot"),
+		url("../../fonts/quicksand-regular.eot?#iefix") format("embedded-opentype");
 	font-weight: 400;
 	font-style: normal;
 }
@@ -42,10 +42,24 @@
 	src: 
 		url("../../fonts/quicksand-bold.woff2") format("woff2"),
 		url("../../fonts/quicksand-bold.woff") format("woff"),
-		url("../../fonts/quicksand-bold.eot"),
-		url("../../fonts/quicksand-bold.eot?#iefix") format("embedded-opentype"),
+		url("../../fonts/quicksand-bold.ttf") format("truetype"),
 		url("../../fonts/quicksand-bold.svg") format("svg"),
-		url("../../fonts/quicksand-bold.ttf") format("truetype");
+		url("../../fonts/quicksand-bold.eot"),
+		url("../../fonts/quicksand-bold.eot?#iefix") format("embedded-opentype");
 	font-weight: 700;
 	font-style: normal;
 }
+
+@font-face {
+	font-family: "Material Icons";
+	src: 
+		url("../../fonts/material-icons.woff2") format('woff2'),
+		url("../../fonts/material-icons.woff") format('woff'), 
+		url("../../fonts/material-icons.ttf") format('truetype'), 
+		url("../../fonts/material-icons.svg") format('svg'),
+		url("../../fonts/material-icons.eot"),
+		url("../../fonts/material-icons.eot?#iefix") format("embedded-opentype");
+	font-weight: 400;
+	font-style: normal;
+}
+

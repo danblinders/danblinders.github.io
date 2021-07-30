@@ -18,6 +18,7 @@ block includes
   include ../../templates/components/checkbox/checkbox
   include ../../templates/components/radio-button/radio-button
   include ../../templates/components/toggle/toggle
+  include ../../templates/components/main-button/main-button
 
 block content
   section.colors-type
@@ -144,5 +145,50 @@ block content
             +toggle({
               label: "получать спецпредложения",
               name: "special-services"
+            })
+        .form-elements__main-buttons 
+          .form-elements__main-buttons-title 
+            +h3-label-cta-text("buttons")
+          .form-elements__main-buttons-content
+            .form-elements__main-buttons-wrapper
+              +main-button({
+                withPadding: true,
+                style: "filled",
+                text: 'click me'
+              })
+              +main-button({
+                withPadding: true,
+                style: "filled",
+                text: 'click me',
+                isActive: true
+              })
+            .form-elements__main-buttons-wrapper
+              +main-button({
+                withPadding: true,
+                style: "outlined",
+                text: 'click me'
+              })
+              +main-button({
+                withPadding: true,
+                style: "outlined",
+                text: 'click me',
+                isActive: true
+              })
+            .form-elements__main-buttons-wrapper
+              +main-button({
+                style: "simple",
+                text: 'click me'
+              })
+              +main-button({
+                style: "simple",
+                text: 'click me',
+                isActive: true
+              })
+            +main-button({
+              isBig: true,
+              withPadding: true,
+              style: "filled",
+              hasArrow: true,
+              text: 'перейти к оплате'
             })
             

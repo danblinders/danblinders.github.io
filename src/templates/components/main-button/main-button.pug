@@ -1,0 +1,21 @@
+mixin main-button(options)
+  if !options
+    - options = {}
+  
+  - 
+    let classes = []
+
+    classes.push(options.isBig ? "main-button_big" : "")
+    classes.push((options.style === "outlined") ? "main-button_outlined" : "")
+    classes.push((options.style === "filled" ) ? "main-button_filled" : "")
+    classes.push((options.style === "simple") ? "main-button_simple" : "")
+    classes.push(options.withPadding ? "main-button_with-padding": "")
+    classes.push(options.hasArrow ? "main-button_has-arrow" : "")
+
+  if options.isActive 
+    case options.style
+      when "filled": - classes.push("main-button_filled-active")
+      when "outlined": - classes.push("main-button_outlined-active")
+      when "simple": - classes.push("main-button_simple-active")
+
+  button.main-button(class = classes)= options.text

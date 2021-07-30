@@ -1,0 +1,58 @@
+.main-button {
+  position: relative;
+  outline: none;
+  border: none;
+  background: none;
+  padding: 0;
+  color: #000;
+  text-transform: uppercase;
+  overflow: hidden;
+  @include set-font(1.2rem, 700, 1.5rem, #000, Montserrat);
+  box-sizing: border-box;
+  cursor: pointer;
+  &_simple {
+    color: $purple;
+    &:hover, &:focus, &:active, &-active {
+      color: $darkShade50;
+    }
+  }
+  &_with-padding {
+    padding: 1.2rem 1.6rem 1.3rem 1.6rem;
+  }
+  &_filled {
+    background-origin: border-box;
+    background-image: $primaryGradient;
+    color: #fff;
+    @include set-border($borderWidth: 2px, $borderRadius: 2.2rem);
+    &:hover, &:focus, &:active, &-active {
+      opacity: 0.5;
+    }
+  }
+  &_outlined {
+    background-origin: border-box;
+    background-image: $whiteGradient, $primaryGradient;
+    background-clip: padding-box, border-box;
+    @include set-border($borderWidth: 2px, $borderRadius: 2.2rem);
+    color: $purple;
+    &:hover, &:focus, &:active, &-active {
+      background-image: $whiteGradient, $primaryGradientSemiTransparent;
+    }
+  }
+  &_big{
+    width: 100%;
+    max-width: 320px;
+  }
+  &_has-arrow {
+    &::after {
+      content: "\e5c8";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      background: transparent;
+      width: 4.4rem;
+      @include flex-center();
+      @include set-font(2.4rem, 400, 2.4rem, #fff, "Material Icons", "icons");
+    }
+  }
+}

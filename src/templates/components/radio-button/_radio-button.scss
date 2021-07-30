@@ -15,7 +15,7 @@
       border-radius: 50%;
       background-image: $primaryGradient;
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.5s;
     }
     &:checked {
       border-color: $purple;
