@@ -16,24 +16,25 @@
       color: $darkShade50;
     }
   }
-  &_with-padding {
-    padding: 1.2rem 1.6rem 1.3rem 1.6rem;
-  }
   &_filled {
+    padding: 1.4rem 2rem 1.5rem 2rem;
     background-origin: border-box;
     background-image: $primaryGradient;
     color: #fff;
-    @include set-border($borderWidth: 2px, $borderRadius: 2.2rem);
+    border-radius: 2.2rem;
+    letter-spacing: -0.197px;
     &:hover, &:focus, &:active, &-active {
       opacity: 0.5;
     }
   }
   &_outlined {
+    padding: 1.2rem 1.8rem 1.3rem 1.8rem;
     background-origin: border-box;
     background-image: $whiteGradient, $primaryGradient;
     background-clip: padding-box, border-box;
     @include set-border($borderWidth: 2px, $borderRadius: 2.2rem);
     color: $purple;
+    letter-spacing: -0.197px;
     &:hover, &:focus, &:active, &-active {
       background-image: $whiteGradient, $primaryGradientSemiTransparent;
     }
