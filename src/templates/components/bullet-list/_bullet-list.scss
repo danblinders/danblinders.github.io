@@ -8,7 +8,6 @@
     position: relative;
     padding-left: 2rem;
     max-width: 260px;
-    @include set-font(1.4rem, 400, 2.4rem, $darkShade75);
     @include sentence-case();
     &::before {
       content: '';

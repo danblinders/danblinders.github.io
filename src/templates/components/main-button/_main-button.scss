@@ -7,7 +7,7 @@
   color: #000;
   text-transform: uppercase;
   overflow: hidden;
-  @include set-font(1.2rem, 700, 1.5rem, #000, Montserrat);
+  @include set-font(1.2rem, 700, 1.5rem, #000, inherit);
   cursor: pointer;
   &_simple {
     color: $purple;
