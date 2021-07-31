@@ -1,0 +1,40 @@
+.text-field {
+  @include flex-column($gap: 0.5rem);
+  width: 100%;
+  max-width: 320px;
+  &__input {
+    padding: 1.3rem 1.5rem;
+    @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem);
+    font-family: inherit;
+
+    &::placeholder {
+      line-height: 1.8rem;
+      color: $darkShade25;
+    }
+
+    &:hover, &:focus, &_active {
+      border-color: $darkShade75;
+
+      &::placeholder {
+        color: $darkShade75;
+      }
+
+    }
+
+  }
+
+  &__label {
+    position: relative;
+    width: 100%;
+    @include label-cta-text();
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  &__state {
+    position: absolute;
+    right: 0;
+    font-weight: 400;
+    color: $darkShade50;
+  }
+}

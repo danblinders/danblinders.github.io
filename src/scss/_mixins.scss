@@ -50,25 +50,25 @@
 // Mixin for setting title text
 
 @mixin title-text() {
-  @include set-font(2.4rem, 700, 2.9rem, $darkShade100);
+  @include set-font(2.4rem, 700, 2.9rem, $darkShade100, Montserrat);
 }
 
 // Mixin for setting subtitle text
 
 @mixin subtitle-text() {
-  @include set-font(1.9rem, 700, 2.3rem, $darkShade100);
+  @include set-font(1.9rem, 700, 2.3rem, $darkShade100, Montserrat);
 }
 
 // Mixin for setting label-cta-text
 
 @mixin label-cta-text() {
-  @include set-font(1.2rem, 700, 1.5rem, $darkShade100);
+  @include set-font(1.2rem, 700, 1.5rem, $darkShade100, Montserrat);
 }
 
 // Mixin for setting body text
 
 @mixin body-text() {
-  @include set-font(1.4rem, 400, 2.4rem, $darkShade75);
+  @include set-font(1.4rem, 400, 2.4rem, $darkShade75, Montserrat);
 }
 
 // Mixin for setting sentence-case text: first letter of sentence is uppercase, another letters - lowercase

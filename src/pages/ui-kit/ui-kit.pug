@@ -20,6 +20,7 @@ block includes
   include ../../templates/components/toggle/toggle
   include ../../templates/components/main-button/main-button
   include ../../templates/components/bullet-list/bullet-list
+  include ../../templates/components/text-field/text-field
 
 block content
   section.colors-type
@@ -198,4 +199,23 @@ block content
                 "Время прибытия — после 13:00, а выезд до 12:00"
               ]
             })
+        .form-elements__text-fields 
+          .form-elements__text-fields-top 
+            +text-field({
+              label: "text field",
+              state: "default",
+              name: "field",
+              type: "email",
+              placeholder: "Email",
+              required: false
+            })
+            +text-field({
+              isActive: true,
+              label: "text field",
+              name: "field",
+              type: "email",
+              placeholder: "This is pretty awesome",
+              required: false
+            })
+          .form-elements__text-fields-bottom
             
