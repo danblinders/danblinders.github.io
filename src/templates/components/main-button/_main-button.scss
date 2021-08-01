@@ -9,12 +9,15 @@
   overflow: hidden;
   @include set-font(1.2rem, 700, 1.5rem, #000, inherit);
   cursor: pointer;
+
   &_simple {
     color: $purple;
+    
     &:hover, &:focus, &:active, &-active {
       color: $darkShade50;
     }
   }
+
   &_filled {
     padding: 1.4rem 2rem 1.5rem 2rem;
     background-origin: border-box;
@@ -22,10 +25,12 @@
     color: #fff;
     border-radius: 2.2rem;
     letter-spacing: -0.197px;
+
     &:hover, &:focus, &:active, &-active {
       opacity: 0.5;
     }
   }
+
   &_outlined {
     padding: 1.2rem 1.8rem 1.3rem 1.8rem;
     background-origin: border-box;
@@ -34,14 +39,17 @@
     @include set-border($borderWidth: 2px, $borderRadius: 2.2rem);
     color: $purple;
     letter-spacing: -0.197px;
+
     &:hover, &:focus, &:active, &-active {
       background-image: $whiteGradient, $primaryGradientSemiTransparent;
     }
   }
+
   &_big{
     width: 100%;
     max-width: 320px;
   }
+
   &_has-arrow {
     &::after {
       content: "\e5c8";

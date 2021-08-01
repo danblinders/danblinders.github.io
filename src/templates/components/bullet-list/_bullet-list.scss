@@ -4,11 +4,13 @@
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 0;
+
   &__item {
     position: relative;
     padding-left: 2rem;
     max-width: 260px;
     @include sentence-case();
+    
     &::before {
       content: '';
       position: absolute;

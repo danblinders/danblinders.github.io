@@ -1,6 +1,7 @@
 .toggle {
   @include set-flex($gap: 1rem);
   cursor: pointer;
+
   &__input {
     position: relative;
     margin: 0;
@@ -9,6 +10,7 @@
     @include set-border($borderColor: $darkShade25, $borderRadius: 1rem);
     transition: border-color 0.5s;
     cursor: pointer;
+
     &::after {
       content: '';
       position: absolute;
@@ -20,14 +22,17 @@
       border-radius: 50%;
       transition: left 0.5s;
     }
+
     &:checked {
       border-color: $purple;
+
       &::after {
         left: 60%;
         background: $primaryGradient;
       }
     }
   }
+  
   &__label {
     line-height: 2rem;
     @include sentence-case();

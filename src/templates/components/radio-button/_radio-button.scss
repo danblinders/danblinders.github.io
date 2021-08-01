@@ -1,6 +1,7 @@
 .radio-button {
   @include set-flex($gap: 1rem);
   cursor: pointer;
+
   &__input {
     margin: 0;
     appearance: none;
@@ -9,6 +10,7 @@
     @include set-border($borderColor: $darkShade25, $borderRadius: 50%);
     transition: brder-color 0.3s;
     cursor: pointer;
+
     &::after {
       content: '';
       @include set-size(1.2rem);
@@ -17,16 +19,20 @@
       opacity: 0;
       transition: opacity 0.5s;
     }
+
     &:checked {
       border-color: $purple;
+
       &::after {
         opacity: 1;
       }
+
       &+ .radio-button__label {
         color: $darkShade75;
       }
     }
   }
+  
   &__label {
     line-height: 2rem;
     color: $darkShade50;

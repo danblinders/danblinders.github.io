@@ -21,6 +21,7 @@ block includes
   include ../../templates/components/main-button/main-button
   include ../../templates/components/bullet-list/bullet-list
   include ../../templates/components/text-field/text-field
+  include ../../templates/components/subscription-field/subscription-field
 
 block content
   section.colors-type
@@ -218,4 +219,10 @@ block content
               required: false
             })
           .form-elements__text-fields-bottom
+            +subscription-field({
+              action: "add/link/to/server",
+              label: "subscription text field",
+              name: "subscription",
+              placeholder: "Email"
+            })
             

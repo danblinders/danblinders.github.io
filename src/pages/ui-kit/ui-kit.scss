@@ -122,6 +122,7 @@
     width: 33%;
     &-top {
       @include flex-column($gap: 2rem);
+      margin-bottom: 4rem;
     }
   }
 }
@@ -137,3 +138,4 @@
 @import '../../templates/components/main-button/main-button';
 @import '../../templates/components/bullet-list/bullet-list';
 @import '../../templates/components/text-field/text-field';
+@import '../../templates/components/subscription-field/subscription-field';

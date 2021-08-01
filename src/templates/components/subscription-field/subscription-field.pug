@@ -1,0 +1,12 @@
+mixin subscription-field(options)
+  if !options
+    - options = {}
+
+  form.subscription-field(action = options.action)
+    if options.label
+      label.subscription-field__wrapper
+        span.subscription-field__label= options.label
+        input.subscription-field__input(type = "email", name = options.name, placeholder = options.placeholder, required = options.required)
+    else 
+      input.subscription-field__input(type = "email", name = options.name, placeholder = options.placeholder, required = options.required)
+    button.subscription-field__button(type = "submit")

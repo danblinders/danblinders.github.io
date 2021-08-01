@@ -29,6 +29,7 @@
 
   &__description {
     @include sentence-case();
+    
     &_case_uppercase {
       text-transform: uppercase;
     }

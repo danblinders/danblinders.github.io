@@ -1,6 +1,7 @@
 .checkbox {
   @include set-flex($gap: 1rem);
   cursor: pointer;
+
   &__input {
     position: relative;
     margin: 0;
@@ -9,6 +10,7 @@
     @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem);
     transition: border-color 0.5s;
     cursor: pointer;
+
     &::after {
       content: '';
       position: absolute;
@@ -26,20 +28,25 @@
       opacity: 0;
       transition: opacity 0.5s;
     }
+
     &:checked {
       border-color: $purple;
+
       &::after {
         opacity: 1;
       }
     }
   }
+  
   &__text {
     @include flex-column($gap: 0.3rem);
   }
+
   &__label {
     @include set-font(1.4rem, 400, 2rem, $darkShade50);
     @include sentence-case();
     max-width: 200px;
+
     &_type {
       &_rich {
         font-weight: 700;
@@ -48,6 +55,7 @@
       }
     }
   }
+  
   &__description {
     @include set-font(1.2rem, 400, 1.4rem, $darkShade50);
     @include sentence-case();
