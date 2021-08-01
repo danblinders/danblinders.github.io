@@ -5,6 +5,7 @@
   &__input {
     padding: 1.3rem 1.5rem;
     @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem);
+    outline: none;
     font-family: inherit;
 
     &::placeholder {
@@ -12,7 +13,7 @@
       color: $darkShade25;
     }
 
-    &:hover, &:focus, &_active {
+    &:hover, &:focus, &:active, &_active {
       border-color: $darkShade75;
 
       &::placeholder {
