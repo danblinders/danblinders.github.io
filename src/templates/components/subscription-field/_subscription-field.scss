@@ -7,20 +7,20 @@
     position: relative;
     display: inline-block;
     @include set-size(100%);
-    line-height: 1.8rem;
+
   }
 
   &__input {
     display: inline-block;
-    @include set-size(100%);
-    padding: 1.3rem 4.4rem 1.3rem 1.5rem;
+    @include set-size(100%, 4.4rem);
+    padding: 1.2rem 4.4rem 1.2rem 1.5rem;
     border: none;
     outline: none;
     @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem);
-    font-family: inherit;
+    @include set-font(1.4rem, 400, 2.4rem, $darkShade100, inherit);
+    letter-spacing: -0.02rem;
 
     &::placeholder {
-      line-height: 1.8rem;
       color: $darkShade25;
     }
 

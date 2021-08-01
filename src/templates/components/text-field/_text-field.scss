@@ -3,13 +3,15 @@
   width: 100%;
   max-width: 320px;
   &__input {
+    display: inline-block;
     padding: 1.3rem 1.5rem;
+    @include set-size(100%, 4.4rem);
     @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem);
+    @include set-font(1.4rem, 400, 1.8rem, $darkShade100, inherit);
     outline: none;
-    font-family: inherit;
+    letter-spacing: -0.02rem;
 
     &::placeholder {
-      line-height: 1.8rem;
       color: $darkShade25;
     }
 
@@ -37,5 +39,6 @@
     right: 0;
     font-weight: 400;
     color: $darkShade50;
+    letter-spacing: -0.02rem;
   }
 }
