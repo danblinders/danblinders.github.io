@@ -1,0 +1,81 @@
+.like-button {
+  outline: none;
+  border: none;
+  background: none;
+  padding: 0;
+  @include set-size(4rem, 2rem);
+  @include set-border($borderColor: $darkShade25, $borderRadius: 1rem);
+  font-family: inherit;
+  cursor: pointer;
+
+  &__inner {
+    @include set-size(100%);
+    @include set-flex();
+  }
+
+  &__icon {
+    @include flex-center();
+    @include set-size(50%, 100%);
+
+    &::after {
+      content: "\e87e";
+      @include set-font(1rem, 400, 1rem, $darkShade25, "Material Icons", "icons");
+      transition: transform 0.5s;
+    }
+
+    &_filled {
+      &::after {
+        content: "\e87d"; 
+      }
+    }
+
+    &_gradient {
+      &::after {
+        background-image: $primaryGradient;
+        background-clip: text;
+        color: transparent;
+      }
+    }
+
+    &_purple {
+      &::after {
+        color: $purple;
+      }
+    }
+  }
+
+  &__counter {
+    @include set-flex($crossAxis: center);
+    @include set-size(50%, 100%);
+    @include set-font(1rem, 400, 1rem, $darkShade25);
+
+    &_gradient {
+      background-image: $primaryGradient;
+      background-clip: text;
+      color: transparent;
+    }
+
+    &_purple {
+      color: $purple;
+    }
+    
+    &_with_padding {
+      padding-left: 0.2rem;
+    }
+  }
+
+  &_gradient {
+    background-origin: border-box;
+    background-image: $whiteGradient $primaryGradient;
+    background-clip: padding-box border-box;
+    border-color: transparent;
+  }
+
+  &_purple {
+    border-color: $purple;
+  }
+
+  &:focus, &:hover {
+    box-shadow: 0 0 1rem $purple;
+  }
+}

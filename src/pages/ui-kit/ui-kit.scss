@@ -125,6 +125,15 @@
       margin-bottom: 4rem;
     }
   }
+
+  &__like-buttons {
+    &-title {
+      margin-bottom: 1.6rem;
+    }
+    &-content {
+      @include set-flex($gap: 1rem, $flexWrap: wrap);
+    }
+  }
 }
 
 @import '../../templates/components/h1-title/h1-title';
@@ -139,3 +148,4 @@
 @import '../../templates/components/bullet-list/bullet-list';
 @import '../../templates/components/text-field/text-field';
 @import '../../templates/components/subscription-field/subscription-field';
+@import '../..//templates/components/like-button/like-button';

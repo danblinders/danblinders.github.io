@@ -1,0 +1,23 @@
+//-
+  options.count - amount of likes
+
+mixin like-button(options)
+  if !options
+    - options = {}
+
+  button.like-button(
+    class = options.borderColor ? `like-button_${options.borderColor}` : "",
+    data-border-color = options.borderColor,
+    data-count = options.count,
+  )
+    span.like-button__inner
+      span.like-button__icon(
+        class = options.iconIsFilled ? "like-button__icon_filled" : "",
+        class = options.iconColor ? `like-button__icon_${options.iconColor}` : "",
+        data-icon-color = options.iconColor
+      ) 
+      span.like-button__counter(
+        class = (options.count < 10) ? "like-button__counter_with_padding" : "",
+        class = options.counterColor ? `like-button__counter_${options.counterColor}` : "",
+        data-counter-color = options.counterColor
+      )= options.count

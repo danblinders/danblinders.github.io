@@ -22,6 +22,7 @@ block includes
   include ../../templates/components/bullet-list/bullet-list
   include ../../templates/components/text-field/text-field
   include ../../templates/components/subscription-field/subscription-field
+  include ../..//templates/components/like-button/like-button
 
 block content
   section.colors-type
@@ -225,5 +226,19 @@ block content
               label: "subscription text field",
               name: "subscription",
               placeholder: "Email"
+            })
+        .form-elements__like-buttons 
+          .form-elements__like-buttons-title 
+            +h3-label-cta-text("like buttons")
+          .form-elements__like-buttons-content
+            +like-button({
+              count: "2"
+            })
+            +like-button({
+              count: "2",
+              borderColor: "purple",
+              iconColor: "gradient",
+              iconIsFilled: true,
+              counterColor: "purple"
             })
             
