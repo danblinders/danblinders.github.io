@@ -232,10 +232,15 @@ block content
             +h3-label-cta-text("like buttons")
           .form-elements__like-buttons-content
             +like-button({
-              count: "2"
+              count: "2",
+              borderColor: "purple",
+              iconColor: "gradient",
+              iconIsFilled: true,
+              counterColor: "purple"
             })
             +like-button({
-              count: "2",
+              isActive: true,
+              count: "12",
               borderColor: "purple",
               iconColor: "gradient",
               iconIsFilled: true,
