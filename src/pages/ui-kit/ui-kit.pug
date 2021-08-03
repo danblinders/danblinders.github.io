@@ -23,6 +23,7 @@ block includes
   include ../../templates/components/text-field/text-field
   include ../../templates/components/subscription-field/subscription-field
   include ../..//templates/components/like-button/like-button
+  include ../../templates/components/feed/feed
 
 block content
   section.colors-type
@@ -246,4 +247,19 @@ block content
               iconIsFilled: true,
               counterColor: "purple"
             })
+        .form-elements__feed 
+          +feed({
+            image: "../../templates/components/feed/img/profile-1.png",
+            author: "мурад сарафанов",
+            date: "5 дней назад",
+            text: "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.",
+            button: {
+              isActive: true,
+              count: "12",
+              borderColor: "gradient",
+              iconColor: "purple",
+              iconIsFilled: true,
+              counterColor: "purple"
+            }
+          })
             

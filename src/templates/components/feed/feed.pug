@@ -1,0 +1,26 @@
+include ../like-button/like-button 
+
+mixin feed(options)
+  if !options
+    - options = {}
+
+  - const {image, author, date, button: {borderColor, iconColor, iconIsFilled, counterColor, count, isActive}, text} = options
+
+  .feed
+    .feed__top 
+      .feed__photo-wrapper 
+        img.feed__photo(src = image, alt = "profile photo")
+      .feed__info 
+        .feed__author= author
+        .feed__date= date 
+    .feed__bottom 
+      .feed__like-button 
+        +like-button({
+          count: count,
+          borderColor: borderColor,
+          iconColor: iconColor,
+          iconIsFilled: iconIsFilled,
+          counterColor: counterColor,
+          isActive: isActive
+        })
+      .feed__text= text

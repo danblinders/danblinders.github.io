@@ -66,8 +66,8 @@
 
   &_gradient {
     background-origin: border-box;
-    background-image: $whiteGradient $primaryGradient;
-    background-clip: padding-box border-box;
+    background-image: $whiteGradient, $primaryGradient;
+    background-clip: padding-box, border-box;
     border-color: transparent;
   }
 

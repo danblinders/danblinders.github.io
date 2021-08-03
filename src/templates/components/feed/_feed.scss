@@ -1,0 +1,36 @@
+.feed {
+  max-width: 710px;
+
+  &__top {
+    width: 100%;
+    margin-bottom: 1rem;
+    @include set-flex($gap: 1rem);
+  }
+
+  &__photo {
+    @include set-size(100%);
+
+    &-wrapper {
+      @include set-size(4.8rem);
+      @include set-border($borderWidth: 2px, $borderColor: #fff, $borderRadius: 50%);
+    }
+  }
+
+  &__author {
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+
+  &__bottom {
+    width: 100%;
+    @include set-flex($gap: 1rem);
+  }
+
+  &__like-button {
+    width: 4.8rem;
+    flex-shrink: 0;
+    @include set-flex($mainAxis: center);
+  }
+}
+
+@import "../like-button/like-button";
