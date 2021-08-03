@@ -1,0 +1,16 @@
+//-
+  icon - feature's icon
+  subtitle - feature's subtitle
+  descr - feature's description
+
+mixin room-features-item(options)
+  if !options
+    - options = {}
+
+  - const {icon, subtitle, descr} = options
+
+  .room-features-item
+    span.room-features-item__icon= icon 
+    .room-features-item__info 
+      .room-features-item__subtitle= subtitle 
+      .room-features-item__description= descr 

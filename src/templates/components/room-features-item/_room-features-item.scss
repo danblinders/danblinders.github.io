@@ -1,0 +1,23 @@
+.room-features-item{
+  max-width: 280px;
+  padding-bottom: 1.7rem;
+  padding-right: 2rem;
+  border-bottom: 1px solid $darkShade10;
+  @include set-flex($gap: 1rem);
+
+  &__icon {
+    @include set-size(4.8rem);
+    @include set-font(4.8rem, 400, 4.8rem, transparent, "Material Icons", "icons");
+    background-image: $primaryGradient;
+    background-clip: text;
+  }
+
+  &__subtitle {
+    font-weight: 700;
+    @include sentence-case();
+  }
+
+  &__description {
+    @include sentence-case();
+  }
+}

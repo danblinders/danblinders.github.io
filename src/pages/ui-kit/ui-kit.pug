@@ -24,6 +24,7 @@ block includes
   include ../../templates/components/subscription-field/subscription-field
   include ../..//templates/components/like-button/like-button
   include ../../templates/components/feed/feed
+  include ../../templates/components/room-features-item/room-features-item
 
 block content
   section.colors-type
@@ -262,4 +263,14 @@ block content
               counterColor: "purple"
             }
           })
-            
+        .form-elements__room-features 
+          +room-features-item({
+            icon: "insert_emoticon",
+            subtitle: "комфорт",
+            descr: "шумопоглощающие стены"
+          })
+          +room-features-item({
+            icon: "location_city",
+            subtitle: "удобство",
+            descr: "окно в каждой из спален"
+          })
