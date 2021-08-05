@@ -26,6 +26,7 @@ block includes
   include ../../templates/components/feed/feed
   include ../../templates/components/room-features-item/room-features-item
   include ../../templates/components/expandable-checkbox-list/expandable-checkbox-list
+  include ../../templates/components/rate-button/rate-button
 
 block content
   section.colors-type
@@ -287,4 +288,17 @@ block content
               {name: "includes", checked: false, label: "Телевизор"},
               {name: "includes", checked: false, label: "Шампунь"}
             ]
+          })
+        .form-elements__rate-buttons 
+          +rate-button({
+            action: "add/link/to/server",
+            starsAmount: "5",
+            radioName: "rating",
+            rating: "4"
+          })
+          +rate-button({
+            action: "add/link/to/server",
+            starsAmount: "5",
+            radioName: "rating",
+            rating: "5"
           })

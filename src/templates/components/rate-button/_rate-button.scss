@@ -1,0 +1,26 @@
+.rate-button {
+  @include set-flex();
+  
+  &__input {
+    display: none;
+  }
+
+  &__icon {
+    display: inline-block;
+    @include set-size(2.4rem);
+    cursor: pointer;
+
+    &::after {
+      content: '\e83a';
+      @include set-font(2.4rem, 400, 2.4rem, transparent, "Material Icons", 'icons');
+      background-clip: text;
+      background-image: $primaryGradient;
+    }
+
+    &_filled {
+      &::after {
+        content: '\e838';
+      }
+    }
+  }
+}

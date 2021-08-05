@@ -1,0 +1,18 @@
+//-
+  action - value for form attribute "action"
+  starsAmount - amount of stars at rate-button
+  rating - current rating
+  radioName - value for name attribute radio input inside rate-button
+
+mixin rate-button(options)
+  if !options
+    - options = {}
+  
+  - const {action, starsAmount, rating, radioName} = options
+
+  form.rate-button(action = action)
+    - for(let i = 1; i <= +starsAmount; i++) 
+        label.rate-button__element 
+          input.rate-button__input(type = "radio", name = radioName, value = `${i}`, checked = (i === +rating) ? true : false)
+          span.rate-button__icon(class = (i <= +rating) ? "rate-button__icon_filled" : "")
+        
