@@ -1,10 +1,10 @@
-import * as $ from "jquery";
 const setRateButton = (options) => {
-  const {btn, inputSelector, iconSelector, iconActiveClass} = options;
+  const {btnSelector, inputSelector, iconSelector, iconActiveClass} = options;
 
   // Getting elements from the page
-  const icons = btn.find(`.${iconSelector}`),
-        inputs = btn.find(`.${inputSelector}`);
+  const btn = $(btnSelector),
+        icons = btn.find(iconSelector),
+        inputs = btn.find(inputSelector);
 
   // Variable, that stores information about chosen rating
   let settedRating;
@@ -23,7 +23,7 @@ const setRateButton = (options) => {
     // Setting new value for variable settedRating. that equals to value of radio-button, which is the sibling of clicked icon
     // Toggling active classes for icons, which index is les or equal to settedRating value
     $(this).on("click", function() {
-      settedRating  = +$(this).siblings(`.${inputSelector}`).attr("value");
+      settedRating  = +$(this).siblings(inputSelector).attr("value");
 
       icons.each(function(index) {
         $(this).toggleClass(iconActiveClass, index < settedRating);
@@ -34,7 +34,7 @@ const setRateButton = (options) => {
     // Creating temporary rating variable. which value equals to value of radio-button, which is the sibling of hovered icon
     // Toggling active classes for icons, which index is les or equal to ratingvalue
     $(this).on("mouseover", function() {
-      const rating = +$(this).siblings(`.${inputSelector}`).attr("value");
+      const rating = +$(this).siblings(inputSelector).attr("value");
 
       icons.each(function(index) {
         $(this).toggleClass(iconActiveClass, index < rating);

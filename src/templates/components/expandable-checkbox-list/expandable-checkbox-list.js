@@ -1,13 +1,13 @@
-const expandList = ({list, 
+const expandList = ({listSelector, 
                     iconSelector, 
                     listContentSelector, 
-                    slideDuration, 
                     activeClasses: {listActiveClass, iconActiveClass}}) => {
 
   // Getting elements of list and content's height
   
-  const listIcon = list.find(`.${iconSelector}`),
-        listContent = list.find(`.${listContentSelector}`),
+  const list = $(listSelector),
+        listIcon = list.find(iconSelector),
+        listContent = list.find(listContentSelector),
         contentHeight = listContent.css("height");
 
   // Function. that changes the element height depends on the presence of activeClass on it's parent

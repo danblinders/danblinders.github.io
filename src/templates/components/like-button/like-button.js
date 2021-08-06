@@ -1,12 +1,13 @@
 const setLikeButton = (options) => {
   // Destructuring the oject with arguements
 
-  const {btn, iconSelector, counterSelector, dataActiveAttribute, dataCountAttribute, activeClasses} = options;
+  const {btnSelector, iconSelector, counterSelector, dataActiveAttribute, dataCountAttribute, activeClasses: {activeButton, activeIcon, activeCounter}} = options;
 
   // Getting button elements from page
 
-  const btnIcon = btn.find(`.${iconSelector}`),
-        btnCounter = btn.find(`.${counterSelector}`);
+  const btn = $(btnSelector),
+        btnIcon = btn.find(iconSelector),
+        btnCounter = btn.find(counterSelector);
 
   btn.on("click", function() {
 
@@ -16,9 +17,9 @@ const setLikeButton = (options) => {
 
     // Toggle active classes form button and it's elements
 
-    btn.toggleClass(activeClasses.button);
-    btnIcon.toggleClass(activeClasses.icon);
-    btnCounter.toggleClass(activeClasses.counter);
+    btn.toggleClass(activeButton);
+    btnIcon.toggleClass(activeIcon);
+    btnCounter.toggleClass(activeCounter);
 
     // Getting data-count value
 
@@ -39,7 +40,7 @@ const setLikeButton = (options) => {
 
     // If new countValue is lower than 10, add padding to counter
 
-    btnCounter.toggleClass(`${counterSelector}_with_padding`, countValue < 10);
+    btnCounter.toggleClass(`${counterSelector.replace(/\./, "")}_with_padding`, countValue < 10);
   });
 };
 

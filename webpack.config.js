@@ -1,4 +1,7 @@
+"use strict";
+
 const path = require("path"),
+      webpack = require("webpack"),
       fs = require("fs"),
       MiniCssExtractPlugin = require("mini-css-extract-plugin"),
       HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -79,7 +82,12 @@ const config = {
     ]
   },
 
-  plugins: []
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    })
+  ]
 };
 
 // Modifying config object
