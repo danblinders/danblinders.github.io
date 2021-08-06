@@ -140,6 +140,10 @@
     width: 33%;
     @include flex-column($gap: 2rem);
   }
+
+  &__range-slider {
+    width: 33%;
+  }
 }
 
 @import '../../templates/components/h1-title/h1-title';
@@ -159,3 +163,4 @@
 @import '../../templates/components/room-features-item/room-features-item';
 @import '../../templates/components/expandable-checkbox-list/expandable-checkbox-list';
 @import '../../templates/components/rate-button/rate-button';
+@import '../../templates/components/range-slider/range-slider';

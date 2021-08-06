@@ -1,0 +1,54 @@
+.range-slider {
+  width: 100%;
+  max-width: 266px;
+
+  &__header {
+    @include set-flex($mainAxis: space-between, $crossAxis: center);
+    margin-bottom: 2rem;
+  }
+
+  &__subtitle {
+    @include label-cta-text();
+    text-transform: uppercase;
+  }
+
+  &__value {
+    @include set-font(1.2rem, 400, 1.5rem, $darkShade50);
+    text-transform: uppercase;
+  }
+
+  &__body {
+    display: inline-block;
+    width: 100%;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  .irs {
+    &--round {
+      height: auto;
+    }
+    &-line {
+      top: 0;
+      min-height: 0.6rem;
+      @include set-border($borderColor: $darkShade25, $borderRadius: 0.3rem);
+      background: transparent;
+    }
+    &-bar {
+      top: 0;
+      min-height: 0.6rem;
+      background-image: $secondaryGradient;
+    }
+    &-handle {
+      @include set-size(1.2rem);
+      @include set-border(2px, solid, #fff, 50%);
+      top: -0.5rem;
+      background-image: $secondaryGradient;
+      cursor: pointer;
+    }
+  }
+}
+
+@import 'ion-rangeslider/css/ion.rangeSlider.min.css';

@@ -1,0 +1,12 @@
+mixin range-slider(options)
+  if !options
+    - options = {}
+
+  - const {subtitle, name, min, max, start, end} = options
+
+  .range-slider(data-min = min, data-max = max, data-start = start, data-end = end)
+    .range-slider__header 
+      .range-slider__subtitle= subtitle
+      .range-slider__value= `${start}₽ - ${end}₽`
+    label.range-slider__body
+      input.range-slider__input(type = "text", name = name, value = `${start}Р  - ${end}Р`)

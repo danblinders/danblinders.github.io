@@ -1,6 +1,7 @@
 import setLikeButton from "../../templates/components/like-button/like-button";
 import expandList from "../../templates/components/expandable-checkbox-list/expandable-checkbox-list";
 import setRateButton from "../../templates/components/rate-button/rate-button";
+import rangeSlider from "../../templates/components/range-slider/range-slider";
 import "./ui-kit.scss";
 
 $(document).ready(() => {
@@ -37,6 +38,14 @@ $(document).ready(() => {
       iconSelector: ".rate-button__icon",
       inputSelector: ".rate-button__input",
       iconActiveClass: "rate-button__icon_filled"
+    });
+  });
+
+  $(".range-slider").each(function() {
+    rangeSlider({
+      sliderSelector: this,
+      sliderInputSelector: ".range-slider__input",
+      sliderValueSelector: ".range-slider__value"
     });
   });
 });
