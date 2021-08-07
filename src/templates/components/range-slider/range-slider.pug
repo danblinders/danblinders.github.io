@@ -1,3 +1,11 @@
+//-
+  subtitle - subtitle text 
+  name - name attribute for input field
+  min - min value for slider
+  max - max vlaue for slider
+  start - start value for slider after page load
+  end - end value for slider after page load
+
 mixin range-slider(options)
   if !options
     - options = {}
@@ -7,6 +15,6 @@ mixin range-slider(options)
   .range-slider(data-min = min, data-max = max, data-start = start, data-end = end)
     .range-slider__header 
       .range-slider__subtitle= subtitle
-      .range-slider__value= `${start}₽ - ${end}₽`
+      .range-slider__value
     label.range-slider__body
       input.range-slider__input(type = "text", name = name, value = `${start}Р  - ${end}Р`)

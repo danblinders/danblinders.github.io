@@ -4,7 +4,7 @@
 
   &__header {
     @include set-flex($mainAxis: space-between, $crossAxis: center);
-    margin-bottom: 2rem;
+    margin-bottom: 1.4rem;
   }
 
   &__subtitle {
@@ -13,7 +13,7 @@
   }
 
   &__value {
-    @include set-font(1.2rem, 400, 1.5rem, $darkShade50);
+    @include set-font(1.2rem, 400, 1.5rem, $darkShade50, Montserrat);
     text-transform: uppercase;
   }
 
@@ -23,7 +23,7 @@
   }
 
   &__input {
-    display: none;
+    display: none !important;
   }
 
   .irs {
@@ -42,7 +42,7 @@
       background-image: $secondaryGradient;
     }
     &-handle {
-      @include set-size(1.2rem);
+      @include set-size(1.4rem);
       @include set-border(2px, solid, #fff, 50%);
       top: -0.5rem;
       background-image: $secondaryGradient;
