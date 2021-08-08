@@ -2,6 +2,7 @@ import setLikeButton from "../../templates/components/like-button/like-button";
 import expandList from "../../templates/components/expandable-checkbox-list/expandable-checkbox-list";
 import setRateButton from "../../templates/components/rate-button/rate-button";
 import rangeSlider from "../../templates/components/range-slider/range-slider";
+import setPagination from "../../templates/components/pagination/pagintaion";
 import "./ui-kit.scss";
 
 $(document).ready(() => {
@@ -46,6 +47,12 @@ $(document).ready(() => {
       sliderSelector: this,
       sliderInputSelector: ".range-slider__input",
       sliderValueSelector: ".range-slider__value"
+    });
+  });
+
+  $(".pagination").each(function() {
+    setPagination({
+      paginationSelector: this
     });
   });
 });

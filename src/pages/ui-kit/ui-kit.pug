@@ -28,6 +28,7 @@ block includes
   include ../../templates/components/expandable-checkbox-list/expandable-checkbox-list
   include ../../templates/components/rate-button/rate-button
   include ../../templates/components/range-slider/range-slider
+  include ../../templates/components/pagination/pagination
 
 block content
   section.colors-type
@@ -290,19 +291,22 @@ block content
               {name: "includes", checked: false, label: "Шампунь"}
             ]
           })
-        .form-elements__rate-buttons 
-          +rate-button({
-            action: "add/link/to/server",
-            starsAmount: "5",
-            radioName: "rating",
-            rating: "4"
-          })
-          +rate-button({
-            action: "add/link/to/server",
-            starsAmount: "5",
-            radioName: "rating",
-            rating: "5"
-          })
+        .form-elements__rate-buttons
+          .form-elements__rate-buttons-title 
+            +h3-label-cta-text("rate button")
+          .form-elements__rate-buttons-content
+            +rate-button({
+              action: "add/link/to/server",
+              starsAmount: "5",
+              radioName: "rating",
+              rating: "4"
+            })
+            +rate-button({
+              action: "add/link/to/server",
+              starsAmount: "5",
+              radioName: "rating",
+              rating: "5"
+            })
         .form-elements__range-slider 
           +range-slider({
             subtitle: "range slider",
@@ -312,3 +316,5 @@ block content
             start: "5000",
             end: "10000"
           })
+        .form-elements__pagination 
+          +pagination()

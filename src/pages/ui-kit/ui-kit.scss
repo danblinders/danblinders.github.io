@@ -61,7 +61,7 @@
 
   &__content {
     position: relative;
-    @include set-flex($mainAxis: space-between, $flexWrap: wrap);
+    @include set-flex($mainAxis: space-between, $crossAxis: center, $flexWrap: wrap);
   }
 
   &__logo {
@@ -141,6 +141,16 @@
     @include flex-column($gap: 2rem);
   }
 
+  &__rate-buttons {
+    &-title {
+      margin-bottom: 1.6em;
+    }
+
+    &-content {
+      @include set-flex($gap: 2rem, $flexWrap: wrap);
+    }
+  }
+
   &__range-slider {
     width: 33%;
   }
@@ -164,3 +174,4 @@
 @import '../../templates/components/expandable-checkbox-list/expandable-checkbox-list';
 @import '../../templates/components/rate-button/rate-button';
 @import '../../templates/components/range-slider/range-slider';
+@import '../../templates/components/pagination/pagination';
