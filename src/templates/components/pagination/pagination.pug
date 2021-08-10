@@ -2,4 +2,6 @@ mixin pagination(options)
   if !options
     - options = {}
 
-  .pagination
+  - const {pages} = options;
+
+  .pagination-container(data-pages = pages)
