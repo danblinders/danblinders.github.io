@@ -154,6 +154,12 @@
   &__range-slider {
     width: 33%;
   }
+
+  &__pagination {
+    &-title {
+      margin-bottom: 1.6rem;
+    }
+  }
 }
 
 @import '../../templates/components/h1-title/h1-title';

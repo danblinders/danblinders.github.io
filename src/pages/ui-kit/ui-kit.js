@@ -50,12 +50,12 @@ $(document).ready(() => {
     });
   });
 
-  $(".pagination-container").each(function() {
+  $(".pagination-block__top").each(function() {
+    console.log(+$(this).parent().attr("data-initial-active-page"));
     new Pagination({
       parent: this,
-      totalPages: 15,
-      activePage: 2,
-      edges: 3
+      totalPages: +$(this).parent().attr("data-pages"),
+      activePage: +$(this).parent().attr("data-initial-active-page")
     }).render();
   });
 });

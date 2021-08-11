@@ -1,0 +1,54 @@
+.pagination-block {
+  display: inline-block;
+
+  &__top {
+    margin-bottom: 1rem;
+  }
+
+  &__bottom {
+    @include set-flex($mainAxis: center);
+  }
+  .pagination{
+    width: 100%;
+    @include set-flex($crossAxis: center);
+
+    &__prev,
+    &__next,
+    &__page,
+    &__dots {
+      @include set-size(4rem);
+      border-radius: 50%;
+      text-align: center;
+    }
+
+    &__prev,
+    &__next {
+      background-image: $secondaryGradient;
+      @include set-font(2.4rem, 400, 4rem, #fff, "Material Icons", 'icons');
+      cursor: pointer;
+    }
+
+    &__pages {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      @include flex-center();
+    }
+
+    &__dots {
+      @include set-font(1.2rem, 400, 4rem, $darkShade50);
+    }
+
+    &__page {
+      @include set-font(1.2rem, 400, 4rem, $darkShade50);
+      cursor: pointer;
+
+      &:hover, &_active {
+        font-weight: 700;
+        color: #fff;
+        background-image: $primaryGradient;
+      }
+    }
+  }
+}

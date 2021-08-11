@@ -1,7 +1,14 @@
+//-
+  pages - value for data-pages attribute, total number of pages
+  activePage - value for data-initial-active-page attribute
+  infoText - text for the bottom part of pagination
+
 mixin pagination(options)
   if !options
     - options = {}
 
-  - const {pages} = options;
+  - const {pages, activePage, infoText} = options;
 
-  .pagination-container(data-pages = pages)
+  .pagination-block(data-pages = pages data-initial-active-page = activePage)
+    .pagination-block__top
+    .pagination-block__bottom= infoText

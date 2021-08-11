@@ -316,5 +316,12 @@ block content
             start: "5000",
             end: "10000"
           })
-        .form-elements__pagination 
-          +pagination()
+        .form-elements__pagination
+          .form-elements__pagination-title 
+            +h3-label-cta-text("pagination")
+          .form-elements__pagination-content 
+            +pagination({
+              pages: 15,
+              activePage: 1,
+              infoText: "1 – 12 из 100+ вариантов аренды"
+            })
