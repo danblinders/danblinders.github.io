@@ -1,6 +1,4 @@
 .pagination-block {
-  display: inline-block;
-
   &__top {
     margin-bottom: 1rem;
   }
@@ -11,6 +9,7 @@
   .pagination{
     width: 100%;
     @include set-flex($crossAxis: center);
+    line-height: 4rem;
 
     &__prev,
     &__next,
@@ -36,12 +35,7 @@
       @include flex-center();
     }
 
-    &__dots {
-      @include set-font(1.2rem, 400, 4rem, $darkShade50);
-    }
-
     &__page {
-      @include set-font(1.2rem, 400, 4rem, $darkShade50);
       cursor: pointer;
 
       &:hover, &_active {

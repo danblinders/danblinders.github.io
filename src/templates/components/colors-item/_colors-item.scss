@@ -4,6 +4,7 @@
   &__square {
     @include set-size(7rem);
     border-radius: 0.6rem;
+    flex-shrink: 0;
 
     &_darkshade {
 
@@ -43,7 +44,7 @@
 
   &__name,
   &__code {
-    @include set-font($fontSize: 1.9rem, $lineHeight: 2.8rem, $color: $darkShade100, $fontFamily: Montserrat);
+    @include set-font(1.9rem, 400, 2.8rem, $darkShade100);
   }
 
   &__name {
@@ -52,7 +53,6 @@
   }
   
   &__code {
-    font-weight: 400;
     text-transform: uppercase;
   }
 }

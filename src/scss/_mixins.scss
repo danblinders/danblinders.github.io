@@ -7,8 +7,8 @@
 
 // Mixin for setting font properties
 
-@mixin set-font($fontSize: false, $fontWeight: false, $lineHeight: false, $color: false, $fontFamily: false, $fontFamilyType: "sans-serif") {
-  @if $fontFamily != inherit{
+@mixin set-font($fontSize: null, $fontWeight: null, $lineHeight: null, $color: null, $fontFamily: null, $fontFamilyType: "sans-serif") {
+  @if ($fontFamily != inherit) and ($fontFamily != null) {
 
     @if ($fontFamilyType == "sans-serif") {
       font-family: $fontFamily, Arial, sans-serif;
@@ -30,21 +30,10 @@
     font-family: inherit;
   }
 
-  @if $fontSize {
-    font-size: $fontSize;
-  }
-
-  @if $fontWeight {
-    font-weight: $fontWeight;
-  }
-
-  @if $lineHeight {
-    line-height: $lineHeight;
-  }
-
-  @if $color {
-    color: $color;
-  }
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: $lineHeight;
+  color: $color;
 }
 
 // Mixin for setting title text
@@ -81,7 +70,7 @@
 }
 
 // Mixin for setting border properties
-@mixin set-border($borderWidth: 1px, $borderStyle: solid, $borderColor: transparent, $borderRadius: false) {
+@mixin set-border($borderWidth: 1px, $borderStyle: solid, $borderColor: transparent, $borderRadius: null) {
   border: $borderWidth $borderStyle $borderColor;
 
   @if borderRadius {
@@ -92,34 +81,22 @@
 // Mixins for flex layout
 
 // Mixin for setting flex layout
-@mixin set-flex ($mainAxis: false, $crossAxis: false, $gap: false, $flexWrap: false) {
+@mixin set-flex ($mainAxis: null, $crossAxis: null, $gap: null, $flexWrap: null) {
   display: flex;
-
-  @if $mainAxis {
-    justify-content: $mainAxis;
-  }
-
-  @if $crossAxis {
-    align-items: $crossAxis;
-  }
-
-  @if $gap {
-    gap: $gap;
-  }
-
-  @if $flexWrap {
-    flex-wrap: $flexWrap;
-  }
+  justify-content: $mainAxis;
+  align-items: $crossAxis;
+  gap: $gap;
+  flex-wrap: $flexWrap;
 }
 
 // Mixin for setting flex-direction to column
-@mixin flex-column($mainAxis: false, $crossAxis: false, $gap: false) {
+@mixin flex-column($mainAxis: null, $crossAxis: null, $gap: null) {
   @include set-flex($mainAxis, $crossAxis, $gap);
   flex-direction: column;
 }
 
 // Mixin for centering flex-items
-@mixin flex-center($gap: false, $flexWrap: false) {
+@mixin flex-center($gap: null, $flexWrap: null) {
   @include set-flex(center, center, $gap, $flexWrap);
 }
 

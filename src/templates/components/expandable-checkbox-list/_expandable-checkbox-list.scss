@@ -1,8 +1,6 @@
 .expandable-checkbox-list {
-  width: 100%;
   max-width: 266px;
   &__select {
-    width: 100%;
     min-height: 4.4rem;
     @include set-flex($crossAxis: center, $gap: 3rem);
     @include label-cta-text();

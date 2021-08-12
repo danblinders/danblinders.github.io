@@ -25,4 +25,5 @@ mixin main-button(options)
       when "outlined": - classes.push("main-button_outlined-active")
       when "simple": - classes.push("main-button_simple-active")
 
-  button.main-button(class = classes)= options.text
+  button.main-button(class = classes)
+    span.main-button__inner= options.text

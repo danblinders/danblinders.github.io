@@ -2,7 +2,6 @@
   max-width: 710px;
 
   &__top {
-    width: 100%;
     margin-bottom: 1rem;
     @include set-flex($gap: 1rem);
   }
@@ -22,7 +21,6 @@
   }
 
   &__bottom {
-    width: 100%;
     @include set-flex($gap: 1rem);
   }
 

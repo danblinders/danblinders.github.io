@@ -1,17 +1,25 @@
 .main-button {
-  position: relative;
   outline: none;
   border: none;
   background: none;
   padding: 0;
-  color: #000;
   text-transform: uppercase;
-  overflow: hidden;
-  @include set-font(1.2rem, 700, 1.5rem, #000, inherit);
+  @include set-font(1.2rem, 700, 1.5rem, $darkShade100, inherit);
   cursor: pointer;
+
+  &__inner {
+    position: relative;
+    display: inline-block;
+    padding: 1.4rem 2rem 1.5rem 2rem;
+    @include set-size(100%);
+  }
 
   &_simple {
     color: $purple;
+
+    .main-button__inner {
+      padding: 0;
+    }
     
     &:hover, &:focus, &:active, &-active {
       color: $darkShade50;
@@ -19,7 +27,6 @@
   }
 
   &_filled {
-    padding: 1.4rem 2rem 1.5rem 2rem;
     background-origin: border-box;
     background-image: $primaryGradient;
     color: #fff;
@@ -32,13 +39,16 @@
   }
 
   &_outlined {
-    padding: 1.2rem 1.8rem 1.3rem 1.8rem;
     background-origin: border-box;
     background-image: $whiteGradient, $primaryGradient;
     background-clip: padding-box, border-box;
     @include set-border($borderWidth: 2px, $borderRadius: 2.2rem);
     color: $purple;
     letter-spacing: -0.197px;
+
+    .main-button__inner {
+      padding: 1.2rem 1.8rem 1.3rem 1.8rem;
+    }
 
     &:hover, &:focus, &:active, &-active {
       background-image: $whiteGradient, $primaryGradientSemiTransparent;
@@ -51,16 +61,17 @@
   }
 
   &_has-arrow {
-    &::after {
-      content: "\e5c8";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      background: transparent;
-      width: 4.4rem;
-      @include flex-center();
-      @include set-font(2.4rem, 400, 2.4rem, #fff, "Material Icons", "icons");
+    .main-button__inner {
+      &::after {
+        content: "\e5c8";
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: transparent;
+        @include set-size(4.4rem);
+        @include flex-center();
+        @include set-font(2.4rem, 400, 2.4rem, #fff, "Material Icons", "icons");
+      }
     }
   }
 }

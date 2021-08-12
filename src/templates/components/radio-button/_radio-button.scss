@@ -4,11 +4,12 @@
 
   &__input {
     margin: 0;
+    flex-shrink: 0;
     appearance: none;
     @include flex-center();
     @include set-size(2rem);
     @include set-border($borderColor: $darkShade25, $borderRadius: 50%);
-    transition: brder-color 0.3s;
+    transition: border-color 0.3s;
     cursor: pointer;
 
     &::after {

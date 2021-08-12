@@ -13,8 +13,8 @@
     &::after {
       content: '\e83a';
       @include set-font(2.4rem, 400, 2.4rem, transparent, "Material Icons", 'icons');
-      background-clip: text;
       background-image: $primaryGradient;
+      background-clip: text;
     }
 
     &_filled {

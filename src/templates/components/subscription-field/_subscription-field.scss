@@ -1,13 +1,14 @@
 .subscription-field {
-  position: relative;
-  width: 100%;
   max-width: 267px;
+
+  &__inner {
+    position: relative;
+  }
 
   &__wrapper {
     position: relative;
     display: inline-block;
     @include set-size(100%);
-
   }
 
   &__input {
@@ -37,6 +38,7 @@
     position: absolute;
     top: -2rem;
     left: 0;
+    display: inline-block;
     width: 100%;
     @include label-cta-text();
     text-transform: uppercase;
@@ -60,8 +62,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       @include set-font(2.4rem, 400, 2.4rem, transparent, "Material Icons", "icons");
-      background-clip: text;
       background-image: $primaryGradient;
+      background-clip: text;
     }
   }
 }

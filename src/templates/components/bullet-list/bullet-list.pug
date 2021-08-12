@@ -5,6 +5,7 @@ mixin bullet-list(options)
   if !options
     - options = {}
 
-  ul.bullet-list 
-    each item in options.items 
-      li.bullet-list__item= item
+  .bullet-list
+    ul.bullet-list__wrapper  
+      each item in options.items 
+        li.bullet-list__item= item
