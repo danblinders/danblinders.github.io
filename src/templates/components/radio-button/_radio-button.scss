@@ -1,4 +1,5 @@
 .radio-button {
+  max-width: 220px;
   @include set-flex($gap: 1rem);
   cursor: pointer;
 

@@ -1,4 +1,5 @@
 .toggle {
+  max-width: 260px;
   @include set-flex($gap: 1rem);
   cursor: pointer;
 

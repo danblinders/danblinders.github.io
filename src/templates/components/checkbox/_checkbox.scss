@@ -1,4 +1,5 @@
 .checkbox {
+  max-width: 260px;
   @include set-flex($gap: 1rem);
   cursor: pointer;
 
@@ -46,13 +47,11 @@
   &__label {
     @include set-font(1.4rem, 400, 2rem, $darkShade50);
     @include sentence-case();
-    max-width: 200px;
-
+    max-width: 210px;
     &_type {
       &_rich {
         font-weight: 700;
         color: $darkShade75;
-        max-width: 230px;
       }
     }
   }
@@ -60,6 +59,5 @@
   &__description {
     @include set-font(1.2rem, 400, 1.4rem, $darkShade50);
     @include sentence-case();
-    max-width: 230px;
   }
 }

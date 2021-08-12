@@ -1,4 +1,5 @@
 .colors-item {
+  max-width: 300px;
   @include set-flex($crossAxis: center, $gap: 4rem);
 
   &__square {
