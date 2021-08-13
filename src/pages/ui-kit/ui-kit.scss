@@ -160,6 +160,11 @@
       margin-bottom: 1.6rem;
     }
   }
+  
+  &__dropdown {
+    width: 100%;
+    @include set-flex();
+  }
 }
 
 @import '../../templates/components/h1-title/h1-title';
@@ -181,3 +186,4 @@
 @import '../../templates/components/rate-button/rate-button';
 @import '../../templates/components/range-slider/range-slider';
 @import '../../templates/components/pagination/pagination';
+@import '../../templates/components/dropdown/dropdown';

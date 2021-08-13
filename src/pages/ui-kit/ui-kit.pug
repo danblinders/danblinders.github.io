@@ -29,6 +29,7 @@ block includes
   include ../../templates/components/rate-button/rate-button
   include ../../templates/components/range-slider/range-slider
   include ../../templates/components/pagination/pagination
+  include ../../templates/components/dropdown/dropdown
 
 block content
   section.colors-type
@@ -325,3 +326,31 @@ block content
               activePage: 1,
               infoText: "1 – 12 из 100+ вариантов аренды"
             })
+        .form-elements__dropdown 
+          +dropdown({
+            isRequired: true,
+            label: "dropdown",
+            state: "default",
+            name: "rooms",
+            inputValue: "2 спальни, 2 кровати...",
+            inputPlaceholder: "Конфигурация номера...",
+            menuItems: [
+              {name: "спальни", count: "2"},
+              {name: "кровати", count: "2"},
+              {name: "спальни", count: "0"}
+            ]
+          })
+          +dropdown({
+            isRequired: true,
+            isExpanded: true,
+            label: "dropdown",
+            state: "default",
+            name: "rooms",
+            inputValue: "2 спальни, 2 кровати...",
+            inputPlaceholder: "Конфигурация номера...",
+            menuItems: [
+              {name: "спальни", count: "2"},
+              {name: "кровати", count: "2"},
+              {name: "спальни", count: "0"}
+            ]
+          })
