@@ -3,6 +3,7 @@ import expandList from "../../templates/components/expandable-checkbox-list/expa
 import setRateButton from "../../templates/components/rate-button/rate-button";
 import rangeSlider from "../../templates/components/range-slider/range-slider";
 import Pagination from "../../templates/components/pagination/pagintaion";
+import setDropdown from "../../templates/components/dropdown/dropdown";
 import "./ui-kit.scss";
 
 $(document).ready(() => {
@@ -57,5 +58,9 @@ $(document).ready(() => {
       totalPages: +$(this).parent().attr("data-pages"),
       activePage: +$(this).parent().attr("data-initial-active-page")
     }).render();
+  });
+
+  $(".dropdown").each(function() {
+    setDropdown(this);
   });
 });

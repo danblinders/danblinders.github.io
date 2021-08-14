@@ -27,7 +27,7 @@ mixin dropdown(options)
     .dropdown__menu 
       .dropdown__items 
         each item in menuItems 
-          .dropdown__item
+          .dropdown__item(data-count = item.count)
             .dropdown__item-name= item.name 
             .dropdown__item-calculator 
               button.dropdown__item-minus(type = "button")= "-"
@@ -36,7 +36,7 @@ mixin dropdown(options)
       if isBig 
         .dropdown__buttons 
           .dropdown__button-clear(type = "button") 
-            +button({style: "simple", text: "очистить"})
+            +main-button({style: "simple", text: "очистить"})
           .dropdown__button-apply(type = "button")
-            +button({style: "simple", text: "применить"})
+            +main-button({style: "simple", text: "применить"})
       
