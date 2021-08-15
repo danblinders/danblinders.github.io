@@ -6,12 +6,12 @@
     max-width: 320px;
   }
   
-  &_expanded {
-    border-color: $darkShade50;
-    .dropdown__menu {
-      display: block;
-    }
-  }
+  // &_expanded {
+  //   border-color: $darkShade50;
+  //   .dropdown__menu {
+  //     display: block;
+  //   }
+  // }
 
   &__field {
     display: inline-block;
@@ -72,11 +72,17 @@
   }
 
   &__menu {
+    position: relative;
+    z-index: 1;
     display: none;
     @include set-border($borderColor: $darkShade25, $borderRadius: 0 0 4px 4px);
     border-top: none;
     padding: 0.7rem 0.7rem 0.8rem 1.5rem;
     overflow: hidden;
+
+    &_expanded {
+      display: block;
+    }
   }
 
   &__items {
@@ -100,10 +106,15 @@
       outline: none;
       background: none;
       @include set-size(3rem);
-      @include set-border($borderColor: $darkShade25, $borderRadius: 50%);
-      @include set-font(1.8rem, 400, 1, $darkShade25);
+      @include set-border($borderColor: $darkShade50, $borderRadius: 50%);
+      @include set-font(1.8rem, 400, 1, $darkShade50);
       text-align: center;
       cursor: pointer;
+
+      &_disabled {
+        color: $darkShade25;
+        border-color: $darkShade25;
+      }
     }
 
     &-counter {

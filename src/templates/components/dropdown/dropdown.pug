@@ -10,7 +10,6 @@ mixin dropdown(options)
     const classes = []
 
     classes.push(isBig ? "dropdown_big" : "")
-    classes.push(isExpanded ? "dropdown_expanded" : "")
     classes.push(isBorderRounded ? "dropdown_border_rounded" : "")
 
   .dropdown(
@@ -24,15 +23,15 @@ mixin dropdown(options)
             span.dropdown__state= state
       span.dropdown__input
         input.dropdown__input-element(type = "text", name = name, value = inputValue, placeholder = inputPlaceholder, required = isRequired, disabled = true)
-    .dropdown__menu 
+    .dropdown__menu(class = isExpanded ? "dropdown__menu_expanded" : "")
       .dropdown__items 
         each item in menuItems 
           .dropdown__item(data-count = item.count)
             .dropdown__item-name= item.name 
             .dropdown__item-calculator 
-              button.dropdown__item-minus(type = "button")= "-"
+              button.dropdown__item-minus(class = (item.count <= 0) ? "dropdown__item-minus_disabled" : "", type = "button")= "-"
               .dropdown__item-counter= item.count 
-              button.dropdown__item-plus(type = "button")= "+"
+              button.dropdown__item-plus(class = (item.count >= 10) ? "dropdown__item-plus_disabled" : "", type = "button")= "+"
       if isBig 
         .dropdown__buttons 
           .dropdown__button-clear(type = "button") 

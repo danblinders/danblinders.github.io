@@ -7,11 +7,11 @@ const setDropdown = (dropdownSelector) => {
       this.dropdownType = this.dropdown.attr("data-type");
       this.field = this.dropdown.find(".dropdown__field");
       this.menu = this.dropdown.find(".dropdown__menu");
-      this.menuItems = this.dropdown.find(".dropdown__item");
-      this.applyBtn = this.dropdown.find(".dropdown__button-apply");
-      this.clearBtn = this.dropdown.find(".dropdown__button-clear");
+      this.menuItems = this.menu.find(".dropdown__item");
+      this.applyBtn = this.menu.find(".dropdown__button-apply");
+      this.clearBtn = this.menu.find(".dropdown__button-clear");
   
-      this.field.on("click", () => this.toggleDropdown());
+      this.field.on("click", () => this.toggleDropdownMenu());
 
       this.applyBtn.on("click", () => {
         this.changeInputValue(this.countTotalValue());
@@ -30,9 +30,14 @@ const setDropdown = (dropdownSelector) => {
       });
     }
   
-    toggleDropdown() {
-      this.dropdown.toggleClass("dropdown_expanded");
-      this.menu.slideToggle();
+    toggleDropdownMenu() {
+      this.menu.toggleClass("dropdown__menu_expanded");
+
+      if (this.menu.hasClass("dropdown__menu_expanded")) {
+        this.menu.hide().slideDown(500);
+      } else {
+        this.menu.slideDown(0).slideUp(500);
+      }
     }
 
     countTotalValue() {
@@ -46,7 +51,55 @@ const setDropdown = (dropdownSelector) => {
     }
 
     changeInputValue(newValue) {
-      this.field.find(".dropdown__input-element").attr("value", newValue);
+      const inputElement = this.field.find(".dropdown__input-element");
+
+      if (this.dropdownType === "guests") {
+        const guestsCount = +newValue;
+
+        if (guestsCount === 0) {
+          inputElement.attr("value", "");
+        } else {
+          let remainder = guestsCount % 100;
+
+          if (remainder > 4 && remainder < 21) {
+            inputElement.attr("value", `${guestsCount} гостей`);
+          } else {
+            remainder = remainder % 10;
+  
+            if (remainder === 1) {
+              inputElement.attr("value", `${guestsCount} гость`);
+            } else if (remainder > 1 && remainder < 5) {
+              inputElement.attr("value", `${guestsCount} гостя`);
+            } else {
+              inputElement.attr("value", `${guestsCount} гостей`);
+            }
+          }
+        }
+      } 
+
+      if (this.dropdownType === "rooms") {
+        const guestsCount = +newValue;
+
+        let remainder = guestsCount % 100;
+
+        if (remainder > 4 && remainder < 21) {
+          inputElement.attr("value", `${guestsCount} гостей`);
+        } else {
+          remainder = remainder % 10;
+
+          if (remainder === 1) {
+            inputElement.attr("value", `${guestsCount} гость`);
+          } else if (remainder > 1 && remainder < 5) {
+            inputElement.attr("value", `${guestsCount} гостя`);
+          } else {
+            inputElement.attr("value", `${guestsCount} гостей`);
+          }
+        }
+      } 
+
+
+
+
     }
 
     changeClearBtnVisibility() {
@@ -60,15 +113,25 @@ const setDropdown = (dropdownSelector) => {
             counter = menuItem.find(".dropdown__item-counter");
   
       minusBtn.on("click", () => {
-        menuItem.attr("data-count", +menuItem.attr("data-count") - 1);
-        counter.text(`${+counter.text() - 1}`);
-        this.changeClearBtnVisibility();
+        if (+menuItem.attr("data-count") > 0) {
+          menuItem.attr("data-count", +menuItem.attr("data-count") - 1);
+          counter.text(`${+counter.text() - 1}`);
+          this.changeClearBtnVisibility();
+        }
+
+        minusBtn.toggleClass("dropdown__item-minus_disabled", +menuItem.attr("data-count") <= 0);
+        plusBtn.toggleClass("dropdown__item-plus_disabled", +menuItem.attr("data-count") >= 10);
       });
   
       plusBtn.on("click", () => {
-        menuItem.attr("data-count", +menuItem.attr("data-count") + 1);
-        counter.text(`${+counter.text() + 1}`);
-        this.changeClearBtnVisibility();
+        if (+menuItem.attr("data-count") < 10) {
+          menuItem.attr("data-count", +menuItem.attr("data-count") + 1);
+          counter.text(`${+counter.text() + 1}`);
+          this.changeClearBtnVisibility();
+        }
+
+        minusBtn.toggleClass("dropdown__item-minus_disabled", +menuItem.attr("data-count") <= 0);
+        plusBtn.toggleClass("dropdown__item-plus_disabled", +menuItem.attr("data-count") >= 10);
       });
     }
   }
