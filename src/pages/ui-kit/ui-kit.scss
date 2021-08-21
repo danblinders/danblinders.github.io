@@ -163,7 +163,7 @@
   
   &__dropdown {
     width: 100%;
-    @include set-flex();
+    @include set-flex($flexWrap: wrap);
   }
 }
 

@@ -331,27 +331,27 @@ block content
             isRequired: true,
             label: "dropdown",
             state: "default",
-            name: "rooms",
+            contentName: "rooms",
             inputValue: "2 спальни, 2 кровати...",
             inputPlaceholder: "Конфигурация номера...",
             menuItems: [
-              {name: "спальни", count: "2"},
-              {name: "кровати", count: "2"},
-              {name: "спальни", count: "0"}
+              {subtitle: "спальни", count: "2"},
+              {subtitle: "кровати", count: "2"},
+              {subtitle: "ванные комнаты", count: "0"}
             ]
           })
           +dropdown({
             isRequired: true,
             isExpanded: true,
             label: "dropdown",
-            state: "default",
-            name: "rooms",
+            state: "expanded",
+            contentName: "rooms",
             inputValue: "2 спальни, 2 кровати...",
             inputPlaceholder: "Конфигурация номера...",
             menuItems: [
-              {name: "спальни", count: "2"},
-              {name: "кровати", count: "2"},
-              {name: "спальни", count: "0"}
+              {subtitle: "спальни", count: "2"},
+              {subtitle: "кровати", count: "2"},
+              {subtitle: "ванные комнаты", count: "0"}
             ]
           })
           +dropdown({
@@ -359,12 +359,13 @@ block content
             isRequired: true,
             label: "dropdown",
             state: "default",
-            name: "guests",
+            contentName: "guests",
             inputPlaceholder: "Сколько гостей",
+            isInputBorderRounded: true,
             menuItems: [
-              {name: "взрослые", count: "0"},
-              {name: "дети", count: "0"},
-              {name: "младенцы", count: "0"}
+              {subtitle: "взрослые", count: "0"},
+              {subtitle: "дети", count: "0"},
+              {subtitle: "младенцы", count: "0"}
             ]
           })
           +dropdown({
@@ -372,12 +373,13 @@ block content
             isExpanded: true,
             isRequired: true,
             label: "dropdown",
-            state: "default",
-            name: "guests",
+            state: "expanded",
+            contentName: "guests",
             inputPlaceholder: "Сколько гостей",
+            isInputBorderRounded: true,
             menuItems: [
-              {name: "взрослые", count: "0"},
-              {name: "дети", count: "0"},
-              {name: "младенцы", count: "0"}
+              {subtitle: "взрослые", count: "0"},
+              {subtitle: "дети", count: "0"},
+              {subtitle: "младенцы", count: "0"}
             ]
           })

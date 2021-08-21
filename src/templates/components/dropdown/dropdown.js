@@ -1,150 +1,101 @@
-import { timers } from "jquery";
+import { expr } from "jquery";
 
-const setDropdown = (dropdownSelector) => {
-  class Dropdown {
-    constructor(dropdown) {
-      this.dropdown = $(dropdown);
-      this.dropdownType = this.dropdown.attr("data-type");
-      this.field = this.dropdown.find(".dropdown__field");
-      this.menu = this.dropdown.find(".dropdown__menu");
-      this.menuItems = this.menu.find(".dropdown__item");
-      this.applyBtn = this.menu.find(".dropdown__button-apply");
-      this.clearBtn = this.menu.find(".dropdown__button-clear");
-  
-      this.field.on("click", () => this.toggleDropdownMenu());
+export default class Dropdown {
+  constructor(dropdownSelector) {
+    this.dropdown = $(dropdownSelector);
+    this.dropdownField = this.dropdown.find(".dropdown__input");
+    this.dropdownInput = this.dropdown.find(".dropdown__input-element");
+    this.dropdownMenu = this.dropdown.find(".dropdown__menu");
+    this.dropdownMenuHeight = this.dropdownMenu.css("height");
+    this.dropdownMenuItems = this.dropdown.find(".dropdown__item");
+    this.dropdownBtnClear = this.dropdown.find(".dropdown__button-clear");
+    this.dropdownBtnApply = this.dropdown.find(".dropdown__button-apply");
+    this.toggleDropdown = this.toggleDropdown.bind(this);
+  }
 
-      this.applyBtn.on("click", () => {
-        this.changeInputValue(this.countTotalValue());
+  handleInputFieldClick() {
+    this.dropdownField.on("click", this.toggleDropdown);
+  }
+
+  handleDropdownClearBtnClick() {
+    this.dropdownMenuItems.each(index => {
+      const menuItem = $(this.dropdownMenuItems[index]),
+            itemCounter = menuItem.find(".dropdown__item-counter");
+
+      this.dropdownBtnClear.on("click", () => {
+        this.setMenuItemCount(0, menuItem, itemCounter);
       });
+    });
+  }
 
-      this.clearBtn.on("click", () => {
-        this.menuItems.each(function() {
-          const menuItem = $(this);
+  handleMenuItemsBtnClick() {
+    this.dropdownMenuItems.each(index => {
+      const menuItem = $(this.dropdownMenuItems[index]),
+            minusBtn = menuItem.find(".dropdown__item-button-minus"),
+            plusBtn = menuItem.find(".dropdown__item-button-plus"),
+            itemCounter = menuItem.find(".dropdown__item-counter");
+      
+      let itemCurrentCount = +menuItem.attr("data-count");
 
-          menuItem.attr("data-count", "0");
-    
-          menuItem.find(".dropdown__item-counter").text("0");
-        });
-        
-        this.changeInputValue("");
-      });
-    }
-  
-    toggleDropdownMenu() {
-      this.menu.toggleClass("dropdown__menu_expanded");
-
-      if (this.menu.hasClass("dropdown__menu_expanded")) {
-        this.menu.hide().slideDown(500);
-      } else {
-        this.menu.slideDown(0).slideUp(500);
-      }
-    }
-
-    countTotalValue() {
-      let totalValue = 0;
-
-      this.menuItems.each(function() {
-        totalValue += +$(this).attr("data-count");
-      });
-
-      return totalValue;
-    }
-
-    changeInputValue(newValue) {
-      const inputElement = this.field.find(".dropdown__input-element");
-
-      if (this.dropdownType === "guests") {
-        const guestsCount = +newValue;
-
-        if (guestsCount === 0) {
-          inputElement.attr("value", "");
-        } else {
-          let remainder = guestsCount % 100;
-
-          if (remainder > 4 && remainder < 21) {
-            inputElement.attr("value", `${guestsCount} гостей`);
-          } else {
-            remainder = remainder % 10;
-  
-            if (remainder === 1) {
-              inputElement.attr("value", `${guestsCount} гость`);
-            } else if (remainder > 1 && remainder < 5) {
-              inputElement.attr("value", `${guestsCount} гостя`);
-            } else {
-              inputElement.attr("value", `${guestsCount} гостей`);
-            }
-          }
-        }
-      } 
-
-      if (this.dropdownType === "rooms") {
-        const guestsCount = +newValue;
-
-        let remainder = guestsCount % 100;
-
-        if (remainder > 4 && remainder < 21) {
-          inputElement.attr("value", `${guestsCount} гостей`);
-        } else {
-          remainder = remainder % 10;
-
-          if (remainder === 1) {
-            inputElement.attr("value", `${guestsCount} гость`);
-          } else if (remainder > 1 && remainder < 5) {
-            inputElement.attr("value", `${guestsCount} гостя`);
-          } else {
-            inputElement.attr("value", `${guestsCount} гостей`);
-          }
-        }
-      } 
-
-
-
-
-    }
-
-    changeClearBtnVisibility() {
-      this.clearBtn.toggleClass("dropdown__button-clear_hidden", this.countTotalValue() <= 0);
-    }
-  
-    changeCounter(menuItemSelector) {
-      const menuItem = $(menuItemSelector),
-            minusBtn = menuItem.find(".dropdown__item-minus"),
-            plusBtn = menuItem.find(".dropdown__item-plus"),
-            counter = menuItem.find(".dropdown__item-counter");
-  
       minusBtn.on("click", () => {
-        if (+menuItem.attr("data-count") > 0) {
-          menuItem.attr("data-count", +menuItem.attr("data-count") - 1);
-          counter.text(`${+counter.text() - 1}`);
-          this.changeClearBtnVisibility();
+        if (itemCurrentCount >= 1) {
+          this.setMenuItemCount(--itemCurrentCount, menuItem, itemCounter);
+          this.changeDropdownClearBtnVisibility();
+        } else {
+          minusBtn.attr("disabled", true);
         }
 
-        minusBtn.toggleClass("dropdown__item-minus_disabled", +menuItem.attr("data-count") <= 0);
-        plusBtn.toggleClass("dropdown__item-plus_disabled", +menuItem.attr("data-count") >= 10);
+        if (itemCurrentCount <= 4) {
+          plusBtn.attr("disabled", false);
+        }
       });
-  
+
       plusBtn.on("click", () => {
-        if (+menuItem.attr("data-count") < 10) {
-          menuItem.attr("data-count", +menuItem.attr("data-count") + 1);
-          counter.text(`${+counter.text() + 1}`);
-          this.changeClearBtnVisibility();
+        if (itemCurrentCount <= 4) {
+          this.setMenuItemCount(++itemCurrentCount, menuItem, itemCounter);
+          this.changeDropdownClearBtnVisibility();
+        } else {
+          plusBtn.attr("disabled", true);
         }
 
-        minusBtn.toggleClass("dropdown__item-minus_disabled", +menuItem.attr("data-count") <= 0);
-        plusBtn.toggleClass("dropdown__item-plus_disabled", +menuItem.attr("data-count") >= 10);
+        if (itemCurrentCount >= 1) {
+          minusBtn.attr("disabled", false);
+        }
       });
+    });
+  }
+
+  changeDropdownClearBtnVisibility() {
+    let totalCount = 0;
+
+    this.dropdownMenuItems.each(index => {
+      const menuItem = $(this.dropdownMenuItems[index]),
+            itemCurrentCount = +menuItem.attr("data-count");
+      totalCount += itemCurrentCount;
+    });
+
+    this.dropdownBtnClear.toggleClass("dropdown__button-clear_hidden", totalCount === 0);
+  }
+
+  changeDropdownMenuVisibility() {
+    if (this.dropdown.hasClass("dropdown_expanded")) {
+      this.dropdownMenu.css("height", this.dropdownMenuHeight);
+    } else {
+      this.dropdownMenu.css("height", 0);
     }
   }
-  
-  const dropdownElement = new Dropdown(dropdownSelector);
 
-  dropdownElement.changeClearBtnVisibility();
+  toggleDropdown() {
+    this.dropdown.toggleClass("dropdown_expanded");
 
-  dropdownElement.menuItems.each(function() {
-    dropdownElement.changeCounter(this);
-  });
+    this.changeDropdownMenuVisibility();
+  }
 
-};
+  setMenuItemCount(newValue, menuItem, itemCounter) {
+    const newCountValue = +newValue;
 
-export default setDropdown;
-  
+    menuItem.attr("data-count", newCountValue);
+
+    itemCounter.text(newCountValue);
+  }
+}

@@ -4,38 +4,36 @@ mixin dropdown(options)
   if !options
     - options = {}
 
-  - 
-    const {isBig, isExpanded, isRequired, label, state, name, inputValue, inputPlaceholder, menuItems} = options
-    
-    const classes = []
-
-    classes.push(isBig ? "dropdown_big" : "")
-    classes.push(isBorderRounded ? "dropdown_border_rounded" : "")
+  - const {isBig, isExpanded, isRequired, isInputBorderRounded, contentName, label, state, inputName = contentName, inputPlaceholder, inputValue, menuItems} = options
 
   .dropdown(
-    class = classes
-    data-type = name
+    class = isBig ? "dropdown_big" : "",
+    class = isExpanded ? "dropdown_expanded" : "",
+    data-content = contentName
   )
-    label.dropdown__field
-      if label 
-        span.dropdown__label= label
-          if state 
-            span.dropdown__state= state
-      span.dropdown__input
-        input.dropdown__input-element(type = "text", name = name, value = inputValue, placeholder = inputPlaceholder, required = isRequired, disabled = true)
-    .dropdown__menu(class = isExpanded ? "dropdown__menu_expanded" : "")
-      .dropdown__items 
-        each item in menuItems 
-          .dropdown__item(data-count = item.count)
-            .dropdown__item-name= item.name 
-            .dropdown__item-calculator 
-              button.dropdown__item-minus(class = (item.count <= 0) ? "dropdown__item-minus_disabled" : "", type = "button")= "-"
-              .dropdown__item-counter= item.count 
-              button.dropdown__item-plus(class = (item.count >= 10) ? "dropdown__item-plus_disabled" : "", type = "button")= "+"
-      if isBig 
-        .dropdown__buttons 
-          .dropdown__button-clear(type = "button") 
-            +main-button({style: "simple", text: "очистить"})
-          .dropdown__button-apply(type = "button")
-            +main-button({style: "simple", text: "применить"})
-      
+    .dropdown__wrapper
+      label.dropdown__field
+        if label
+          span.dropdown__label= label 
+            if state 
+              span.dropdown__state= state
+        span.dropdown__input(class = isInputBorderRounded ? "dropdown__input_border_rounded" : "")
+          input.dropdown__input-element(type = "text", name = inputName, placeholder = inputPlaceholder, value = inputValue, required = isRequired, disabled)
+      .dropdown__menu 
+        .dropdown__menu-wrapper 
+          ul.dropdown__menu-items
+            - let totalCount = 0
+            each item in menuItems 
+              - totalCount += +item.count
+              li.dropdown__item(data-count = item.count)
+                .dropdown__item-subtitle= item.subtitle 
+                .dropdown__item-calculator 
+                  button.dropdown__item-button-minus(disabled = +item.count < 1 ? true : false, type = "button")= "-"
+                  span.dropdown__item-counter= item.count
+                  button.dropdown__item-button-plus(disabled = +item.count > 4 ? true : false, type = "button")= "+"
+          if isBig 
+            .dropdown__buttons 
+              .dropdown__button-clear(class = (totalCount === 0) ? "dropdown__button-clear_hidden" : "")
+                +main-button({style: "simple", text: "очистить"})
+              .dropdown__button-apply
+                +main-button({style: "simple", text: "применить"})

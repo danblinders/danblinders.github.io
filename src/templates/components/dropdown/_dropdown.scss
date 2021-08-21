@@ -2,40 +2,29 @@
   width: 100%;
   max-width: 266px;
 
-  &_big {
-    max-width: 320px;
+  &__wrapper {
+    position: relative;
   }
-  
-  // &_expanded {
-  //   border-color: $darkShade50;
-  //   .dropdown__menu {
-  //     display: block;
-  //   }
-  // }
 
   &__field {
-    display: inline-block;
-    width: 100%;
+    @include flex-column($gap: 0.5rem);
   }
- 
+
   &__label {
-    @include set-flex($mainAxis: space-between, $crossAxis: center);
+    @include set-flex($mainAxis: space-between);
     @include label-cta-text();
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
   }
 
   &__state {
     font-weight: 400;
-    color: $darkShade25;
+    color: $darkShade50;
   }
 
   &__input {
     position: relative;
-    display: inline-block;
-    width: 100%;
-    outline: none;
-    @include set-border($borderColor: $darkShade25, $borderRadius: 4px 4px 0 0);
+    min-height: 4.4rem;
+    @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem 0.4rem 0 0);
     cursor: pointer;
 
     &::after {
@@ -43,108 +32,118 @@
       position: absolute;
       top: 0;
       right: 0;
-      @include set-size(4.4rem, 100%);
       @include flex-center();
-      @include set-font(2.4rem, 400, 2.4rem, $darkShade75, "Material Icons", 'icons');
+      @include set-size(4.4rem, 100%);
+      @include set-font(2.4rem, 400, 2.4rem, $darkShade75, "Material Icons", "icons");
     }
 
     &-element {
-      position: relative;
       display: inline-block;
-      width: 100%;
+      @include set-size(100%);
       outline: none;
       border: none;
-      background: none;
       padding: 1.3rem 4.4rem 1.3rem 1.5rem;
-      @include set-font(1.4rem, 400, 1.8rem, $darkShade75);
-      z-index: -1;
-      
-      &::placeholder {
-        @include set-font(1.4rem 400, 1.8rem, $darkShade75);
-      }
+      @include set-font(1.4rem, 400, 1.4rem, $darkShade75, "Montserrat");
+      cursor: pointer;
 
-      &_border {
-        &_rounded {
-          border-radius: 4px;
-        }
+
+      &::placeholder {
+        @include set-font(1.4rem, 400, 1.4rem, $darkShade75, "Montserrat");
       }
+    }
+
+    &_border_rounded {
+      border-radius: 0.4rem;
     }
   }
 
   &__menu {
-    position: relative;
+    position: absolute;
     z-index: 1;
-    display: none;
-    @include set-border($borderColor: $darkShade25, $borderRadius: 0 0 4px 4px);
-    border-top: none;
-    padding: 0.7rem 0.7rem 0.8rem 1.5rem;
+    width: 100%;
+    background: #fff;
     overflow: hidden;
+    transition: height 0.5s;
 
-    &_expanded {
-      display: block;
+    &-wrapper {
+      padding: 0.7rem;
+      padding-left: 1.5rem;
     }
-  }
 
-  &__items {
-    @include flex-column($gap: 0.7rem);
+    &-items {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      @include flex-column($gap: 0.7rem);
+    }
   }
 
   &__item {
     @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 1rem);
 
-    &-name {
+    &-subtitle, &-counter {
       @include label-cta-text();
       text-transform: uppercase;
     }
 
-    &-calculator {
-      position: relative;
-      @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 3.2rem);
+    &-counter {
+      min-width: 10px;
+      text-align: center;
     }
 
-    &-minus, &-plus {
+    &-calculator {
+      @include set-flex($crossAxis: center, $gap: 1.1rem);
+    }
+
+    &-button-minus, &-button-plus {
       outline: none;
       background: none;
+      padding: 0;
       @include set-size(3rem);
       @include set-border($borderColor: $darkShade50, $borderRadius: 50%);
-      @include set-font(1.8rem, 400, 1, $darkShade50);
-      text-align: center;
+      @include flex-center();
+      @include set-font(1.8rem, 400, 1.8rem, $darkShade50);
       cursor: pointer;
 
-      &_disabled {
-        color: $darkShade25;
+      &:disabled {
         border-color: $darkShade25;
+        color: $darkShade25;
+        cursor: not-allowed;
       }
-    }
 
-    &-counter {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      @include set-size(100%);
-      @include label-cta-text();
-      @include flex-center();
-      z-index: -1;
+      &:focus, &:hover {
+        box-shadow: 0 0 1.5rem $darkShade50;
+      }
     }
   }
 
   &__buttons {
     margin-top: 1.9rem;
-    margin-bottom: 0.5rem;
-    @include set-flex($mainAxis: space-between, $crossAxis: center)
+    margin-bottom: 0.6rem;
+    @include set-flex($mainAxis: space-between, $gap: 1rem);
+    line-height: 1.5rem;
   }
 
-  &__button {
-    &-clear,
-    &-apply {
-      line-height: 1;
-      cursor: pointer;
+  &__button-clear {
+    &_hidden {
+      visibility: hidden;
     }
+  }
 
-    &-clear {
-      &_hidden {
-        visibility: hidden;
+  &_big {
+    max-width: 320px;
+  }
+
+  &_expanded {
+    .dropdown {
+      &__input {
+        border-bottom: none;
+        border-radius: 0.4rem 0.4rem 0 0;
+        border-color: $darkShade50;
+      }
+
+      &__menu {
+        @include set-border($borderColor: $darkShade50, $borderRadius: 0 0 0.4rem 0.4rem);
       }
     }
   }
