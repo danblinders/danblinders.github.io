@@ -44,6 +44,9 @@
       border: none;
       padding: 1.3rem 4.4rem 1.3rem 1.5rem;
       @include set-font(1.4rem, 400, 1.4rem, $darkShade75, "Montserrat");
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       cursor: pointer;
 
 

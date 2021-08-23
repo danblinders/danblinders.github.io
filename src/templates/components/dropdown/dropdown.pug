@@ -1,5 +1,18 @@
 include ../main-button/main-button
 
+//- 
+  isBig - deifnes, whether dropdown is big or not
+  isExpanded - defines, whether dropdown is expanded or not
+  isRequired - defines, whehter dropdown is required or not
+  isInputBorderRouned - defines, whether input's border fully rounded or not
+  contentName - value for data-subject attribute
+  label - label for input
+  state - text for dropdown's state
+  inputName - value for input's name attribute
+  inputPlacegolder- input's placeholder
+  inputValue - default input's value
+  menuItems - array of items at dropdown menu
+
 mixin dropdown(options)
   if !options
     - options = {}
@@ -25,7 +38,7 @@ mixin dropdown(options)
             - let totalCount = 0
             each item in menuItems 
               - totalCount += +item.count
-              li.dropdown__item(data-count = item.count)
+              li.dropdown__item(data-subject = item.subject, data-count = item.count)
                 .dropdown__item-subtitle= item.subtitle 
                 .dropdown__item-calculator 
                   button.dropdown__item-button-minus(disabled = +item.count < 1 ? true : false, type = "button")= "-"
