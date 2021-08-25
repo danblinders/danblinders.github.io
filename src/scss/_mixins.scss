@@ -26,8 +26,11 @@
       font-family: $fontFamily;
     }
 
-  } @else {
+  } @else if ($fontFamily == inherit)  {
     font-family: inherit;
+
+  } @else {
+    font-family: null;
   }
 
   font-size: $fontSize;

@@ -4,6 +4,7 @@ import setRateButton from "../../templates/components/rate-button/rate-button";
 import rangeSlider from "../../templates/components/range-slider/range-slider";
 import Pagination from "../../templates/components/pagination/pagintaion";
 import Dropdown from "../../templates/components/dropdown/dropdown";
+import Datepicker from "../../templates/components/datepicker-field/datepicker-field";
 import "./ui-kit.scss";
 
 $(document).ready(() => {
@@ -67,5 +68,16 @@ $(document).ready(() => {
     dropdownInstance.handleInputFieldClick();
     dropdownInstance.handleMenuItemsBtnClick();
     dropdownInstance.handleDropdownClearBtnClick();
+  });
+
+  $(".datepicker-field").each(function() {
+    const datepickerInstance = 
+      new Datepicker({
+        container: this, 
+        startDate: new Date("08.08.2019"), 
+        currentDate: new Date("08.08.2019")
+      });
+
+    datepickerInstance.render();
   });
 });

@@ -1,0 +1,13 @@
+
+mixin datepicker(options)
+  if !options
+    - options = {}
+
+  - const {label, inputPlaceholder, inputValue, inputRequired} = options
+
+  .datepicker-field
+    label.datepicker-field__element
+      if label 
+        span.datepicker-field__label= label
+      span.datepicker-field__input
+        input.datepicker-field__input-element(type='text', placeholder = inputPlaceholder, value = inputValue, required = inputRequired)

@@ -30,6 +30,7 @@ block includes
   include ../../templates/components/range-slider/range-slider
   include ../../templates/components/pagination/pagination
   include ../../templates/components/dropdown/dropdown
+  include ../../templates/components/datepicker-field/datepicker-field
 
 block content
   section.colors-type
@@ -342,7 +343,6 @@ block content
           })
           +dropdown({
             isRequired: true,
-            isExpanded: true,
             label: "dropdown",
             state: "expanded",
             contentName: "rooms",
@@ -370,7 +370,6 @@ block content
           })
           +dropdown({
             isBig: true,
-            isExpanded: true,
             isRequired: true,
             label: "dropdown",
             state: "expanded",
@@ -383,3 +382,5 @@ block content
               {subject: "infants", subtitle: "младенцы", count: "0"}
             ]
           })
+        .form-elements__datepicker 
+          +datepicker({})
