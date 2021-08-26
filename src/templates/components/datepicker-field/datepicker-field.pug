@@ -10,4 +10,9 @@ mixin datepicker(options)
       if label 
         span.datepicker-field__label= label
       span.datepicker-field__input
-        input.datepicker-field__input-element(type='text', placeholder = inputPlaceholder, value = inputValue, required = inputRequired)
+        input.datepicker-field__input-element(type='text', placeholder = inputPlaceholder, value = inputValue, required = inputRequired, data-date = "start")
+    label.datepicker-field__element
+      if label 
+        span.datepicker-field__label= label
+      span.datepicker-field__input
+        input.datepicker-field__input-element(type='text', placeholder = inputPlaceholder, value = inputValue, required = inputRequired, data-date = "end")

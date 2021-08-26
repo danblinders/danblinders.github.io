@@ -3,44 +3,55 @@ import "air-datepicker";
 export default class Datepicker {
   constructor({container, startDate = new Date(), currentDate = new Date()}) {
     this.container = $(container);
-    this.dateInput = this.container.find(".datepicker-field__input");
-    this.dateInputElement = this.container.find(".datepicker-field__input-element");
+    this.dateInputStart = this.container.find(".datepicker-field__input-element[data-date='start']");
+    this.dateInputEnd = this.container.find(".datepicker-field__input-element[data-date='end']");
     this.startDate = startDate;
     this.currentDate = currentDate;
   }
 
-  setCurrentDate(calendar, newCurrentDate) {
-    calendar.find(".datepicker--cell-day").each(function() {
-      const dayCell = $(this);
-      const areDaysMatched = dayCell.attr("data-date") == newCurrentDate.getDate() ? true : false,
-            areMonthsMatched = dayCell.attr("data-month") == newCurrentDate.getMonth() ? true : false,
-            areYearsMatched = dayCell.attr("data-year") == newCurrentDate.getFullYear() ? true : false;
-          
-      if (areDaysMatched && areMonthsMatched && areYearsMatched) {
-        console.log(dayCell);
-        dayCell.addClass("-current-");
-      }
-    });
-  }
-
-  clearDatePicker(datepickerElement) {
-    datepickerElement.clear();
-  }
-
   render() {
-    const datepickerElem = this.dateInputElement.datepicker({
-      inline: true,
+
+    const datepickerInputStart = this.dateInputStart,
+          datepickerInputEnd = this.dateInputEnd;
+
+    const datepickerElem = datepickerInputStart.datepicker({
       range: true,
+      currentDate: this.currentDate,
       startDate: this.startDate,
       dateFormat: "dd.mm.yyyy",
       navTitles: {
-        days: 'MM yyyy'
+        days: "MM yyyy"
       },
-      prevHtml: "<button class = 'datepicker--nav-button'>arrow_back</button>",
-      nextHtml: "<button class = 'datepicker--nav-button'>arrow_forward</button>"
+      prevHtml: "<button class='datepicker--nav-button'>arrow_back</button>",
+      nextHtml: "<button class='datepicker--nav-button'>arrow_forward</button>",
+      onRenderCell: function(date) {
+        const areDaysMatched = date.getDate() == this.currentDate.getDate() ? true : false,
+              areMonthsMatched = date.getMonth() == this.currentDate.getMonth() ? true : false,
+              areYearsMatched = date.getFullYear() == this.currentDate.getFullYear() ? true : false;
+            
+        if (areDaysMatched && areMonthsMatched && areYearsMatched) {
+          return {
+            classes: "-current-"
+          };
+        }
+      },
+      onSelect: function(formattedDate, date) {
+        if (datepickerElem.selectedDates[0]) {
+          datepickerInputStart.val(`${(datepickerElem.selectedDates[0].getDate() < 10 ? "0" : "" ) + datepickerElem.selectedDates[0].getDate()}.${(datepickerElem.selectedDates[0].getMonth() + 1  < 10 ? "0" : "") + datepickerElem.selectedDates[0].getMonth()}.${datepickerElem.selectedDates[0].getFullYear()}`);
+        }
+        
+        if (datepickerElem.selectedDates[1]) {
+          datepickerInputEnd.val(`${(datepickerElem.selectedDates[1].getDate() < 10 ? "0" : "" ) + datepickerElem.selectedDates[1].getDate()}.${(datepickerElem.selectedDates[1].getMonth() + 1  < 10 ? "0" : "") + datepickerElem.selectedDates[1].getMonth()}.${datepickerElem.selectedDates[1].getFullYear()}`);
+        }
+        
+      }
     }).data("datepicker");
 
-    const calendar = this.dateInput.find(".datepicker");
+    datepickerInputEnd.on("click", () => {
+      datepickerElem.show();
+    });
+
+    const calendar = datepickerElem.$datepicker;
 
     calendar.append(`<div class='datepicker--buttons'>
                         <div class='datepicker--button' data-action='clear'>
@@ -55,14 +66,11 @@ export default class Datepicker {
                         </div>
                       </div>`);
 
-  datepickerElem.selectDate([new Date("08.19.2019"), new Date("08.23.2019")]);
+    datepickerElem.selectDate([new Date("08.19.2019"), new Date("08.23.2019")]);
 
-  this.setCurrentDate(calendar, this.currentDate);
-
-  calendar.find(".datepicker--button[data-action='clear']").on("click", () => {
-    this.clearDatePicker(datepickerElem, calendar);
-
-    this.setCurrentDate(calendar, this.currentDate);
-  });
+    calendar.find(".datepicker--button[data-action='clear']").on("click", () => {
+      datepickerElem.clear();
+      datepickerInputEnd.val("");
+    });
   }
 }
