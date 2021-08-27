@@ -3,6 +3,7 @@ import expandList from "../../templates/components/expandable-checkbox-list/expa
 import setRateButton from "../../templates/components/rate-button/rate-button";
 import rangeSlider from "../../templates/components/range-slider/range-slider";
 import Pagination from "../../templates/components/pagination/pagintaion";
+import inputMask from "../../templates/components/text-field/text-field";
 import Dropdown from "../../templates/components/dropdown/dropdown";
 import Datepicker from "../../templates/components/datepicker-field/datepicker-field";
 import "./ui-kit.scss";
@@ -61,6 +62,8 @@ $(document).ready(() => {
     }).render();
   });
 
+  inputMask();
+  
   $(".dropdown").each(function() {
     const dropdownInstance = new Dropdown(this);
 

@@ -1,26 +1,47 @@
 //-
-  options.label - label for text field
-  options.state - text, that marks the state of the input
-  options.type - input's type
-  options.name - input's name
-  options.placegolder - input's placeholder
-  options.required - defines, whether text filed is required or not
-  options.mask - defines the value of data-mask attribute
+  label - label for text field
+  state - text, that marks the state of the input
+  type - input's type
+  name - input's name
+  value - input's value
+  placegolder - input's placeholder
+  required - defines, whether text filed's input is required or not
+  disabled - defines, whether text field's input diabled or not
+  mask - defines the value of data-mask attribute
 
 mixin text-field(options)
   if !options
     - options = {}
 
-  label.text-field
-    if options.label 
-      span.text-field__label= options.label 
-        if options.state 
-          span.text-field__state= options.state
-    input.text-field__input(
-      class = options.isActive ? "text-field__input_active" : "",
-      type = options.type ? options.type : "text", 
-      name = options.name, 
-      placeholder = options.placeholder, 
-      required = options.required
-      data-mask = options.mask ? options.mask : false
-    )
+  - const {label, state, icon, isActive, type, name, value, placeholder, isRequired, isDisabled, mask} = options
+
+  .text-field
+    label.text-field__container
+      if label 
+        span.text-field__label= label 
+          if state 
+            span.text-field__state= state
+        if icon
+          span.text-field__input-container
+            input.text-field__input(
+              class = isActive ? "text-field__input_active" : "",
+              type = type ? type : "text", 
+              name = name, 
+              value = value
+              placeholder = placeholder, 
+              required = isRequired,
+              disabled = isDisabled,
+              data-mask = mask ? mask : null
+            )
+            span.text-field__input-icon= icon
+        else 
+          input.text-field__input(
+            class = isActive ? "text-field__input_active" : "",
+            type = type ? type : "text", 
+            name = name, 
+            value = value,
+            placeholder = placeholder, 
+            required = isRequired,
+            disabled = isDisabled,
+            data-mask = mask ? mask : null
+          )

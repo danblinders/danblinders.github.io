@@ -2,9 +2,30 @@
   width: 100%;
   max-width: 320px;
   @include set-flex($crossAxis: center, $gap: 2rem);
+
+  &__element {
+    flex: 1;
+  }
+
+  &__input {
+    display: inline-block;
+    width: 100%;
+
+    &-element {
+      width: 100%;
+      outline: none;
+    }
+  }
+}
+
+.datepickers-container {
+  width: 100%;
+  max-width: 320px;
 }
 
 .datepicker {
+  box-sizing: border-box;
+  width: 100%;
   padding: 2rem;
   box-shadow: 0 1rem 2rem $darkShade5;
   @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem);
@@ -53,6 +74,7 @@
 
 
   &--content {
+    box-sizing: border-box;
     @include set-font(1.2rem, 400, 1.5rem, $darkShade50, "Montserrat");
     padding: 0;
     margin-bottom: 2rem;
@@ -66,7 +88,7 @@
 
   &--day {
     &-name {
-      @include set-size(3.4rem);
+      @include set-size(4rem);
       font-weight: 700;
       text-transform: capitalize;
       color: $purple;
@@ -130,17 +152,22 @@
     }
 
     .-selected-, .-focus- {
+      background: none;
       border: none;
       background-image: $primaryGradient;
       border-radius: 50%;
       font-weight: 700;
       color: #fff;
     }
+
+    .-selected-.-focus- {
+      background: $primaryGradient;
+    }
   }
 
   &--cell {
     &-day {
-      @include set-size(3.55rem);
+      @include set-size(3.97rem, 4rem);
     }
   }
 

@@ -9,10 +9,40 @@ export default class Datepicker {
     this.currentDate = currentDate;
   }
 
+  addButtons() {
+    return `<div class='datepicker--buttons'>
+              <div class='datepicker--button' data-action='clear'>
+                <button class='main-button main-button_simple'>
+                  <span class="main-button__inner">очистить</span>
+                </button>
+              </div> 
+              <div class='datepicker--button' data-action='apply'>
+                <button class='main-button main-button_simple'>
+                  <span class="main-button__inner">применить</span>
+                </button>
+              </div>
+            </div>`;
+  }
+
   render() {
 
     const datepickerInputStart = this.dateInputStart,
           datepickerInputEnd = this.dateInputEnd;
+    
+    const transformDate = (unformattedDate) => {
+      const day = (unformattedDate.getDate() < 10 ? "0" : "" ) + unformattedDate.getDate(),
+                month = (unformattedDate.getMonth() + 1  < 10 ? "0" : "") + (unformattedDate.getMonth() + 1),
+                year = unformattedDate.getFullYear();
+            
+      const formattedDate = `${day}.${month}.${year}`;
+  
+      return formattedDate;
+    };
+
+    const clearDatepicker = (datepickerElement, inputEnd) => {
+      datepickerElement.clear();
+      inputEnd.val("");
+    };
 
     const datepickerElem = datepickerInputStart.datepicker({
       range: true,
@@ -37,13 +67,12 @@ export default class Datepicker {
       },
       onSelect: function(formattedDate, date) {
         if (datepickerElem.selectedDates[0]) {
-          datepickerInputStart.val(`${(datepickerElem.selectedDates[0].getDate() < 10 ? "0" : "" ) + datepickerElem.selectedDates[0].getDate()}.${(datepickerElem.selectedDates[0].getMonth() + 1  < 10 ? "0" : "") + datepickerElem.selectedDates[0].getMonth()}.${datepickerElem.selectedDates[0].getFullYear()}`);
+          datepickerInputStart.val(transformDate(datepickerElem.selectedDates[0]));
         }
         
         if (datepickerElem.selectedDates[1]) {
-          datepickerInputEnd.val(`${(datepickerElem.selectedDates[1].getDate() < 10 ? "0" : "" ) + datepickerElem.selectedDates[1].getDate()}.${(datepickerElem.selectedDates[1].getMonth() + 1  < 10 ? "0" : "") + datepickerElem.selectedDates[1].getMonth()}.${datepickerElem.selectedDates[1].getFullYear()}`);
+          datepickerInputEnd.val(transformDate(datepickerElem.selectedDates[1]));
         }
-        
       }
     }).data("datepicker");
 
@@ -51,26 +80,14 @@ export default class Datepicker {
       datepickerElem.show();
     });
 
-    const calendar = datepickerElem.$datepicker;
-
-    calendar.append(`<div class='datepicker--buttons'>
-                        <div class='datepicker--button' data-action='clear'>
-                          <button class='main-button main-button_simple'>
-                            <span class="main-button__inner">очистить</span>
-                          </button>
-                        </div> 
-                        <div class='datepicker--button' data-action='apply'>
-                          <button class='main-button main-button_simple'>
-                            <span class="main-button__inner">применить</span>
-                          </button>
-                        </div>
-                      </div>`);
-
     datepickerElem.selectDate([new Date("08.19.2019"), new Date("08.23.2019")]);
 
+    const calendar = datepickerElem.$datepicker;
+
+    calendar.append(this.addButtons());
+
     calendar.find(".datepicker--button[data-action='clear']").on("click", () => {
-      datepickerElem.clear();
-      datepickerInputEnd.val("");
+      clearDatepicker(datepickerElem, datepickerInputEnd);
     });
   }
 }
