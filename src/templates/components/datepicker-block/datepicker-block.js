@@ -1,12 +1,14 @@
 import "air-datepicker";
 
 export default class Datepicker {
-  constructor({container, startDate = new Date(), currentDate = new Date()}) {
+  constructor({container, startCalendarDate, currentDate = new Date()}) {
     this.container = $(container);
-    this.dateInputStart = this.container.find(".datepicker-field__input-element[data-date='start']");
-    this.dateInputEnd = this.container.find(".datepicker-field__input-element[data-date='end']");
-    this.startDate = startDate;
+    this.dateStart = this.container.find(".datepicker-block__field[data-start]").attr("data-start");
+    this.dateEnd = this.container.find(".datepicker-block__field[data-end]").attr("data-end");
+    this.dateInputStart = this.container.find(".datepicker-block__field[data-start] .text-field__input");
+    this.dateInputEnd = this.container.find(".datepicker-block__field[data-end] .text-field__input");
     this.currentDate = currentDate;
+    this.startCalendarDate = startCalendarDate;
   }
 
   addButtons() {
@@ -27,7 +29,11 @@ export default class Datepicker {
   render() {
 
     const datepickerInputStart = this.dateInputStart,
-          datepickerInputEnd = this.dateInputEnd;
+          datepickerInputEnd = this.dateInputEnd,
+          startDate = this.dateStart,
+          endDate = this.dateEnd;
+
+          console.log(startDate, endDate);
     
     const transformDate = (unformattedDate) => {
       const day = (unformattedDate.getDate() < 10 ? "0" : "" ) + unformattedDate.getDate(),
@@ -45,9 +51,10 @@ export default class Datepicker {
     };
 
     const datepickerElem = datepickerInputStart.datepicker({
+      language: "ru",
       range: true,
       currentDate: this.currentDate,
-      startDate: this.startDate,
+      startDate: this.startCalendarDate,
       dateFormat: "dd.mm.yyyy",
       navTitles: {
         days: "MM yyyy"
@@ -67,11 +74,17 @@ export default class Datepicker {
       },
       onSelect: function(formattedDate, date) {
         if (datepickerElem.selectedDates[0]) {
-          datepickerInputStart.val(transformDate(datepickerElem.selectedDates[0]));
+          const transformedDateStart = transformDate(datepickerElem.selectedDates[0]);
+
+          datepickerInputStart.val(transformedDateStart);
+          datepickerInputStart.attr("data-start",transformedDateStart);
         }
         
         if (datepickerElem.selectedDates[1]) {
-          datepickerInputEnd.val(transformDate(datepickerElem.selectedDates[1]));
+          const transformedDateEnd = transformDate(datepickerElem.selectedDates[1]);
+          
+          datepickerInputEnd.val(transformedDateEnd);
+          datepickerInputEnd.attr("data-start", transformedDateEnd);
         }
       }
     }).data("datepicker");
@@ -80,7 +93,7 @@ export default class Datepicker {
       datepickerElem.show();
     });
 
-    datepickerElem.selectDate([new Date("08.19.2019"), new Date("08.23.2019")]);
+    datepickerElem.selectDate([new Date(startDate), new Date(endDate)]);
 
     const calendar = datepickerElem.$datepicker;
 

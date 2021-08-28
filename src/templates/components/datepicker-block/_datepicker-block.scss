@@ -1,21 +1,7 @@
-.datepicker-field {
+.datepicker-block {
   width: 100%;
   max-width: 320px;
   @include set-flex($crossAxis: center, $gap: 2rem);
-
-  &__element {
-    flex: 1;
-  }
-
-  &__input {
-    display: inline-block;
-    width: 100%;
-
-    &-element {
-      width: 100%;
-      outline: none;
-    }
-  }
 }
 
 .datepickers-container {
@@ -188,5 +174,6 @@
   }
 }
 
+@import "../text-field/text-field";
 @import "../main-button/main-button";
 @import "air-datepicker/dist/css/datepicker.min.css";

@@ -5,7 +5,7 @@ import rangeSlider from "../../templates/components/range-slider/range-slider";
 import Pagination from "../../templates/components/pagination/pagintaion";
 import inputMask from "../../templates/components/text-field/text-field";
 import Dropdown from "../../templates/components/dropdown/dropdown";
-import Datepicker from "../../templates/components/datepicker-field/datepicker-field";
+import Datepicker from "../../templates/components/datepicker-block/datepicker-block";
 import "./ui-kit.scss";
 
 $(document).ready(() => {
@@ -54,7 +54,6 @@ $(document).ready(() => {
   });
 
   $(".pagination-block__top").each(function() {
-    console.log(+$(this).parent().attr("data-initial-active-page"));
     new Pagination({
       parent: this,
       totalPages: +$(this).parent().attr("data-pages"),
@@ -73,11 +72,11 @@ $(document).ready(() => {
     dropdownInstance.handleDropdownClearBtnClick();
   });
 
-  $(".datepicker-field").each(function() {
+  $(".datepicker-block").each(function() {
     const datepickerInstance = 
       new Datepicker({
         container: this, 
-        startDate: new Date("08.08.2019"), 
+        startCalendarDate: new Date("08.08.2019"), 
         currentDate: new Date("08.08.2019")
       });
 
