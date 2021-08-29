@@ -1,12 +1,12 @@
 import "air-datepicker";
 
 export default class Datepicker {
-  constructor({container, startCalendarDate, currentDate = new Date()}) {
+  constructor({container, startCalendarDate = new Date(), currentDate = new Date()}) {
     this.container = $(container);
-    this.dateStart = this.container.find(".datepicker-block__field[data-start]").attr("data-start");
-    this.dateEnd = this.container.find(".datepicker-block__field[data-end]").attr("data-end");
-    this.dateInputStart = this.container.find(".datepicker-block__field[data-start] .text-field__input");
-    this.dateInputEnd = this.container.find(".datepicker-block__field[data-end] .text-field__input");
+    this.datepickerType = this.container.attr("data-datepicker-type");
+    this.dateInitialStart = this.container.attr("data-initial-start") ? this.container.attr("data-initial-start") : null;
+    this.dateInitialEnd = this.container.attr("data-initial-end") ? this.container.attr("data-initial-end") : null;
+    this.serviceField = this.container.find(".datepicker-block__service-field .text-field__input");
     this.currentDate = currentDate;
     this.startCalendarDate = startCalendarDate;
   }
@@ -28,13 +28,10 @@ export default class Datepicker {
 
   render() {
 
-    const datepickerInputStart = this.dateInputStart,
-          datepickerInputEnd = this.dateInputEnd,
-          startDate = this.dateStart,
-          endDate = this.dateEnd;
+    const datepickerInputStart = this.container.find(".datepicker-block__field[data-input='start'] .text-field__input"),
+          datepickerInputEnd = this.container.find(".datepicker-block__field[data-input='end'] .text-field__input");
 
-          console.log(startDate, endDate);
-    
+    console.log(this.dateInitialEnd);
     const transformDate = (unformattedDate) => {
       const day = (unformattedDate.getDate() < 10 ? "0" : "" ) + unformattedDate.getDate(),
                 month = (unformattedDate.getMonth() + 1  < 10 ? "0" : "") + (unformattedDate.getMonth() + 1),
@@ -45,12 +42,14 @@ export default class Datepicker {
       return formattedDate;
     };
 
-    const clearDatepicker = (datepickerElement, inputEnd) => {
+    const clearDatepicker = (datepickerElement, inputStart, inputEnd) => {
       datepickerElement.clear();
+      
+      inputStart.val("");
       inputEnd.val("");
     };
 
-    const datepickerElem = datepickerInputStart.datepicker({
+    const datepickerElem = this.serviceField.datepicker({
       language: "ru",
       range: true,
       currentDate: this.currentDate,
@@ -89,18 +88,23 @@ export default class Datepicker {
       }
     }).data("datepicker");
 
+
+    datepickerInputStart.on("click", () => {
+      datepickerElem.show();
+    });
+
     datepickerInputEnd.on("click", () => {
       datepickerElem.show();
     });
 
-    datepickerElem.selectDate([new Date(startDate), new Date(endDate)]);
+    datepickerElem.selectDate([new Date(this.dateInitialStart), new Date(this.dateInitialEnd)]);
 
     const calendar = datepickerElem.$datepicker;
 
     calendar.append(this.addButtons());
 
     calendar.find(".datepicker--button[data-action='clear']").on("click", () => {
-      clearDatepicker(datepickerElem, datepickerInputEnd);
+      clearDatepicker(datepickerElem, datepickerInputStart, datepickerInputEnd);
     });
   }
 }

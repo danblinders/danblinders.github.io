@@ -7,14 +7,17 @@ mixin datepicker-block(options)
   - 
     const {
       multipleFields, 
-      startDate, 
-      endDate, 
+      initialDateRange: {start, end},
       fields: {field1, field2}
     } = options
 
-  .datepicker-block
+  .datepicker-block(
+      data-datepicker-type = multipleFields ? "multiple-fields" : "single-field",
+      data-initial-start = start ? start : null,
+      data-initial-end = end ? end : null
+    )
     if multipleFields
-      .datepicker-block__field(data-start = startDate)
+      .datepicker-block__field(data-input = "start")
         +text-field({
           isActive: field1.isActive,
           icon: "expand_more",
@@ -28,7 +31,7 @@ mixin datepicker-block(options)
           isDisabled: field1.isDisabled,
           mask: "date"
         })
-      .datepicker-block__field(data-end = endDate)
+      .datepicker-block__field(data-input = "end")
         +text-field({
           isActive: field2.isActive,
           icon: "expand_more",
@@ -43,7 +46,7 @@ mixin datepicker-block(options)
           mask: "date"
         })
     else 
-      .datepicker-block__field(data-start = startDate, data-end = endDate)
+      .datepicker-block__field.datepicker-block__field_big
         +text-field({
           isActive: field1.isActive,
           icon: "expand_more",
@@ -57,3 +60,5 @@ mixin datepicker-block(options)
           isDisabled: field1.isDisabled,
           mask: "date"
         })
+    .datepicker-block__service-field 
+        +text-field({})

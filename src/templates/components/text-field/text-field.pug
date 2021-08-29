@@ -21,17 +21,17 @@ mixin text-field(options)
         span.text-field__label= label 
           if state 
             span.text-field__state= state
-        span.text-field__input-container
-          input.text-field__input(
-            class = isActive ? "text-field__input_active" : "",
-            class = icon ? "text-field__input_padding-right_big" : "",
-            type = type, 
-            name = name, 
-            value = value,
-            placeholder = placeholder, 
-            required = isRequired,
-            disabled = isDisabled,
-            data-mask = mask
-          )
-          if icon
-            span.text-field__input-icon(class = (iconColor === "gradient") ? "text-field__input-icon_gradient" : "")= icon
+    span.text-field__input-container
+      input.text-field__input(
+        class = isActive ? "text-field__input_active" : "",
+        class = icon ? "text-field__input_padding-right_big" : "",
+        type = type, 
+        name = name, 
+        value = value,
+        placeholder = placeholder, 
+        required = isRequired,
+        disabled = isDisabled,
+        data-mask = mask
+      )
+      if icon
+        span.text-field__input-icon(class = (iconColor === "gradient") ? "text-field__input-icon_gradient" : "")= icon
