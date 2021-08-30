@@ -13,7 +13,7 @@ mixin text-field(options)
   if !options
     - options = {}
 
-  - const {label, state, icon, iconColor, isActive, type = "text", name, value, placeholder, isRequired, isDisabled, mask} = options
+  - const {label, state, btn: {icon, color, btnType = "button"} = {}, isActive, type = "text", name, value, placeholder, isRequired, isDisabled, mask} = options
 
   .text-field
     label.text-field__container
@@ -21,18 +21,18 @@ mixin text-field(options)
         span.text-field__label= label 
           if state 
             span.text-field__state= state
-    span.text-field__input-container
-      input.text-field__input(
-        class = isActive ? "text-field__input_active" : "",
-        class = icon ? "text-field__input_padding-right_big" : "",
-        type = type, 
-        name = name, 
-        value = value,
-        placeholder = placeholder, 
-        required = isRequired,
-        disabled = isDisabled,
-        spellcheck = "false",
-        data-mask = mask
-      )
-      if icon
-        span.text-field__input-icon(class = (iconColor === "gradient") ? "text-field__input-icon_gradient" : "")= icon
+      span.text-field__input-container
+        input.text-field__input(
+          class = isActive ? "text-field__input_active" : "",
+          class = btn ? "text-field__input_padding-right_big" : "",
+          type = type, 
+          name = name, 
+          value = value,
+          placeholder = placeholder, 
+          required = isRequired,
+          disabled = isDisabled,
+          spellcheck = "false",
+          data-mask = mask
+        )
+        if btn !== {}
+          button.text-field__button(class = (color === "gradient") ? "text-field__button_gradient" : "", type = btnType)= icon

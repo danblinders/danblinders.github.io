@@ -21,8 +21,7 @@ mixin datepicker-block(options)
         .datepicker-block__field(data-input = "start")
           +text-field({
             isActive: field1.isActive,
-            icon: "expand_more",
-            iconColor: field1.iconColor,
+            btn: {icon: "expand_more"},
             label: field1.label,
             state: field1.state,
             name: field1.name,
@@ -35,8 +34,7 @@ mixin datepicker-block(options)
         .datepicker-block__field(data-input = "end")
           +text-field({
             isActive: field2.isActive,
-            icon: "expand_more",
-            iconColor: field2.iconColor,
+            btn: {icon: "expand_more"},
             label: field2.label,
             state: field2.state,
             name: field2.name,
@@ -50,8 +48,7 @@ mixin datepicker-block(options)
         .datepicker-block__field.datepicker-block__field_big
           +text-field({
             isActive: field1.isActive,
-            icon: "expand_more",
-            iconColor: field1.iconColor,
+            btn: {icon: "expand_more"},
             label: field1.label,
             state: field1.state,
             name: field1.name,

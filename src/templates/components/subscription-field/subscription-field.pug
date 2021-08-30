@@ -1,13 +1,21 @@
+include ../text-field/text-field
+
 mixin subscription-field(options)
   if !options
     - options = {}
 
-  form.subscription-field(action = options.action)
-    .subscription-field__inner 
-      if options.label
-        label.subscription-field__wrapper
-          span.subscription-field__label= options.label
-          input.subscription-field__input(type = "email", name = options.name, placeholder = options.placeholder, required = options.required)
-      else 
-        input.subscription-field__input(type = "email", name = options.name, placeholder = options.placeholder, required = options.required)
-      button.subscription-field__button(type = "submit")
+  - const {action, field: {isActive, label, state, name, type, value, placeholder, isRequired, isDisabled, mask}} = options
+
+  form.subscription-field(action = action)
+    +text-field({
+      isActive: isActive,
+      btn: {icon: "arrow_forward", color: "gradient", btnType: "submit"},
+      label: label,
+      state: state,
+      type: "email",
+      name: name,
+      value: value,
+      placeholder: placeholder,
+      isRequired: isRequired,
+      isDisabled: isDisabled
+    })

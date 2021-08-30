@@ -1,5 +1,6 @@
 .text-field {
   @include flex-column();
+  width: 100%;
   max-width: 320px;
   &__input {
     display: inline-block;
@@ -34,20 +35,28 @@
       width: 100%;
       cursor: pointer;
     }
+  }
+  &__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    @include set-size(4.4rem);
+    @include flex-center();
+    @include set-font(2.4rem, 400, 2.4rem, $darkShade50, "Material Icons", 'icons');
+    cursor: pointer;
+    
+    &:focues, &:active {
+      color: $darkShade100;
+    }
 
-    &-icon {
-      position: absolute;
-      top: 0;
-      right: 0;
-      @include set-size(4.4rem);
-      @include flex-center();
-      @include set-font(2.4rem, 400, 2.4rem, $darkShade50, "Material Icons", 'icons');
-
-      &_gradient {
-        background-image: $primaryGradient;
-        background-clip: text;
-        color: transparent;
-      }
+    &_gradient {
+      background-image: $primaryGradient;
+      background-clip: text;
+      color: transparent;
     }
   }
 

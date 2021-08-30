@@ -231,9 +231,11 @@ block content
           .form-elements__text-fields-bottom
             +subscription-field({
               action: "add/link/to/server",
-              label: "subscription text field",
-              name: "subscription",
-              placeholder: "Email"
+              field: {
+                  label: "subscription text field",
+                  name: "subscription",
+                  placeholder: "Email"
+              }
             })
         .form-elements__like-buttons 
           .form-elements__like-buttons-title 
