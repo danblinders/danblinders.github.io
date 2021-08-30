@@ -16,49 +16,50 @@ mixin datepicker-block(options)
       data-initial-start = start ? start : null,
       data-initial-end = end ? end : null
     )
-    if multipleFields
-      .datepicker-block__field(data-input = "start")
-        +text-field({
-          isActive: field1.isActive,
-          icon: "expand_more",
-          iconColor: field1.iconColor,
-          label: field1.label,
-          state: field1.state,
-          name: field1.name,
-          value: field1.value,
-          placeholder: field1.placeholder,
-          isRequired: field1.isRequired,
-          isDisabled: field1.isDisabled,
-          mask: "date"
-        })
-      .datepicker-block__field(data-input = "end")
-        +text-field({
-          isActive: field2.isActive,
-          icon: "expand_more",
-          iconColor: field2.iconColor,
-          label: field2.label,
-          state: field2.state,
-          name: field2.name,
-          value: field2.value,
-          placeholder: field2.placeholder,
-          isRequired: field2.isRequired,
-          isDisabled: field2.isDisabled,
-          mask: "date"
-        })
-    else 
-      .datepicker-block__field.datepicker-block__field_big
-        +text-field({
-          isActive: field1.isActive,
-          icon: "expand_more",
-          iconColor: field1.iconColor,
-          label: field1.label,
-          state: field1.state,
-          name: field1.name,
-          value: field1.value,
-          placeholder: field1.placeholder,
-          isRequired: field1.isRequired,
-          isDisabled: field1.isDisabled,
-          mask: "date"
-        })
-    .datepicker-block__service-field 
-        +text-field({})
+    .datepicker-block__container
+      if multipleFields
+        .datepicker-block__field(data-input = "start")
+          +text-field({
+            isActive: field1.isActive,
+            icon: "expand_more",
+            iconColor: field1.iconColor,
+            label: field1.label,
+            state: field1.state,
+            name: field1.name,
+            value: field1.value,
+            placeholder: field1.placeholder,
+            isRequired: field1.isRequired,
+            isDisabled: field1.isDisabled,
+            mask: "date"
+          })
+        .datepicker-block__field(data-input = "end")
+          +text-field({
+            isActive: field2.isActive,
+            icon: "expand_more",
+            iconColor: field2.iconColor,
+            label: field2.label,
+            state: field2.state,
+            name: field2.name,
+            value: field2.value,
+            placeholder: field2.placeholder,
+            isRequired: field2.isRequired,
+            isDisabled: field2.isDisabled,
+            mask: "date"
+          })
+      else 
+        .datepicker-block__field.datepicker-block__field_big
+          +text-field({
+            isActive: field1.isActive,
+            icon: "expand_more",
+            iconColor: field1.iconColor,
+            label: field1.label,
+            state: field1.state,
+            name: field1.name,
+            value: field1.value,
+            placeholder: field1.placeholder,
+            isRequired: field1.isRequired,
+            isDisabled: field1.isDisabled,
+            mask: "date"
+          })
+      .datepicker-block__service-field 
+          +text-field({})

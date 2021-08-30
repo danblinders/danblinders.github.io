@@ -1,8 +1,11 @@
 .datepicker-block {
-  position: relative;
   width: 100%;
   max-width: 320px;
-  @include set-flex($crossAxis: center, $gap: 2rem);
+
+  &__container {
+    position: relative;
+    @include set-flex($crossAxis: center, $gap: 2rem);
+  }
 
   &__field {
     max-width: 150px;
@@ -14,8 +17,9 @@
 
   &__service-field {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
+    width: 100%;
     visibility: hidden;
   }
 }
@@ -180,13 +184,17 @@
     @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 1rem);
   }
 
-  &--button {
+  &--button{
     flex: 0;
     height: auto;
 
     &:hover {
       background: none;
     }
+  }
+
+  &--main-button {
+    line-height: 1.5rem;
   }
 }
 
