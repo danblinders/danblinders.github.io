@@ -216,7 +216,9 @@ block content
               state: "default",
               name: "field",
               type: "email",
-              placeholder: "Email",
+              placeholder: {
+                text: "Email"
+              },
               required: false,
             })
             +text-field({
@@ -225,7 +227,9 @@ block content
               state: "hover / focus",
               name: "field",
               type: "email",
-              placeholder: "This is pretty awesome",
+              placeholder: {
+                text:"This is pretty awesome"
+              },
               required: false
             })
           .form-elements__text-fields-bottom
@@ -234,7 +238,9 @@ block content
               field: {
                   label: "subscription text field",
                   name: "subscription",
-                  placeholder: "Email"
+                  placeholder: {
+                    text: "Email"
+                  },
               }
             })
         .form-elements__like-buttons 
@@ -331,12 +337,15 @@ block content
             })
         .form-elements__dropdown 
           +dropdown({
-            isRequired: true,
-            label: "dropdown",
-            state: "default",
             contentName: "rooms",
-            inputValue: "2 спальни, 2 кровати...",
-            inputPlaceholder: "Конфигурация номера...",
+            field: {
+              isRequired: true,
+              label: "dropdown",
+              state: "default",
+              value: "2 спальни, 2 кровати...",
+              placeholder: "Конфигурация номера...",
+              isEachBorderRounded: false
+            },
             menuItems: [
               {subject: "bedrooms", subtitle: "спальни", count: "2"},
               {subject: "beds", subtitle: "кровати", count: "2"},
@@ -344,12 +353,16 @@ block content
             ]
           })
           +dropdown({
-            isRequired: true,
-            label: "dropdown",
-            state: "expanded",
+            isExpanded: true,
             contentName: "rooms",
-            inputValue: "2 спальни, 2 кровати...",
-            inputPlaceholder: "Конфигурация номера...",
+            field: {
+              isRequired: true,
+              label: "dropdown",
+              state: "expanded",
+              value: "2 спальни, 2 кровати...",
+              placeholder: "Конфигурация номера...",
+              isEachBorderRounded: false
+            },
             menuItems: [
               {subject: "bedrooms", subtitle: "спальни", count: "2"},
               {subject: "beds", subtitle: "кровати", count: "2"},
@@ -358,12 +371,13 @@ block content
           })
           +dropdown({
             isBig: true,
-            isRequired: true,
-            label: "dropdown",
-            state: "default",
             contentName: "guests",
-            inputPlaceholder: "Сколько гостей",
-            isInputBorderRounded: true,
+            field: {
+              isRequired: true,
+              label: "dropdown",
+              state: "default",
+              placeholder: "Сколько гостей"
+            },
             menuItems: [
               {subject: "adults", subtitle: "взрослые", count: "0"},
               {subject: "children", subtitle: "дети", count: "0"},
@@ -372,15 +386,18 @@ block content
           })
           +dropdown({
             isBig: true,
-            isRequired: true,
-            label: "dropdown",
-            state: "expanded",
+            isExpanded: true,
             contentName: "guests",
-            inputPlaceholder: "Сколько гостей",
-            isInputBorderRounded: true,
+            field: {
+              isRequired: true,
+              label: "dropdown",
+              state: "expanded",
+              value: "3 гостя",
+              placeholder: "Сколько гостей"
+            },
             menuItems: [
-              {subject: "adults", subtitle: "взрослые", count: "0"},
-              {subject: "children", subtitle: "дети", count: "0"},
+              {subject: "adults", subtitle: "взрослые", count: "2"},
+              {subject: "children", subtitle: "дети", count: "1"},
               {subject: "infants", subtitle: "младенцы", count: "0"}
             ]
           })

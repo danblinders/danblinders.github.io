@@ -6,8 +6,9 @@
     display: inline-block;
     padding: 1.3rem 1.5rem;
     @include set-size(100%, 4.4rem);
-    @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem);
-    @include set-font(1.4rem, 400, 1.8rem, $darkShade100, inherit);
+    @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem 0.4rem 0 0);
+    @include set-font(1.4rem, 400, 1.8rem, $darkShade75, inherit);
+    background: none;
     outline: none;
     letter-spacing: -0.02rem;
 
@@ -16,7 +17,7 @@
     }
 
     &:hover, &:focus, &:active, &_active {
-      border-color: $darkShade75;
+      border-color: $darkShade50;
 
       &::placeholder {
         color: $darkShade75;
@@ -24,11 +25,38 @@
 
     }
 
+    &_cursor {
+      &_pointer {
+        cursor: pointer;
+      }
+    }
+
+    &_placeholder {
+      &_darkshade_75 {
+        &::placeholder {
+          color: $darkShade75;
+        }
+      }
+    }
+
+    &_border{
+      &-bottom_hidden {
+        border-bottom: none;
+      }
+    }
+
+    &_each-border {
+      &_rounded {
+        border-radius: 0.4rem;
+      }
+    }
+
     &_padding-right {
       &_big {
         padding-right: 4.4rem;
       }
     }
+
     &-container {
       position: relative;
       display: inline-block;

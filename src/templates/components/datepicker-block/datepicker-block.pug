@@ -26,7 +26,10 @@ mixin datepicker-block(options)
             state: field1.state,
             name: field1.name,
             value: field1.value,
-            placeholder: field1.placeholder,
+            placeholder: {
+              text: field1.placeholder,
+              isDark: true
+            },
             isRequired: field1.isRequired,
             isDisabled: field1.isDisabled,
             mask: "date"
@@ -39,7 +42,10 @@ mixin datepicker-block(options)
             state: field2.state,
             name: field2.name,
             value: field2.value,
-            placeholder: field2.placeholder,
+            placeholder: {
+              text: field2.placeholder,
+              isDark: true
+            },
             isRequired: field2.isRequired,
             isDisabled: field2.isDisabled,
             mask: "date"
@@ -53,7 +59,10 @@ mixin datepicker-block(options)
             state: field1.state,
             name: field1.name,
             value: field1.value,
-            placeholder: field1.placeholder,
+            placeholder: {
+              text: field1.placeholder,
+              isDark: true
+            },
             isRequired: field1.isRequired,
             isDisabled: field1.isDisabled,
             mask: "date"

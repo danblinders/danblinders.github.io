@@ -1,52 +1,56 @@
 include ../main-button/main-button
+include ../text-field/text-field
 
 //- 
   isBig - deifnes, whether dropdown is big or not
   isExpanded - defines, whether dropdown is expanded or not
-  isRequired - defines, whehter dropdown is required or not
-  isInputBorderRouned - defines, whether input's border fully rounded or not
-  contentName - value for data-subject attribute
-  label - label for input
-  state - text for dropdown's state
-  inputName - value for input's name attribute
-  inputPlacegolder- input's placeholder
-  inputValue - default input's value
+  contentName - value for data-content attribute
   menuItems - array of items at dropdown menu
 
 mixin dropdown(options)
   if !options
     - options = {}
 
-  - const {isBig, isExpanded, isRequired, isInputBorderRounded, contentName, label, state, inputName = contentName, inputPlaceholder, inputValue, menuItems} = options
+  - const {isBig, isExpanded, contentName, field: {isActive, isEachBorderRounded, label, state, name = contentName, placeholder, value, isRequired} = {}, menuItems} = options
 
   .dropdown(
     class = isBig ? "dropdown_big" : "",
     class = isExpanded ? "dropdown_expanded" : "",
     data-content = contentName
   )
-    .dropdown__wrapper
-      label.dropdown__field
-        if label
-          span.dropdown__label= label 
-            if state 
-              span.dropdown__state= state
-        span.dropdown__input(class = isInputBorderRounded ? "dropdown__input_border_rounded" : "")
-          input.dropdown__input-element(type = "text", name = inputName, placeholder = inputPlaceholder, value = inputValue, required = isRequired, disabled)
-      .dropdown__menu 
-        .dropdown__menu-wrapper 
-          ul.dropdown__menu-items
-            - let totalCount = 0
-            each item in menuItems 
-              - totalCount += +item.count
-              li.dropdown__item(data-subject = item.subject, data-count = item.count)
-                .dropdown__item-subtitle= item.subtitle 
-                .dropdown__item-calculator 
-                  button.dropdown__item-button-minus(disabled = +item.count < 1 ? true : false, type = "button")= "-"
-                  span.dropdown__item-counter= item.count
-                  button.dropdown__item-button-plus(disabled = +item.count > 4 ? true : false, type = "button")= "+"
-          if isBig 
-            .dropdown__buttons 
-              .dropdown__button-clear(class = (totalCount === 0) ? "dropdown__button-clear_hidden" : "")
-                +main-button({style: "simple", text: "очистить"})
-              .dropdown__button-apply
-                +main-button({style: "simple", text: "применить"})
+    .dropdown__container 
+      .dropdown__field
+        +text-field({
+          isActive: isActive,
+          btn: {icon: "expand_more"},
+          isEachBorderRounded: isEachBorderRounded,
+          label: label,
+          state: state,
+          type: "email",
+          name: name,
+          value: value,
+          placeholder: {
+            text: placeholder,
+            isDark: true
+          },
+          isRequired: isRequired,
+          isDisabled: true
+        })
+        .dropdown__menu 
+          .dropdown__menu-container
+            ul.dropdown__menu-items
+              - let totalCount = 0
+              each item in menuItems 
+                - totalCount += +item.count
+                li.dropdown__item(data-subject = item.subject, data-count = item.count)
+                  .dropdown__item-subtitle= item.subtitle 
+                  .dropdown__item-calculator 
+                    button.dropdown__item-button-minus(disabled = +item.count < 1 ? true : false, type = "button")= "-"
+                    span.dropdown__item-counter= item.count
+                    button.dropdown__item-button-plus(disabled = +item.count > 4 ? true : false, type = "button")= "+"
+            if isBig 
+              .dropdown__buttons 
+                .dropdown__button-clear(class = (totalCount === 0) ? "dropdown__button-clear_hidden" : "")
+                  +main-button({style: "simple", text: "очистить"})
+                .dropdown__button-apply
+                  +main-button({style: "simple", text: "применить"})

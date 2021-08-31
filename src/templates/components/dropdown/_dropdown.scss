@@ -2,62 +2,8 @@
   width: 100%;
   max-width: 266px;
 
-  &__wrapper {
+  &__container {
     position: relative;
-  }
-
-  &__field {
-    @include flex-column($gap: 0.5rem);
-  }
-
-  &__label {
-    @include set-flex($mainAxis: space-between);
-    @include label-cta-text();
-    text-transform: uppercase;
-  }
-
-  &__state {
-    font-weight: 400;
-    color: $darkShade50;
-  }
-
-  &__input {
-    position: relative;
-    min-height: 4.4rem;
-    @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem 0.4rem 0 0);
-    cursor: pointer;
-
-    &::after {
-      content: '\e5cf';
-      position: absolute;
-      top: 0;
-      right: 0;
-      @include flex-center();
-      @include set-size(4.4rem, 100%);
-      @include set-font(2.4rem, 400, 2.4rem, $darkShade75, "Material Icons", "icons");
-    }
-
-    &-element {
-      display: inline-block;
-      @include set-size(100%);
-      outline: none;
-      border: none;
-      padding: 1.3rem 4.4rem 1.3rem 1.5rem;
-      @include set-font(1.4rem, 400, 1.4rem, $darkShade75, "Montserrat");
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      cursor: pointer;
-
-
-      &::placeholder {
-        @include set-font(1.4rem, 400, 1.4rem, $darkShade75, "Montserrat");
-      }
-    }
-
-    &_border_rounded {
-      border-radius: 0.4rem;
-    }
   }
 
   &__menu {
@@ -68,7 +14,7 @@
     overflow: hidden;
     transition: height 0.5s;
 
-    &-wrapper {
+    &-container {
       padding: 0.7rem;
       padding-left: 1.5rem;
     }

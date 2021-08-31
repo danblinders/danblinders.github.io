@@ -1,19 +1,25 @@
 //-
   label - label for text field
   state - text, that marks the state of the input
+  btn - object with settings for field's button
+    icon - buttons's icon
+    color - button's color
+    btnType - buttons's type,
+  isActive - deifnes, whether input active or not
+  isEachBorderRounded - defines, whether each border rounded or not
   type - input's type
   name - input's name
   value - input's value
   placegolder - input's placeholder
-  required - defines, whether text filed's input is required or not
-  disabled - defines, whether text field's input diabled or not
+  isRequired - defines, whether text filed's input is required or not
+  isDisabled - defines, whether text field's input diabled or not
   mask - defines the value of data-mask attribute
 
 mixin text-field(options)
   if !options
     - options = {}
 
-  - const {label, state, btn: {icon, color, btnType = "button"} = {}, isActive, type = "text", name, value, placeholder, isRequired, isDisabled, mask} = options
+  - const {label, state, btn: {icon, color, btnType = "button"} = {}, isActive, isEachBorderRounded = true, type = "text", name, value, placeholder : {text, isDark} = {}, isRequired, isDisabled, mask} = options
 
   .text-field
     label.text-field__container
@@ -24,11 +30,13 @@ mixin text-field(options)
       span.text-field__input-container
         input.text-field__input(
           class = isActive ? "text-field__input_active" : "",
-          class = btn ? "text-field__input_padding-right_big" : "",
+          class = (btn !== {}) ? "text-field__input_padding-right_big" : "",
+          class = isEachBorderRounded ? "text-field__input_each-border_rounded" : "",
+          class = isDark ? "text-field__input_placeholder_darkshade_75" : "",
           type = type, 
           name = name, 
           value = value,
-          placeholder = placeholder, 
+          placeholder = text, 
           required = isRequired,
           disabled = isDisabled,
           spellcheck = "false",

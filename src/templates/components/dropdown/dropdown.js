@@ -4,14 +4,15 @@ export default class Dropdown {
   constructor(dropdownSelector) {
     this.dropdown = $(dropdownSelector);
     this.dropdownContentType = this.dropdown.attr("data-content");
-    this.dropdownField = this.dropdown.find(".dropdown__input");
-    this.dropdownInput = this.dropdown.find(".dropdown__input-element");
+    this.dropdownField = this.dropdown.find(".dropdown__field .text-field");
+    this.dropdownFieldInput = this.dropdown.find(".dropdown__field .text-field__input");
     this.dropdownMenu = this.dropdown.find(".dropdown__menu");
     this.dropdownMenuHeight = this.dropdownMenu.css("height");
     this.dropdownMenuItems = this.dropdown.find(".dropdown__item");
     this.dropdownBtnClear = this.dropdown.find(".dropdown__button-clear");
     this.dropdownBtnApply = this.dropdown.find(".dropdown__button-apply");
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.changeDropdownInputStyles();
   }
 
   // method for toggling dropdown state after click on dropdown's field
@@ -27,7 +28,7 @@ export default class Dropdown {
 
       this.dropdownBtnClear.on("click", () => {
         this.setMenuItemCount(0, menuItem, itemCounter);
-        this.dropdownInput.attr("value", "");
+        this.dropdownFieldInput.attr("value", "");
       });
     });
   }
@@ -133,9 +134,20 @@ export default class Dropdown {
     }
   }
 
+  changeDropdownInputStyles() {
+    if (this.dropdownContentType === "guests") {
+      this.dropdownFieldInput.toggleClass("text-field__input_each-border_rounded", !this.dropdown.hasClass("dropdown_expanded"));
+    }
+
+    this.dropdownFieldInput.toggleClass("text-field__input_active", this.dropdown.hasClass("dropdown_expanded"));
+    this.dropdownFieldInput.toggleClass("text-field__input_border-bottom_hidden", this.dropdown.hasClass("dropdown_expanded") );
+  }
+
   // Method for toggling dropdown's state
   toggleDropdown() {
     this.dropdown.toggleClass("dropdown_expanded");
+
+    this.changeDropdownInputStyles();
 
     this.changeDropdownMenuVisibility();
   }
@@ -182,7 +194,7 @@ export default class Dropdown {
             break;
         }
 
-        this.dropdownInput.attr("value", inputTextsArr.length !== 0 ? `${inputTextsArr.join(", ")}...` : "");
+        this.dropdownFieldInput.attr("value", inputTextsArr.length !== 0 ? `${inputTextsArr.join(", ")}...` : "");
       });
     }
 
@@ -217,7 +229,7 @@ export default class Dropdown {
           totalValueText += `, ${infantValueText}`;
         }
         
-        this.dropdownInput.attr("value", totalValueText !== "" ? totalValueText : "");
+        this.dropdownFieldInput.attr("value", totalValueText !== "" ? totalValueText : "");
       });
     }
   }
