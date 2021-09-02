@@ -1,0 +1,17 @@
+include ../main-button/main-button
+
+mixin calendar(options)
+  if !options
+    - options = {}
+
+  - const {isHidden} = options
+
+  .calendar()
+    .calendar__container 
+      .calendar__content
+      .calendar__buttons
+        .calendar__button(data-action = "clear")
+          +main-button({style: "simple", text: "очистить"})
+        .calendar__button(data-action = "apply")
+          +main-button({style: "simple", text: "применить"})
+

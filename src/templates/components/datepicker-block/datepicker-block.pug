@@ -1,4 +1,5 @@
 include ../text-field/text-field
+include ../calendar/calendar
 
 mixin datepicker-block(options)
   if !options
@@ -6,9 +7,10 @@ mixin datepicker-block(options)
 
   - 
     const {
+      isCalendarHidden,
       multipleFields, 
-      initialDateRange: {start, end},
-      fields: {field1, field2}
+      initialDateRange: {start, end} = {},
+      fields: {field1, field2} = {}
     } = options
 
   .datepicker-block(
@@ -67,5 +69,6 @@ mixin datepicker-block(options)
             isDisabled: field1.isDisabled,
             mask: "date"
           })
-      .datepicker-block__service-field 
-          +text-field({})
+      .datepicker-block__calendar(class = isCalendarHidden ? "datepicker-block__calendar_hidden" : "")
+        .datepicker-block__calendar-wrapper
+          +calendar({})

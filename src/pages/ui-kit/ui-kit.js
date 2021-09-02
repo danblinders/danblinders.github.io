@@ -5,7 +5,7 @@ import rangeSlider from "../../templates/components/range-slider/range-slider";
 import Pagination from "../../templates/components/pagination/pagintaion";
 import inputMask from "../../templates/components/text-field/text-field";
 import Dropdown from "../../templates/components/dropdown/dropdown";
-import Datepicker from "../../templates/components/datepicker-block/datepicker-block";
+import {DatepickerWithMultipleFields, DatepickerWithSingleField} from "../../templates/components/datepicker-block/datepicker-block";
 import "./ui-kit.scss";
 
 $(document).ready(() => {
@@ -73,13 +73,14 @@ $(document).ready(() => {
   });
 
   $(".datepicker-block").each(function() {
-    const datepickerInstance = 
-      new Datepicker({
-        container: this, 
-        startCalendarDate: new Date("08.08.2019"), 
-        currentDate: new Date("08.08.2019")
+    if ($(this).attr("data-datepicker-type") === "multiple-fields") {
+      new DatepickerWithMultipleFields({
+        datepickerBlock: this
       });
-
-    datepickerInstance.render();
+    } else {
+      new DatepickerWithSingleField({
+        datepickerBlock: this
+      });
+    }
   });
 });

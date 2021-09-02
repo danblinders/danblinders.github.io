@@ -1,135 +1,162 @@
-import "air-datepicker";
+import Calendar from "../calendar/calendar";
 
-export default class Datepicker {
-  constructor({container, startCalendarDate = new Date(), currentDate = new Date()}) {
-    this.container = $(container);
-    this.datepickerType = this.container.attr("data-datepicker-type");
-    this.dateInitialStart = this.container.attr("data-initial-start") ? this.container.attr("data-initial-start") : null;
-    this.dateInitialEnd = this.container.attr("data-initial-end") ? this.container.attr("data-initial-end") : null;
-
-    if (this.datepickerType === "multiple-fields") {
-      this.datepickerStartField = this.container.find(".datepicker-block__field[data-input='start']");
-      this.datepickerEndField = this.container.find(".datepicker-block__field[data-input='end']");
-
-      this.datepickerStartFieldInput = this.container.find(".datepicker-block__field[data-input='start'] .text-field__input");
-      this.datepickerEndFieldInput = this.container.find(".datepicker-block__field[data-input='end'] .text-field__input");
-    } else {
-      this.datepickerRangeField = this.container.find(".datepicker-block__field");
-      this.datepickerRangeFieldInput = this.container.find(".datepicker-block__field .text-field__input");
+class Datepicker {
+  constructor({datepickerBlock, startCalendarDate, currentDate} = null) {
+    this.datepickerBlock = $(datepickerBlock);
+    this.datepickerType = this.datepickerBlock.attr("data-datepicker-type");
+    this.calendarContainer = this.datepickerBlock.find(".datepicker-block__calendar");
+    this.calendar = new Calendar({container: this.calendarContainer.find(".calendar"), 
+                                startCalendarDate: startCalendarDate, 
+                                currentDate: currentDate
+                              });
+    this.dateInitialStart = this.datepickerBlock.attr("data-initial-start") ? this.datepickerBlock.attr("data-initial-start") : "";
+    this.dateInitialEnd = this.datepickerBlock.attr("data-initial-end") ? this.datepickerBlock.attr("data-initial-end") : "";
+    if (this.dateInitialStart && this.dateInitialEnd) {
+      this.calendar.calendarInstance.selectDate([new Date(this.dateInitialStart), new Date(this.dateInitialEnd)]);
     }
 
-    this.serviceField = this.container.find(".datepicker-block__service-field .text-field__input");
-    this.currentDate = currentDate;
-    this.startCalendarDate = startCalendarDate;
+    this.showCalendar = () => {
+      this.calendarContainer.removeClass("datepicker-block__calendar_hidden");
+    };
 
-    this.applyChanges(new Date(this.dateInitialStart), new Date(this.dateInitialEnd));
+    
+    this.hideCalendar = () => {
+      this.calendarContainer.addClass("datepicker-block__calendar_hidden");
+    };
+  }
+}
+
+
+export class DatepickerWithMultipleFields extends Datepicker {
+  constructor({datepickerBlock, 
+              startCalendarDate, 
+              currentDate} = null) {
+    super({datepickerBlock: datepickerBlock, startCalendarDate: startCalendarDate, currentDate: currentDate});
+
+    this.startElement = {
+      field: this.datepickerBlock.find(".datepicker-block__field[data-input='start']"),
+      input: this.datepickerBlock.find(".datepicker-block__field[data-input='start'] .text-field__input")
+    };
+    this.endElement = {
+      field: this.datepickerBlock.find(".datepicker-block__field[data-input='end']"),
+      input: this.datepickerBlock.find(".datepicker-block__field[data-input='end'] .text-field__input")
+    };
+
+    this.handleApplyBtnClick = () => {
+      this.applyChanges(this.calendar.calendarInstance.selectedDates[0], this.calendar.calendarInstance.selectedDates[1]);
+    };
+
+    this.clearDatepicker = () => {
+      this.calendar.calendarInstance.clear();
+  
+      this.startElement.input.val("");
+      this.EndElement.input.val("");
+    };
+
+    this.bindEventListeners();
   }
 
-  addButtons() {
-    return `<div class='datepicker--buttons'>
-              <div class='datepicker--main-button' data-action='clear'>
-                <button class='main-button main-button_simple'>
-                  <span class="main-button__inner">очистить</span>
-                </button>
-              </div> 
-              <div class='datepicker--main-button' data-action='apply'>
-                <button class='main-button main-button_simple'>
-                  <span class="main-button__inner">применить</span>
-                </button>
-              </div>
-            </div>`;
+  bindEventListeners() {
+    this.calendar.clearBtn.on("click", this.clearDatepicker);
+    this.calendar.applyBtn.on("click", this.handleApplyBtnClick);
+    this.startElement.field.on("click", this.showCalendar);
+    this.endElement.field.on("click", this.showCalendar);
+    $(document).on("click", (event) => {
+      const eTarget = event.target,
+            isTargetStartField = this.startElement.field.is(eTarget),
+            isTargetStartFieldChild = $.contains(this.startElement.field.get(0), eTarget),
+            isTargetEndField = this.endElement.field.is(eTarget),
+            isTargetEndFieldChild = $.contains(this.endElement.field.get(0), eTarget),
+            hasParents = $(eTarget).parents().length > 0,
+            isTargetParentNotCalendarContainer = $(eTarget).parents(".datepicker-block__calendar").length === 0,
+            isTargetParentNotNavActionBtn = $(eTarget).parents(".datepicker--nav-action").length === 0;
+
+      if (!isTargetStartField && !isTargetStartFieldChild && !isTargetEndField && !isTargetEndFieldChild) {
+        if(hasParents && isTargetParentNotCalendarContainer && isTargetParentNotNavActionBtn) {
+          this.hideCalendar();
+        }
+      }
+    });
   }
 
   transformDate(unformattedDate){
-    let formattedDate;
-
-    if (this.datepickerType === "multiple-fields") {
-      formattedDate = `${unformattedDate.toLocaleString("ru-ru", {dateStyle: "short"})}`;
-    } else {
-      formattedDate = unformattedDate.toLocaleString("ru-ru", {day: "numeric", month: "short"}).replace(/\./, "");
-    }
+    const formattedDate = `${unformattedDate.toLocaleString("ru-ru", {dateStyle: "short"})}`;
 
     return formattedDate;
   }
 
   applyChanges(date1, date2) {
     if (date1 !== undefined && date2 !== undefined) {
-      if (this.datepickerType === "multiple-fields") { 
-        this.datepickerStartFieldInput.val(this.transformDate(date1));
-        this.datepickerEndFieldInput.val(this.transformDate(date2));
-      } else {
-        this.datepickerRangeFieldInput.val(`${this.transformDate(date1)} - ${this.transformDate(date2)}`);
+      this.startElement.input.val(this.transformDate(date1));
+      this.endElement.input.val(this.transformDate(date2));
+      this.hideCalendar();
+    } else {
+      console.error("Choose both dates");
+    }
+  }
+}
+
+
+export class DatepickerWithSingleField extends Datepicker {
+  constructor({datepickerBlock, startCalendarDate, currentDate} = null) {
+    super({datepickerBlock: datepickerBlock, startCalendarDate: startCalendarDate, currentDate: currentDate});
+
+    this.rangeElement = {
+      field: this.datepickerBlock.find(".datepicker-block__field"),
+      input: this.datepickerBlock.find(".datepicker-block__field .text-field__input")
+    };
+
+    this.handleApplyBtnClick = () => {
+      this.applyChanges(this.calendar.calendarInstance.selectedDates[0], this.calendar.calendarInstance.selectedDates[1]);
+    };
+
+    this.clearDatepicker = () => {
+      this.calendar.calendarInstance.clear();
+  
+      this.rangeElement.input.val("");
+    };
+
+    this.bindEventListeners();
+  }
+
+  bindEventListeners() {
+    this.calendar.clearBtn.on("click", this.clearDatepicker);
+    this.calendar.applyBtn.on("click", this.handleApplyBtnClick);
+    this.rangeElement.field.on("click", this.showCalendar);
+    $(document).on("click", (event) => {
+      const eTarget = event.target,
+            isTargetField = this.rangeElement.field.is(eTarget),
+            isTargetFieldChild = $.contains(this.rangeElement.field.get(0), eTarget),
+            hasParents = $(eTarget).parents().length > 0,
+            isTargetParentNotCalendarContainer = $(eTarget).parents(".datepicker-block__calendar").length === 0,
+            isTargetParentNotNavActionBtn = $(eTarget).parents(".datepicker--nav-action").length === 0;
+
+      if (!isTargetField && !isTargetFieldChild) {
+        if(hasParents && isTargetParentNotCalendarContainer && isTargetParentNotNavActionBtn) {
+          this.hideCalendar();
+        }
       }
+    });
+  }
+
+  transformDate(unformattedDate){
+    const formattedDate = unformattedDate.toLocaleString("ru-ru", {day: "numeric", month: "short"}).replace(/\./, "");
+
+    return formattedDate;
+  }
+
+  applyChanges(date1, date2) {
+    if (date1 !== undefined && date2 !== undefined) {
+      this.rangeElement.input.val(`${this.transformDate(date1)} - ${this.transformDate(date2)}`);
+      this.hideCalendar();
     } else {
       console.error("Choose both dates");
     }
   }
 
-  clearDatepicker(datepickerElement) {
-    datepickerElement.clear();
-
-    if (this.datepickerType === "multiple-fields") { 
-      this.datepickerStartFieldInput.val("");
-      this.datepickerEndFieldInput.val("");
-    } else {
-      this.datepickerRangeFieldInput.val("");
-    }
-  }
-
-
-
-  render() {
-    const datepickerElem = this.serviceField.datepicker({
-      language: "ru",
-      offset: 5.5,
-      range: true,
-      currentDate: this.currentDate,
-      startDate: this.startCalendarDate,
-      dateFormat: "dd.mm.yyyy",
-      navTitles: {
-        days: "MM yyyy"
-      },
-      prevHtml: "<button class='datepicker--nav-button'>arrow_back</button>",
-      nextHtml: "<button class='datepicker--nav-button'>arrow_forward</button>",
-      onRenderCell: function(date) {
-        const areDaysMatched = date.getDate() == this.currentDate.getDate() ? true : false,
-              areMonthsMatched = date.getMonth() == this.currentDate.getMonth() ? true : false,
-              areYearsMatched = date.getFullYear() == this.currentDate.getFullYear() ? true : false;
-            
-        if (areDaysMatched && areMonthsMatched && areYearsMatched) {
-          return {
-            classes: "-current-"
-          };
-        }
-      }
-    }).data("datepicker");
-
-    const calendar = datepickerElem.$datepicker;
-
-    calendar.append(this.addButtons());
-
-    calendar.find(".datepicker--btn[data-action='clear']").on("click", () => {
-      this.clearDatepicker(datepickerElem);
-    });
-
-    calendar.find(".datepicker--btn[data-action='apply']").on("click", () => {
-      this.applyChanges(datepickerElem.selectedDates[0], datepickerElem.selectedDates[1]);
-      datepickerElem.hide();
-    });
-
-    if (this.datepickerType === "multiple-fields") { 
-      this.datepickerStartField.on("click", () => {
-        datepickerElem.show();
-      });
-      this.datepickerEndField.on("click", () => {
-        datepickerElem.show();
-      });
-    } else {
-      this.datepickerRangeField.on("click", () => {
-        datepickerElem.show();
-      });
-    }
-
-    datepickerElem.selectDate([new Date(this.dateInitialStart), new Date(this.dateInitialEnd)]);
-  }
+  // handleDocumentClick(e) {
+  //   if(e.target !== this.calendarContainer) {
+  //     this.hideCalendar();
+  //   }
+  // }
 }

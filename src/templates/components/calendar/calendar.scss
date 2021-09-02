@@ -1,0 +1,176 @@
+.calendar {
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 1rem 2rem $darkShade5;
+  background-color: #fff;
+  @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem);
+
+  &__container {
+    padding: 2rem;
+  }
+
+  &__content {
+    margin-bottom: 2rem;
+  }
+
+  &__buttons {
+    @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 1rem);
+  }
+
+  &__button {
+    line-height: 1.5rem;
+  }
+}
+
+.datepickers-container {
+  width: 100%;
+}
+
+.datepicker {
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+
+  &--pointer {
+    display: none;
+  }
+
+  &--nav {
+    border-bottom: none;
+    padding: 0;
+    min-height: 0;
+    @include set-flex($crossAxis: center);
+    margin-bottom: 3rem;
+
+    &-action {
+      @include set-size(2.4rem);
+      @include flex-center();
+
+      &:hover {
+        background: none;
+      }
+    }
+    
+    &-button {
+      border: none;
+      background: none;
+      outline: none;
+      padding: 0;
+      @include set-font(2.4rem, 400, 2.4rem, $purple, "Material Icons", 'icons');
+      cursor: pointer;
+
+      &:hover, &:focus {
+        color: $darkShade50;
+      }
+    }
+
+    &-title {
+      @include subtitle-text();
+
+      &:hover {
+        background: none;
+      }
+    }
+  }
+
+
+  &--content {
+    box-sizing: border-box;
+    @include set-font(1.2rem, 400, 1.5rem, $darkShade50, "Montserrat");
+    padding: 0;
+  }
+
+  &--days {
+    &-names {
+      margin: 0;
+    }
+  }
+
+  &--day {
+    &-name {
+      @include set-size(4rem);
+      font-weight: 700;
+      text-transform: capitalize;
+      color: $purple;
+    }
+  }
+
+  &--cells {
+    .-current- {
+      border: none;
+      background-image: $secondaryGradient;
+      border-radius: 50%;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .-other-month {
+      color: $darkShade25;
+    }
+
+    .-range-from- {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        @include set-size(50%, 100%);
+        background-image: $primaryGradient;
+        opacity: 0.25;
+        z-index: -1;
+      }
+    }
+
+    .-in-range- {
+      position: relative;
+      background: none;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: $primaryGradient;
+        opacity: 0.25;
+      }
+    }
+
+    .-range-to- {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include set-size(50%, 100%);
+        background-image: $primaryGradient;
+        opacity: 0.25;
+        z-index: -1;
+      }
+    }
+
+    .-selected-, .-focus- {
+      background: none;
+      border: none;
+      background-image: $primaryGradient;
+      border-radius: 50%;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .-selected-.-focus- {
+      background: $primaryGradient;
+    }
+  }
+
+  &--cell {
+    &-day {
+      @include set-size(3.97rem, 4rem);
+    }
+  }
+}
+
+@import "../main-button/main-button";
+@import "air-datepicker/dist/css/datepicker.min.css";
