@@ -1,5 +1,15 @@
 import Calendar from "../calendar/calendar";
 
+/*
+  this.datepickrBlock - the whole datepicker-block
+  this.datepickerType - datepicker's type
+  this.calendarContainer - block, containing calendar
+  this.calendar - instance of Calendar class
+  this.dateInitialStart - date, start of range date, that will be chosen after first initialization 
+  this.dateInitialEnd - date, end of range date, that will be chosen after first initialization 
+  this.showCalendar - method for showing calendar
+  this.hideCalendar - method for hiding calendar
+*/
 class Datepicker {
   constructor({datepickerBlock, startCalendarDate, currentDate} = null) {
     this.datepickerBlock = $(datepickerBlock);
@@ -9,9 +19,11 @@ class Datepicker {
                                 startCalendarDate: startCalendarDate, 
                                 currentDate: currentDate
                               });
-    this.dateInitialStart = this.datepickerBlock.attr("data-initial-start") ? this.datepickerBlock.attr("data-initial-start") : "";
-    this.dateInitialEnd = this.datepickerBlock.attr("data-initial-end") ? this.datepickerBlock.attr("data-initial-end") : "";
-    if (this.dateInitialStart && this.dateInitialEnd) {
+    if (this.datepickerBlock.attr("data-initial-start") && this.datepickerBlock.attr("data-initial-end")) {
+      this.dateInitialStart = this.datepickerBlock.attr("data-initial-start") ? this.datepickerBlock.attr("data-initial-start") : "";
+      this.dateInitialEnd = this.datepickerBlock.attr("data-initial-end") ? this.datepickerBlock.attr("data-initial-end") : "";
+
+      // Selecting initial date via air-datepicker plugin's API
       this.calendar.calendarInstance.selectDate([new Date(this.dateInitialStart), new Date(this.dateInitialEnd)]);
     }
 
@@ -26,7 +38,15 @@ class Datepicker {
   }
 }
 
+/*
+  this.startElement - object, storing data about start field
+    field - field itself
+    input - field's input
+  this.endElement - object, storing data about end field
+    field - field itself
+    input - field's input
 
+*/
 export class DatepickerWithMultipleFields extends Datepicker {
   constructor({datepickerBlock, 
               startCalendarDate, 
@@ -42,26 +62,18 @@ export class DatepickerWithMultipleFields extends Datepicker {
       input: this.datepickerBlock.find(".datepicker-block__field[data-input='end'] .text-field__input")
     };
 
+    // function, that is invoked after click on applyBtn 
     this.handleApplyBtnClick = () => {
       this.applyChanges(this.calendar.calendarInstance.selectedDates[0], this.calendar.calendarInstance.selectedDates[1]);
     };
 
-    this.clearDatepicker = () => {
-      this.calendar.calendarInstance.clear();
-  
-      this.startElement.input.val("");
-      this.EndElement.input.val("");
+    // function, that is invoked after click on clearBtn
+    this.handleClearBtnClick = () => {
+      this.clearDatepicker();
     };
 
-    this.bindEventListeners();
-  }
-
-  bindEventListeners() {
-    this.calendar.clearBtn.on("click", this.clearDatepicker);
-    this.calendar.applyBtn.on("click", this.handleApplyBtnClick);
-    this.startElement.field.on("click", this.showCalendar);
-    this.endElement.field.on("click", this.showCalendar);
-    $(document).on("click", (event) => {
+    // function, that is invoked after click on docuemnt 
+    this.handleDocumentClick = (event) => {
       const eTarget = event.target,
             isTargetStartField = this.startElement.field.is(eTarget),
             isTargetStartFieldChild = $.contains(this.startElement.field.get(0), eTarget),
@@ -75,28 +87,61 @@ export class DatepickerWithMultipleFields extends Datepicker {
         if(hasParents && isTargetParentNotCalendarContainer && isTargetParentNotNavActionBtn) {
           this.hideCalendar();
         }
+      } else {
+        this.showCalendar();
       }
-    });
+    };
+
+    this.bindEventListeners();
   }
 
+  // method, that returns string in trnasformed format
   transformDate(unformattedDate){
     const formattedDate = `${unformattedDate.toLocaleString("ru-ru", {dateStyle: "short"})}`;
 
     return formattedDate;
   }
 
+  // method, that changes input's value according to selected dates
+  // adds error message, if both dates aren't chosen 
   applyChanges(date1, date2) {
     if (date1 !== undefined && date2 !== undefined) {
       this.startElement.input.val(this.transformDate(date1));
       this.endElement.input.val(this.transformDate(date2));
+
+      const isContainErrorMessage = $.contains(this.calendar.calendarContent.get(0), $(".calendar__error").get(0));
+
+      if (isContainErrorMessage) {
+        this.calendar.calendarContent.find(".calendar__error").remove();
+      }
+
       this.hideCalendar();
     } else {
-      console.error("Choose both dates");
+      this.calendar.calendarContent.append("<div class='calendar__error'>Выберите обе даты!</div>");
     }
+  }
+
+  // mmetod for clearing datepicker's input and calendar
+  clearDatepicker() {
+    this.calendar.calendarInstance.clear();
+
+    this.startElement.input.val("");
+    this.endElement.input.val("");
+  }
+
+  // metod for binding event listeners 
+  bindEventListeners() {
+    this.calendar.clearBtn.on("click", this.handleClearBtnClick);
+    this.calendar.applyBtn.on("click", this.handleApplyBtnClick);
+    $(document).on("click", this.handleDocumentClick);
   }
 }
 
-
+/*
+  this.rangeElement - object, storing data about range date
+      field - field itself
+      input - field's input
+*/
 export class DatepickerWithSingleField extends Datepicker {
   constructor({datepickerBlock, startCalendarDate, currentDate} = null) {
     super({datepickerBlock: datepickerBlock, startCalendarDate: startCalendarDate, currentDate: currentDate});
@@ -106,57 +151,73 @@ export class DatepickerWithSingleField extends Datepicker {
       input: this.datepickerBlock.find(".datepicker-block__field .text-field__input")
     };
 
+    // function, that is invoked after click on applyBtn
     this.handleApplyBtnClick = () => {
       this.applyChanges(this.calendar.calendarInstance.selectedDates[0], this.calendar.calendarInstance.selectedDates[1]);
     };
 
-    this.clearDatepicker = () => {
-      this.calendar.calendarInstance.clear();
+    // function, that is invoked after click on clearBtn
+    this.handleClearBtnClick = () => {
+      this.clearDatepicker();
+    };
+
+    // function, that is invoked after click on docuemnt 
+    this.handleDocumentClick = (event) => {
+      const eTarget = event.target,
+      isTargetField = this.rangeElement.field.is(eTarget),
+      isTargetFieldChild = $.contains(this.rangeElement.field.get(0), eTarget),
+      hasParents = $(eTarget).parents().length > 0,
+      isTargetParentNotCalendarContainer = $(eTarget).parents(".datepicker-block__calendar").length === 0,
+      isTargetParentNotNavActionBtn = $(eTarget).parents(".datepicker--nav-action").length === 0;
   
-      this.rangeElement.input.val("");
+      if (!isTargetField && !isTargetFieldChild) {
+      if(hasParents && isTargetParentNotCalendarContainer && isTargetParentNotNavActionBtn) {
+        this.hideCalendar();
+      }
+      } else {
+        this.showCalendar();
+      }
     };
 
     this.bindEventListeners();
   }
 
-  bindEventListeners() {
-    this.calendar.clearBtn.on("click", this.clearDatepicker);
-    this.calendar.applyBtn.on("click", this.handleApplyBtnClick);
-    this.rangeElement.field.on("click", this.showCalendar);
-    $(document).on("click", (event) => {
-      const eTarget = event.target,
-            isTargetField = this.rangeElement.field.is(eTarget),
-            isTargetFieldChild = $.contains(this.rangeElement.field.get(0), eTarget),
-            hasParents = $(eTarget).parents().length > 0,
-            isTargetParentNotCalendarContainer = $(eTarget).parents(".datepicker-block__calendar").length === 0,
-            isTargetParentNotNavActionBtn = $(eTarget).parents(".datepicker--nav-action").length === 0;
-
-      if (!isTargetField && !isTargetFieldChild) {
-        if(hasParents && isTargetParentNotCalendarContainer && isTargetParentNotNavActionBtn) {
-          this.hideCalendar();
-        }
-      }
-    });
-  }
-
+  // method, that returns string in trnasformed format
   transformDate(unformattedDate){
     const formattedDate = unformattedDate.toLocaleString("ru-ru", {day: "numeric", month: "short"}).replace(/\./, "");
 
     return formattedDate;
   }
 
+  // method, that changes input's value according to selected dates
+  // adds error message, if both dates aren't chosen 
   applyChanges(date1, date2) {
     if (date1 !== undefined && date2 !== undefined) {
       this.rangeElement.input.val(`${this.transformDate(date1)} - ${this.transformDate(date2)}`);
+
+      const isContainErrorMessage = $.contains(this.calendar.calendarContent.get(0), $(".calendar__error").get(0));
+
+      if (isContainErrorMessage) {
+        this.calendar.calendarContent.find(".calendar__error").remove();
+      }
+
       this.hideCalendar();
     } else {
-      console.error("Choose both dates");
+      this.calendar.calendarContent.append("<div class='calendar__error'>Выберите обе даты!</div>");
     }
   }
 
-  // handleDocumentClick(e) {
-  //   if(e.target !== this.calendarContainer) {
-  //     this.hideCalendar();
-  //   }
-  // }
+  // mmetod for clearing datepicker's input and calendar
+  clearDatepicker() {
+    this.calendar.calendarInstance.clear();
+
+    this.rangeElement.input.val("");
+  }
+
+  // metod for binding event listeners 
+  bindEventListeners() {
+    this.calendar.clearBtn.on("click", this.handleClearBtnClick);
+    this.calendar.applyBtn.on("click", this.handleApplyBtnClick);
+    $(document).on("click", this.handleDocumentClick);
+  }
 }

@@ -1,6 +1,14 @@
 import "air-datepicker";
 
-
+/* 
+  this.container - block, containing calendar
+  this.calendarContent - content-block, where will rendered calendar air-datepicker plugin
+  this.startCalendarDate - date, that will be shown at first initialization
+  this.currentDate - changin currentDate(created specially for ui-kit pixel-perfect)
+  this.clearBtn - button for clearing calendar (and datepicker on the whole)
+  this.applyBtn - button for applying changes, made in calendar
+  this.calendarInstance - insatnce of air-datepicker plugin's calendar with all settings
+*/
 export default class Calendar {
   constructor({container, startCalendarDate = new Date(), currentDate = new Date()}) {
     this.container = $(container);
