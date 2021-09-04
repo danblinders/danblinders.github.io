@@ -1,56 +1,61 @@
-const setRateButton = (options) => {
-  const {btnSelector, inputSelector, iconSelector, iconActiveClass} = options;
+/*
+  this.btn - block, containing all button's elements
+  this.inputs - all inputs field inside button
+  this.icons - all star icons inside button
+  this.settedRating - current rating
+*/
+export default class RateButton {
+  constructor(btnSelector) {
+    this.btn = $(btnSelector);
+    this.inputs = this.btn.find(".rate-button__input");
+    this.icons = this.btn.find(".rate-button__icon");
+    this.settedRating = 0;
 
-  // Getting elements from the page
-  const btn = $(btnSelector),
-        icons = btn.find(iconSelector),
-        inputs = btn.find(inputSelector);
+    // get initial rating value
+    this.inputs.each(index => {
+      if ($(this.inputs[index]).attr("checked")) {
+        this.settedRating = +$(this.inputs[index]).attr("value");
+      }
+    });
 
-  // Variable, that stores information about chosen rating
-  let settedRating;
+    // After click on star icon
+    // Set new rating
+    // Toggle star icons classes accroding to rating
+    this.handleIconClick = (event) => {
+      this.settedRating  = +$(event.target).siblings(".rate-button__input").attr("value");
   
-  // Setting initial value for variable settedRating
-  inputs.each(function() {
-    if ($(this).attr("checked")) {
-      settedRating = +$(this).attr("value");
-    }
-  });
-
-  // Add event handlers for all rate-button's icons
-  icons.each(function() {
-
-    // After click on one of the rate-button's icons
-    // Setting new value for variable settedRating. that equals to value of radio-button, which is the sibling of clicked icon
-    // Toggling active classes for icons, which index is les or equal to settedRating value
-    $(this).on("click", function() {
-      settedRating  = +$(this).siblings(inputSelector).attr("value");
-
-      icons.each(function(index) {
-        $(this).toggleClass(iconActiveClass, index < settedRating);
+      this.icons.each(index => {
+        $(this.icons[index]).toggleClass("rate-button__icon_filled", index < this.settedRating);
       });
-    });
+    };
 
-    // After mouse mvement inside the one of the rate-button's icons
-    // Creating temporary rating variable. which value equals to value of radio-button, which is the sibling of hovered icon
-    // Toggling active classes for icons, which index is les or equal to ratingvalue
-    $(this).on("mouseover", function() {
-      const rating = +$(this).siblings(inputSelector).attr("value");
-
-      icons.each(function(index) {
-        $(this).toggleClass(iconActiveClass, index < rating);
+    // After mouse movement nside star icon
+    // Create proxy variable for rating (property settedRating isn't use because on mouse over we don't apply any changes to rating)
+    // Toggle star icons classes accroding to rating
+    this.handleIconMouseOver = (event) => {
+      const rating = +$(event.target).siblings(".rate-button__input").attr("value");
+  
+      this.icons.each(index => {
+        $(this.icons[index]).toggleClass("rate-button__icon_filled", index < rating);
       });
-    });
+    };
 
-    // After mouse leaves the area of one of the rate-button's icons
-    // Toggling active classes for icons, which index is les or equal to settedRating value
-    $(this).on("mouseleave", function() {
-      icons.each(function(index) {
-        $(this).toggleClass(iconActiveClass, index < settedRating);
+      // After mouseleft star icon
+    // Toggle star icons classes accroding to settedRating property
+    this.handleIconMouseLeave = (event) => {
+      this.icons.each(index => {
+        $(this.icons[index]).toggleClass("rate-button__icon_filled", index < this.settedRating);
       });
+    };
+
+    this.bindEventHandlers();
+  }
+
+  bindEventHandlers() {
+    this.icons.each(index => {
+      $(this.icons[index]).on("click", this.handleIconClick);
+      $(this.icons[index]).on("mouseover", this.handleIconMouseOver);
+      $(this.icons[index]).on("mouseleave", this.handleIconMouseLeave);
     });
-
-
-  });
-};
-
-export default setRateButton;
+  }
+}

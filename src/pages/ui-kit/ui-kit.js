@@ -1,6 +1,6 @@
 import LikeButton from "../../templates/components/like-button/like-button";
 import ExpandableCheckboxList from "../../templates/components/expandable-checkbox-list/expandable-checkbox-list";
-import setRateButton from "../../templates/components/rate-button/rate-button";
+import RateButton from "../../templates/components/rate-button/rate-button";
 import rangeSlider from "../../templates/components/range-slider/range-slider";
 import Pagination from "../../templates/components/pagination/pagintaion";
 import inputMask from "../../templates/components/text-field/text-field";
@@ -18,12 +18,7 @@ $(document).ready(() => {
   });
 
   $(".rate-button").each(function(){
-    setRateButton({
-      btnSelector: this,
-      iconSelector: ".rate-button__icon",
-      inputSelector: ".rate-button__input",
-      iconActiveClass: "rate-button__icon_filled"
-    });
+    new RateButton(this);
   });
 
   $(".range-slider").each(function() {
