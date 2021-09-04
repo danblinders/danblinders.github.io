@@ -1,4 +1,4 @@
-import setLikeButton from "../../templates/components/like-button/like-button";
+import LikeButton from "../../templates/components/like-button/like-button";
 import ExpandableCheckboxList from "../../templates/components/expandable-checkbox-list/expandable-checkbox-list";
 import setRateButton from "../../templates/components/rate-button/rate-button";
 import rangeSlider from "../../templates/components/range-slider/range-slider";
@@ -10,18 +10,7 @@ import "./ui-kit.scss";
 
 $(document).ready(() => {
   $(".like-button").each(function() {
-    setLikeButton({
-      btnSelector: this,
-      iconSelector: ".like-button__icon",
-      counterSelector: ".like-button__counter",
-      dataActiveAttribute: "data-active",
-      dataCountAttribute: "data-count",
-      activeClasses: {
-        activeButton: `like-button_${$(this).attr("data-border-color")}`,
-        activeIcon: ["like-button__icon_filled", `like-button__icon_${$(this).attr("data-icon-color")}`],
-        activeCounter: `like-button__counter_${$(this).attr("data-counter-color")}`
-      }
-    });
+    new LikeButton(this);
   });
 
   $(".expandable-checkbox-list").each(function() {
