@@ -1,5 +1,5 @@
 import setLikeButton from "../../templates/components/like-button/like-button";
-import expandList from "../../templates/components/expandable-checkbox-list/expandable-checkbox-list";
+import ExpandableCheckboxList from "../../templates/components/expandable-checkbox-list/expandable-checkbox-list";
 import setRateButton from "../../templates/components/rate-button/rate-button";
 import rangeSlider from "../../templates/components/range-slider/range-slider";
 import Pagination from "../../templates/components/pagination/pagintaion";
@@ -25,15 +25,7 @@ $(document).ready(() => {
   });
 
   $(".expandable-checkbox-list").each(function() {
-    expandList({
-      listSelector: this,
-      iconSelector: ".expandable-checkbox-list__icon",
-      listContentSelector: ".expandable-checkbox-list__content",
-      activeClasses: {
-        listActiveClass: "expandable-checkbox-list_expanded",
-        iconActiveClass: "expandable-checkbox-list__icon_inverted"
-      }
-    });
+    new ExpandableCheckboxList(this);
   });
 
   $(".rate-button").each(function(){

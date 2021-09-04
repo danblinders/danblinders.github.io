@@ -1,39 +1,38 @@
-const expandList = ({listSelector, 
-                    iconSelector, 
-                    listContentSelector, 
-                    activeClasses: {listActiveClass, iconActiveClass}}) => {
+/*
+  this.list - block, containing all list markup
+  this.listIcon - list select's icon
+  this.listContent - element, containing all checkbox items
+  this.contentheight - height of listContent element
+*/
+export default class ExpandableCheckboxList {
+  constructor(listSelector) {
+    this.list = $(listSelector);
+    this.listIcon = this.list.find(".expandable-checkbox-list__icon");
+    this.listContent = this.list.find(".expandable-checkbox-list__content");
+    this.contentHeight = this.listContent.css("height");
 
-  // Getting elements of list and content's height
+    // After click on the list's icon
+    // Toggling active classes for list and icon
+    // Setting list content's height
+    this.handleListIconClick = () => {
+      this.list.toggleClass("expandable-checkbox-list_expanded");
+      this.listIcon.toggleClass("expandable-checkbox-list__icon_inverted");
   
-  const list = $(listSelector),
-        listIcon = list.find(iconSelector),
-        listContent = list.find(listContentSelector),
-        contentHeight = listContent.css("height");
+      this.changeContentHeight();
+    };
 
-  // Function. that changes the element height depends on the presence of activeClass on it's parent
+    this.listIcon.on("click", this.handleListIconClick);
 
-  const changeContentHeight = (contentElem, parent, activeClass, heightShrinked, heightExpanded) => {
-    if (parent.hasClass(activeClass)) {
-      contentElem.css("height", heightExpanded);
+    this.changeContentHeight();
+  }
+
+  // Method, that setting listContent's height, depending on presence of active class
+  // If list is expanded, method set's height equal to contentHeight value, otherwise - to 0, hiding listContent
+  changeContentHeight(){
+    if (this.list.hasClass("expandable-checkbox-list_expanded")) {
+      this.listContent.css("height", this.contentHeight);
     } else {
-      contentElem.css("height", heightShrinked);
+      this.listContent.css("height", "0");
     }
-  };
-
-  // Setting initial list content's height after page load
-
-  changeContentHeight(listContent, list, listActiveClass, "0", contentHeight);
-
-  // After click on the list's icon
-  // Toggling active classes for list and icon
-  // Setting list content's height
-
-  listIcon.on("click", function() {
-    list.toggleClass(listActiveClass);
-    listIcon.toggleClass(iconActiveClass);
-
-    changeContentHeight(listContent, list, listActiveClass, "0", contentHeight);
-  });
-};
-
-export default expandList;
+  }
+}

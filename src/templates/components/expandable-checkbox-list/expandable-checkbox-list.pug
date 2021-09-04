@@ -1,5 +1,10 @@
 include ../checkbox/checkbox 
 
+//-
+  selectText - text for list's select field
+  isExpanded - deifnes, whether list is expanded or not
+  items - array with checkbox items
+
 mixin expandable-checkbox-list(options)
   if !options
     - options = {}
@@ -9,10 +14,11 @@ mixin expandable-checkbox-list(options)
   .expandable-checkbox-list(class = isExpanded ? "expandable-checkbox-list_expanded" : "")
     .expandable-checkbox-list__select= selectText
       .expandable-checkbox-list__icon(class = isExpanded ? "expandable-checkbox-list__icon_inverted" : "") 
-    .expandable-checkbox-list__content 
+    ul.expandable-checkbox-list__content 
       each item in items
-        +checkbox({
-          label: item.label,
-          name: item.name,
-          checked: item.checked
-        })
+        li.expandable-checkbox-list__item
+          +checkbox({
+            label: item.label,
+            name: item.name,
+            checked: item.checked
+          })
