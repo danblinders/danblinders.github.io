@@ -1,51 +1,50 @@
-import * as ionRangeSlider from "ion-rangeslider";
+import "ion-rangeslider";
 
-const rangeSlider = ({sliderSelector, sliderInputSelector, sliderValueSelector}) => {
-
-  // Getting slider and it's items from the page
+/*
+  this.slider - block, containing all slider's elements
+  this.sliderInput - slider's input
+  this.sliderValueArea - element, where chosen range of numbers is displayed 
+  this.minValue - minimal value for slider
+  this.maxValue - maximum value for slider
+  this.startValue - start value of range, chosen after slider's initialization
+  this.startValue - end value of range, chosen after slider's initialization
+  this.sliderInstance - instance of ion-rangeslider with basic settings for slider
+*/
+export default class RangeSlider {
+  constructor(sliderSelector) {
+    this.slider = $(sliderSelector);
+    this.sliderInput = this.slider.find(".range-slider__input");
+    this.sliderValueArea = this.slider.find(".range-slider__value");
+    this.minValue = +this.slider.attr("data-min");
+    this.maxValue = +this.slider.attr("data-max");
+    this.startValue = +this.slider.attr("data-start");
+    this.endValue = +this.slider.attr("data-end");
+    this.sliderInstance = this.sliderInput.ionRangeSlider({
+      type: "double",
+      min: this.minValue,
+      max: this.maxValue,
+      from: this.startValue,
+      to: this.endValue,
+      hide_min_max: true,
+      hide_from_to: true,
+      skin: "round",
+      // After slider value change, setting new value for data-start and data-end attributes and uodating text for sliderValueArea
+      onChange: data => {
+        this.slider.attr("data-start", data.from);
+        this.slider.attr("data-end", data.to);
   
-  const slider = $(sliderSelector),
-        sliderInput = slider.find(sliderInputSelector),
-        sliderValueArea = slider.find(sliderValueSelector);
+        this.sliderValueArea.text(`${this.formatNumber(data.from)}₽ - ${this.formatNumber(data.to)}₽`);
+      }
+    });
 
-  // Getting values of slider via data-attributes
+    // set slider's valueArea text after slider's initialization
+    this.sliderValueArea.text(`${this.formatNumber(this.startValue)}₽ - ${this.formatNumber(this.endValue)}₽`);
+  }
 
-  let minValue = +slider.attr("data-min"),
-      maxValue = +slider.attr("data-max"),
-      startValue = +slider.attr("data-start"),
-      endValue = +slider.attr("data-end");  
-
-  // Function, that adds spaces between number units (for example addNumSpaces(5000) will return "5 000")
-
-  const addNumSpaces = (num) => {
+  // Method for formatting numbers to improve their readablity
+  formatNumber(num) {
     const numString = num.toString();
 
     return numString.replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
-  };
-
-  // Setting text for sliderValueArea after load of the page
-
-  sliderValueArea.text(`${addNumSpaces(startValue)}₽ - ${addNumSpaces(endValue)}₽`);
-
-  // Setting Ion.RangeSlider plugin
-
-  sliderInput.ionRangeSlider({
-    type: "double",
-    min: minValue,
-    max: maxValue,
-    from: startValue,
-    to: endValue,
-    hide_min_max: true,
-    hide_from_to: true,
-    skin: "round",
-    // After slider value change, setting new value for data-start and data-end attributes and uodating text for sliderValueArea
-    onChange: data => {
-      slider.attr("data-start", data.from);
-      slider.attr("data-end", data.to);
-
-      sliderValueArea.text(`${addNumSpaces(data.from)}₽ - ${addNumSpaces(data.to)}₽`);
-  },
-  });
-};
-
-export default rangeSlider;
+  }
+}

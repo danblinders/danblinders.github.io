@@ -1,7 +1,7 @@
 import LikeButton from "../../templates/components/like-button/like-button";
 import ExpandableCheckboxList from "../../templates/components/expandable-checkbox-list/expandable-checkbox-list";
 import RateButton from "../../templates/components/rate-button/rate-button";
-import rangeSlider from "../../templates/components/range-slider/range-slider";
+import RangeSlider from "../../templates/components/range-slider/range-slider";
 import Pagination from "../../templates/components/pagination/pagintaion";
 import inputMask from "../../templates/components/text-field/text-field";
 import Dropdown from "../../templates/components/dropdown/dropdown";
@@ -22,11 +22,7 @@ $(document).ready(() => {
   });
 
   $(".range-slider").each(function() {
-    rangeSlider({
-      sliderSelector: this,
-      sliderInputSelector: ".range-slider__input",
-      sliderValueSelector: ".range-slider__value"
-    });
+    new RangeSlider(this);
   });
 
   $(".pagination-block__top").each(function() {
