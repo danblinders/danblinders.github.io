@@ -1,12 +1,14 @@
 //-
-  options.name - name attribute for toggle's input
-  options.checked - defines, whether toggle input is checked or not
-  options.label - label for toggle
+  name - name attribute for toggle's input
+  checked - defines, whether toggle input is checked or not
+  label - label for toggle
 
 mixin toggle(options)
   if !options
     - options = {}
 
+  - const {label, name, checked} = options
+
   label.toggle
-      input.toggle__input(type = "checkbox", name = options.name, checked = options.checked)
-      span.toggle__label= options.label
+      input.toggle__input(type = "checkbox", name = name, checked = checked)
+      span.toggle__label= label

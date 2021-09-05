@@ -8,6 +8,7 @@
     flex-shrink: 0;
     appearance: none;
     @include flex-center();
+    @include set-min-size(10px);
     @include set-size(2rem);
     @include set-border($borderColor: $darkShade25, $borderRadius: 50%);
     transition: border-color 0.3s;
@@ -15,7 +16,7 @@
 
     &::after {
       content: '';
-      @include set-size(1.2rem);
+      @include set-size(67%);
       border-radius: 50%;
       background-image: $primaryGradient;
       opacity: 0;

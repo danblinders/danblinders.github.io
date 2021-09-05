@@ -5,6 +5,11 @@
   height: $height;
 }
 
+@mixin set-min-size($minWidth, $minHeight: $minWidth) {
+  min-width: $minWidth;
+  min-height: $minHeight;
+}
+
 // Mixin for setting font properties
 
 @mixin set-font($fontSize: null, $fontWeight: null, $lineHeight: null, $color: null, $fontFamily: null, $fontFamilyType: "sans-serif") {

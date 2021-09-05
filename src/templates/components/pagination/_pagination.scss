@@ -23,7 +23,7 @@
     &__prev,
     &__next {
       background-image: $secondaryGradient;
-      @include set-font(2.4rem, 400, 4rem, #fff, "Material Icons", 'icons');
+      @include set-font(clamp(15px, 2.4rem, 50px), 400, 4rem, #fff, "Material Icons", 'icons');
       cursor: pointer;
     }
 

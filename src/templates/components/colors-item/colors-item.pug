@@ -1,14 +1,16 @@
 //-
-  options.color - color of square
-  options.name - color's name
-  options.code - color's hex code
+  color - color of square
+  name - color's name
+  code - color's hex code
 
 mixin colors-item(options)
   if !options
     - options = {}
 
+  - const {color, name, code} = options
+
   .colors-item 
-    .colors-item__square(class = options.color ? `colors-item__square_${options.color}` : "") 
+    .colors-item__square(class = color ? `colors-item__square_${color}` : "") 
     .colors-item__info 
-      .colors-item__name= options.name 
-      .colors-item__code= options.code 
+      .colors-item__name= name 
+      .colors-item__code= code 

@@ -1,11 +1,14 @@
 //-
-  options.tag - tag name
-  opions.descr - description for tag
+  tag - tag name
+  descr - description for tag
+  isDescrUppercase - defines, whether description's text is uppercase or not
 
 mixin type-item(options)
   if !options
     - options = {}
 
-  .type-item(class = options.tag ? `type-item_style_${options.tag}` : "")
-    .type-item__tag= options.tag || "tag"
-    .type-item__description(class = options.uppercase ? "type-item__description_case_uppercase" : "")!= options.descr
+  - const {tag, descr, isDescrUppercase} = options
+
+  .type-item(class = tag ? `type-item_style_${tag}` : "")
+    .type-item__tag= tag || "tag"
+    .type-item__description(class = isDescrUppercase ? "type-item__description_case_uppercase" : "")!= descr

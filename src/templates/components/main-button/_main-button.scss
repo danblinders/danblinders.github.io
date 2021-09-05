@@ -60,17 +60,19 @@
     max-width: 320px;
   }
 
-  &_has-arrow {
-    .main-button__inner {
-      &::after {
-        content: "\e5c8";
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: transparent;
-        @include set-size(4.4rem);
-        @include flex-center();
-        @include set-font(2.4rem, 400, 2.4rem, #fff, "Material Icons", "icons");
+  &_has {
+    &_arrow {
+      .main-button__inner {
+        &::after {
+          content: "\e5c8";
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: transparent;
+          @include set-size(4.4rem);
+          @include flex-center();
+          @include set-font(clamp(15px, 2.4rem, 50px), 400, 2.4rem, #fff, "Material Icons", "icons");
+        }
       }
     }
   }

@@ -16,7 +16,7 @@
 
     &::after {
       content: '\e5cf';
-      @include set-font(2.4rem, 400, 2.4rem, $darkShade50, "Material Icons", 'icons');
+      @include set-font(clamp(15px, 2.4rem, 50px), 400, 2.4rem, $darkShade50, "Material Icons", 'icons');
       transition: transform 0.5s;
     }
 

@@ -1,40 +1,42 @@
 //-
-  options.count - amount of likes
-  options.borderColor - color of button's border
-  options.iconIsFilled - defines, whether button's icon is filled of not
-  options.counterColor = color of button's counter area text
-  options.isActive - defines, whether button is active or not 
+  count - amount of likes
+  borderColor - color of button's border
+  iconColor - icon's color
+  isIconFilled - defines, whether button's icon is filled of not
+  counterColor = color of button's counter area text
+  isActive - defines, whether button is active or not 
 
 mixin like-button(options)
   if !options
     - options = {}
 
   - 
-    const btnClasses = [],
+    const {count, borderColor, iconColor, isIconFilled, counterColor, isActive} = options
+          btnClasses = [],
           iconClasses = [],
           counterClasses = []
 
-  if options.isActive 
-    - btnClasses.push(options.borderColor ? `like-button_${options.borderColor}` : "")
-    - iconClasses.push(options.iconIsFilled ? "like-button__icon_filled" : "")
-    - iconClasses.push(options.iconColor ? `like-button__icon_${options.iconColor}` : "")
-    - counterClasses.push(options.counterColor ? `like-button__counter_${options.counterColor}` : "")
+  if isActive 
+    - btnClasses.push(borderColor ? `like-button_${borderColor}` : "")
+    - iconClasses.push(isIconFilled ? "like-button__icon_filled" : "")
+    - iconClasses.push(iconColor ? `like-button__icon_${iconColor}` : "")
+    - counterClasses.push(counterColor ? `like-button__counter_${counterColor}` : "")
 
 
   button.like-button(
     class = btnClasses,
-    data-active = options.isActive ? "true" : "false",
-    data-border-color = options.borderColor,
-    data-icon-color = options.iconColor,
-    data-counter-color = options.counterColor,
-    data-count = options.count
+    data-active = isActive ? "true" : "false",
+    data-border-color = borderColor,
+    data-icon-color = iconColor,
+    data-counter-color = counterColor,
+    data-count = count
   )
     span.like-button__inner
       span.like-button__icon(
         class = iconClasses,
-        data-icon-color = options.iconColor
+        data-icon-color = iconColor
       ) 
       span.like-button__counter(
         class = counterClasses,
-        class = (options.count < 10) ? "like-button__counter_with_padding" : "",
-      )= options.count
+        class = (count < 10) ? "like-button__counter_with_padding" : "",
+      )= count

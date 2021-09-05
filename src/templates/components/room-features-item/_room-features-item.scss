@@ -1,4 +1,5 @@
-.room-features-item{
+.room-features-item {
+  width: 100%;
   max-width: 280px;
   padding-bottom: 1.7rem;
   padding-right: 2rem;
@@ -6,8 +7,10 @@
   @include set-flex($gap: 1rem);
 
   &__icon {
+    flex-shrink: 0;
+    @include set-min-size(25px);
     @include set-size(4.8rem);
-    @include set-font(4.8rem, 400, 4.8rem, transparent, "Material Icons", "icons");
+    @include set-font(clamp(25px, 4.8rem, 70px), 400, 4.8rem, transparent, "Material Icons", "icons");
     background-image: $primaryGradient;
     background-clip: text;
   }

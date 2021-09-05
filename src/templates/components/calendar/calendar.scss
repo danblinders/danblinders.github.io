@@ -50,6 +50,7 @@
     margin-bottom: 3rem;
 
     &-action {
+      @include set-min-size(15px);
       @include set-size(2.4rem);
       @include flex-center();
 
@@ -63,7 +64,7 @@
       background: none;
       outline: none;
       padding: 0;
-      @include set-font(2.4rem, 400, 2.4rem, $purple, "Material Icons", 'icons');
+      @include set-font(clamp(15px, 2.4rem, 50px), 400, 2.4rem, $purple, "Material Icons", 'icons');
       cursor: pointer;
 
       &:hover, &:focus {

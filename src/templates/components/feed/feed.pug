@@ -4,20 +4,13 @@ include ../like-button/like-button
   image - profile image
   author - profile name of review's author
   date - date of publication 
-  button - like-button
-  borderColor - border color for like-button
-  iconColor - icon color for like-button
-  iconIsFilled - defines, whether icon of like-button is filled or not
-  counterColor - counter color for like-button
-  counr - amount of likes 
-  isActive - dfines, wthether like-button is pressed or not
-  text-  review's text
+  button - object with settings for like-button
 
 mixin feed(options)
   if !options
     - options = {}
 
-  - const {image, author, date, button: {borderColor, iconColor, iconIsFilled, counterColor, count, isActive}, text} = options
+  - const {image, author, date, button: {borderColor, iconColor, isIconFilled, counterColor, count, isActive}, text} = options
 
   .feed
     .feed__top 
@@ -32,7 +25,7 @@ mixin feed(options)
           count: count,
           borderColor: borderColor,
           iconColor: iconColor,
-          iconIsFilled: iconIsFilled,
+          isIconFilled: isIconFilled,
           counterColor: counterColor,
           isActive: isActive
         })

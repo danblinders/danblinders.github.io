@@ -1,29 +1,31 @@
 //-
   classes - array of classes for button modification
-  options.isBig - defines, whether button is big or not
-  options.style - defines the style of button
-  options.hasArrow - deifnes, whether button has arrow or not
-  options.isActive - defines, whether button is active or not
-  options.text - text inside button
+  isBig - defines, whether button is big or not
+  style - defines the style of button
+  hasArrow - deifnes, whether button has arrow or not
+  isActive - defines, whether button is active or not
+  text - text inside button
 
 mixin main-button(options)
   if !options
     - options = {}
   
   - 
+    const {isBig, style, hasArrow, isActive, text} = options
+
     let classes = []
 
-    classes.push(options.isBig ? "main-button_big" : "")
-    classes.push((options.style === "outlined") ? "main-button_outlined" : "")
-    classes.push((options.style === "filled" ) ? "main-button_filled" : "")
-    classes.push((options.style === "simple") ? "main-button_simple" : "")
-    classes.push(options.hasArrow ? "main-button_has-arrow" : "")
+    classes.push(isBig ? "main-button_big" : "")
+    classes.push((style === "outlined") ? "main-button_outlined" : "")
+    classes.push((style === "filled" ) ? "main-button_filled" : "")
+    classes.push((style === "simple") ? "main-button_simple" : "")
+    classes.push(hasArrow ? "main-button_has_arrow" : "")
 
-  if options.isActive 
-    case options.style
+  if isActive 
+    case style
       when "filled": - classes.push("main-button_filled-active")
       when "outlined": - classes.push("main-button_outlined-active")
       when "simple": - classes.push("main-button_simple-active")
 
   button.main-button(class = classes)
-    span.main-button__inner= options.text
+    span.main-button__inner= text

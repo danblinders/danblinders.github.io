@@ -3,6 +3,7 @@
   border: none;
   background: none;
   padding: 0;
+  @include set-min-size(30px, 15px);
   @include set-size(4rem, 2rem);
   @include set-border($borderColor: $darkShade25, $borderRadius: 1rem);
   font-family: inherit;
@@ -19,7 +20,7 @@
 
     &::after {
       content: "\e87e";
-      @include set-font(1rem, 400, 1rem, $darkShade25, "Material Icons", "icons");
+      @include set-font(clamp(10px, 1rem, 25px), 400, 1rem, $darkShade25, "Material Icons", "icons");
       transition: transform 0.5s;
     }
 
@@ -47,7 +48,7 @@
   &__counter {
     @include set-flex($crossAxis: center);
     @include set-size(50%, 100%);
-    @include set-font(1rem, 400, 1rem, $darkShade25);
+    @include set-font(clamp(10px, 1rem, 25px), 400, 1rem, $darkShade25);
 
     &_gradient {
       background-image: $primaryGradient;

@@ -7,12 +7,13 @@
 
   &__icon {
     display: inline-block;
+    @include set-min-size(17px);
     @include set-size(2.4rem);
     cursor: pointer;
 
     &::after {
       content: '\e83a';
-      @include set-font(2.4rem, 400, 2.4rem, transparent, "Material Icons", 'icons');
+      @include set-font(clamp(15px, 2.4rem, 50px), 400, 2.4rem, transparent, "Material Icons", 'icons');
       background-image: $primaryGradient;
       background-clip: text;
     }
