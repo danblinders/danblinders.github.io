@@ -31,6 +31,7 @@ block includes
   include ../../templates/components/pagination/pagination
   include ../../templates/components/dropdown/dropdown
   include ../../templates/components/datepicker-block/datepicker-block
+  include ../../templates/components/search-form/search-form
 
 block content
   section.colors-type
@@ -96,7 +97,7 @@ block content
     .page-ui-kit__container
       .form-elements__content
         .form-elements__logo
-          img.colors-type__image(src = "../../icons/toxin-uikit-logo.svg")
+          img.form-elements__image(src = "../../icons/toxin-uikit-logo.svg")
         .form-elements__checkbox-buttons
           .form-elements__checkbox-buttons-title 
             +h3-label-cta-text("checkbox buttons")
@@ -407,12 +408,12 @@ block content
             multipleFields: true,
             fields: {
               field1: {
-                label: "date-dropdown",
+                label: "date dropdown",
                 name: "check-date",
                 placeholder: "ДД.ММ.ГГГГ"
               },
               field2: {
-                label: "date-dropdown",
+                label: "date dropdown",
                 name: "check-date",
                 value: "19.08.2019",
                 placeholder: "ДД.ММ.ГГГГ"
@@ -435,4 +436,14 @@ block content
                 placeholder: "ДД.ММ.ГГГГ"
               }
             }
+          })
+  section.cards
+    .page-ui-kit__container
+      .cards__content
+        .cards__logo
+          img.cards__image(src = "../../icons/toxin-uikit-logo.svg")
+        .cards__col
+          +search-form({
+            action: "add/link/to/server",
+            title: "найдём номера под ваши пожелания"
           })

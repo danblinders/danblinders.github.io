@@ -12,25 +12,47 @@ export default class Dropdown {
     this.dropdownBtnClear = this.dropdown.find(".dropdown__button-clear");
     this.dropdownBtnApply = this.dropdown.find(".dropdown__button-apply");
     this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.changeDropdownInputStyles();
-  }
 
-  // method for toggling dropdown state after click on dropdown's field
-  handleInputFieldClick() {
-    this.dropdownField.on("click", this.toggleDropdown);
-  }
+    // after click on document
+    // if target isn't dropdownField and it's child and drodopwnMenu, hide dropdown menu
+    // else toggle dropdownMenu
+    this.handleDocumentClick = (event) => {
+      const eTarget = event.target,
+      isTargetDropdownField = this.dropdownField.is(eTarget),
+      isTargetDropdownFieldChild = $.contains(this.dropdownField.get(0), eTarget),
+      isTargetParentDropdownMenu = $(eTarget).parents(".dropdown__menu").length !== 0;
 
-  // method for clearing dropdown after click on dropdown's clear button
-  handleDropdownClearBtnClick() {
-    this.dropdownMenuItems.each(index => {
-      const menuItem = $(this.dropdownMenuItems[index]),
-            itemCounter = menuItem.find(".dropdown__item-counter");
+      if (!isTargetDropdownField && !isTargetDropdownFieldChild) {
+        if(!isTargetParentDropdownMenu) {
+          this.dropdown.removeClass("dropdown_expanded");
+          this.changeDropdownInputStyles();
 
-      this.dropdownBtnClear.on("click", () => {
+          this.changeDropdownMenuVisibility();
+        } 
+      } else {
+        this.toggleDropdown();
+      }
+    };
+
+    // method for clearing dropdown after click on dropdown's clear button
+    this.handleDropdownBtnClearClick = () => {
+      this.dropdownMenuItems.each(index => {
+        const menuItem = $(this.dropdownMenuItems[index]),
+              itemCounter = menuItem.find(".dropdown__item-counter");
+
         this.setMenuItemCount(0, menuItem, itemCounter);
         this.dropdownFieldInput.attr("value", "");
       });
-    });
+    };
+
+    this.changeDropdownInputStyles();
+
+    this.bindEventListeners();
+  }
+
+  bindEventListeners() {
+    $(document).on("click", this.handleDocumentClick);
+    this.dropdownBtnClear.on("click", this.handleDropdownBtnClearClick);
   }
 
   // method for changing menu item's count after clicck on minus or plus buttons

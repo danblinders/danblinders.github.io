@@ -39,9 +39,7 @@ $(document).ready(() => {
     const dropdownInstance = new Dropdown(this);
 
     dropdownInstance.changeDropdownMenuVisibility();
-    dropdownInstance.handleInputFieldClick();
     dropdownInstance.handleMenuItemsBtnClick();
-    dropdownInstance.handleDropdownClearBtnClick();
   });
 
   $(".datepicker-block").each(function() {

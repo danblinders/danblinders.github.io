@@ -71,6 +71,10 @@
     @include set-size(4.8rem);
   }
 
+  &__image {
+    @include set-size(100%);
+  }
+
   &__checkbox-buttons,
   &__rich-checkbox-buttons {
     &-title {
@@ -171,6 +175,32 @@
   }
 }
 
+.cards {
+  padding-top: 15rem;
+  padding-bottom: 14rem;
+
+  &__content {
+    position: relative;
+    @include set-flex($mainAxis: space-between, $crossAxis: center, $flexWrap: wrap);
+  }
+
+  &__logo {
+    position: absolute;
+    top: -11.5rem;
+    left: -11rem;
+    @include set-size(4.8rem);
+  }
+
+  &__image {
+    @include set-size(100%);
+  }
+
+  &__col {
+    width: 33%;
+    @include flex-column($gap: 4rem);
+  }
+}
+
 @import '../../templates/components/h1-title/h1-title';
 @import '../../templates/components/h2-subtitle/h2-subtitle';
 @import '../../templates/components/h3-label-cta-text/h3-label-cta-text';
@@ -192,3 +222,4 @@
 @import '../../templates/components/pagination/pagination';
 @import '../../templates/components/dropdown/dropdown';
 @import '../../templates/components/datepicker-block/datepicker-block';
+@import '../../templates/components/search-form/search-form';

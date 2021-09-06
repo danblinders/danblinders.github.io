@@ -1,6 +1,7 @@
 //-
   classes - array of classes for button modification
   isBig - defines, whether button is big or not
+  type - button's type
   style - defines the style of button
   hasArrow - deifnes, whether button has arrow or not
   isActive - defines, whether button is active or not
@@ -11,7 +12,7 @@ mixin main-button(options)
     - options = {}
   
   - 
-    const {isBig, style, hasArrow, isActive, text} = options
+    const {isBig, type = "button", style, hasArrow, isActive, text} = options
 
     let classes = []
 
@@ -27,5 +28,5 @@ mixin main-button(options)
       when "outlined": - classes.push("main-button_outlined-active")
       when "simple": - classes.push("main-button_simple-active")
 
-  button.main-button(class = classes)
+  button.main-button(class = classes, type = type)
     span.main-button__inner= text
