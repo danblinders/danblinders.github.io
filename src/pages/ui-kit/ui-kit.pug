@@ -31,7 +31,8 @@ block includes
   include ../../templates/components/pagination/pagination
   include ../../templates/components/dropdown/dropdown
   include ../../templates/components/datepicker-block/datepicker-block
-  include ../../templates/components/search-form/search-form
+  include ../../templates/components/search-panel/search-panel
+  include ../../templates/components/registration-panel/registration-panel
 
 block content
   section.colors-type
@@ -140,7 +141,7 @@ block content
             +radio-button({
               label: "мужчина",
               name: "gender",
-              checked: true
+              isChecked: true
             })
             +radio-button({
               label: "женщина",
@@ -443,7 +444,11 @@ block content
         .cards__logo
           img.cards__image(src = "../../icons/toxin-uikit-logo.svg")
         .cards__col
-          +search-form({
+          +search-panel({
             action: "add/link/to/server",
             title: "найдём номера под ваши пожелания"
+          })
+          +registration-panel({
+            action: "add/link/to/server",
+            title: "регистрация аккаунта"
           })

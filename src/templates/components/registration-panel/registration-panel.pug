@@ -1,0 +1,80 @@
+include ../h1-title/h1-title
+include ../text-field/text-field
+include ../radio-button/radio-button
+include ../toggle/toggle
+include ../main-button/main-button
+
+mixin registration-panel(options) 
+  if !options
+    - options = {}
+
+  - const {action, title} = options
+
+  .registration-panel
+    .registration-panel__title
+      +h1-title(title)
+    form.registration-panel__form(action = action)
+      .registration-panel__user-name
+        +text-field({
+          name: "user-name",
+          placeholder: {text: "Имя"},
+          isRequired: true
+        })
+        +text-field({
+          name: "user-surname",
+          placeholder: {text: "Фамилия"},
+          isRequired: true
+        })
+      .registration-panel__user-gender
+        +radio-button({
+          label: "Мужчина",
+          name: "gender-ui-kit",
+          isChecked: true
+        })
+        +radio-button({
+          label: "Женщина",
+          name: "gender-ui-kit"
+        })
+      .registration-panel__user-birthdate 
+        +text-field({
+          label: "дата рождения",
+          name: "user-birthdate",
+          placeholder: {text: "дд.мм.гггг", isUppercase: true},
+          isRequired: true,
+          mask: "date"
+        })
+      .registration-panel__user-login-info
+        +text-field({
+          label: "данные для входа в сервис",
+          type: "email",
+          name: "user-email",
+          placeholder: {text: "Email"},
+          isRequired: true
+        })
+        +text-field({
+          type: "password",
+          name: "user-password",
+           placeholder: {text: "Пароль"},
+          isRequired: true
+        })
+      .registration-panel__additional-info
+        +toggle({
+          label: "получать спецпредложения",
+          name: "special-offer",
+          isRequired: true
+        })
+      .registration-panel__button 
+        +main-button({
+          isBig: true,
+          type: "submit",
+          style: "filled",
+          hasArrow: true,
+          text: 'перейти к оплате'
+        })
+    .registration-panel__authentification
+      = "Уже есть аккаунт на Toxin"
+      a.registration-panel__authentification-link
+        +main-button({
+          style: "outlined",
+          text: "войти"
+        })

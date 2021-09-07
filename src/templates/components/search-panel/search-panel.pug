@@ -1,0 +1,55 @@
+include ../h1-title/h1-title
+include ../datepicker-block/datepicker-block
+include ../dropdown/dropdown
+include ../main-button/main-button
+
+mixin search-panel(options) 
+  if !options
+    - options = {}
+
+  - const {action, title} = options
+
+  .search-panel
+    .search-panel__title
+      +h1-title(title)
+    form.search-panel__form(action = action)
+      .search-panel__datepicker 
+        +datepicker-block({
+          isCalendarHidden: true,
+          multipleFields: true,
+          fields: {
+            field1: {
+              label: "прибытие",
+              name: "check-date",
+              placeholder: "ДД.ММ.ГГГГ"
+            },
+            field2: {
+              label: "выезд",
+              name: "check-date",
+              placeholder: "ДД.ММ.ГГГГ"
+            }
+          }
+        })
+      .search-panel__dropdown
+        +dropdown({
+          isBig: true,
+          contentName: "guests",
+          field: {
+            isRequired: true,
+            label: "гости",
+            placeholder: "Сколько гостей"
+          },
+          menuItems: [
+            {subject: "adults", subtitle: "взрослые", count: "0"},
+            {subject: "children", subtitle: "дети", count: "0"},
+            {subject: "infants", subtitle: "младенцы", count: "0"}
+          ]
+        })
+      .search-panel__button 
+        +main-button({
+          isBig: true,
+          type: "submit",
+          style: "filled",
+          hasArrow: true,
+          text: 'подобрать номер'
+        })

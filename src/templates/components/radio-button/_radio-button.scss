@@ -16,7 +16,7 @@
 
     &::after {
       content: '';
-      @include set-size(67%);
+      @include set-size(66.7%);
       border-radius: 50%;
       background-image: $primaryGradient;
       opacity: 0;

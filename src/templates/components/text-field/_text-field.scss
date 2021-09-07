@@ -37,6 +37,12 @@
           color: $darkShade75;
         }
       }
+      &_with_uppercase {
+        &::placeholder {
+          text-transform: uppercase;
+        }
+      }
+
     }
 
     &_border{

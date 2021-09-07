@@ -21,7 +21,7 @@ mixin text-field(options)
   if !options
     - options = {}
 
-  - const {label, state, btn: {icon, color, btnType = "button"} = {}, isActive, isEachBorderRounded = true, type = "text", name, value, placeholder : {text, isDark} = {}, isRequired, isDisabled, mask} = options
+  - const {label, state, btn: {icon, color, btnType = "button"} = {}, isActive, isEachBorderRounded = true, type = "text", name, value, placeholder : {text, isUppercase, isDark} = {}, isRequired, isDisabled, mask} = options
 
   .text-field
     label.text-field__container
@@ -35,6 +35,7 @@ mixin text-field(options)
           class = (btn !== {}) ? "text-field__input_padding-right_big" : "",
           class = isEachBorderRounded ? "text-field__input_each-border_rounded" : "",
           class = isDark ? "text-field__input_placeholder_darkshade_75" : "",
+          class = isUppercase ? "text-field__input_placeholder_with_uppercase" : "",
           type = type, 
           name = name, 
           value = value,
