@@ -1,0 +1,79 @@
+.reservation-panel {
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0px 0px 2.5rem $shadowColor;
+  background-color: #fff;
+  padding: 3rem;
+  padding-top: 4rem;
+
+  &__room {
+    margin-bottom: 2rem;
+    @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 1rem);
+
+    &-info {
+      @include set-flex($gap: 0.5rem)
+    }
+    &-id {
+      @include set-font(1.4rem, 700, 1.7rem, $darkShade100);
+    }
+
+    &-type {
+      @include set-font(1.2rem, 700, 1.5rem, $purple);
+      text-transform: uppercase;
+    }
+
+    &-price {
+      @include set-font(1.4rem, 400, 1.8rem, $darkShade50);
+
+      &-current {
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__datepicker, &__dropdown{
+    margin-bottom: 2.1rem;
+  }
+
+  &__summary {
+    margin-bottom: 3rem;
+    @include flex-column($gap: 1rem);
+
+    &-item {
+      @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 1rem);
+
+      &-text {
+        @include set-flex($mainAxis: space-between, $gap: 0.5rem);
+        width: 75%;
+        max-width: 240px;
+      }
+    }
+
+    &-note {
+      @include set-min-size(10px);
+      @include set-size(2rem);
+
+      &-image {
+        @include set-size(100%);
+      }
+    }
+  }
+
+  &__total {
+    margin-bottom: 2rem;
+    @include set-flex();
+    @include subtitle-text();
+
+    &-dots {
+      margin-left: 0.4rem;
+      width: 56%;
+      border-bottom: 1px dashed $darkShade25;
+    }
+  }
+}
+
+
+@import "../h1-title/h1-title";
+@import "../datepicker-block/datepicker-block";
+@import "../dropdown/dropdown";
+@import "../main-button/main-button";

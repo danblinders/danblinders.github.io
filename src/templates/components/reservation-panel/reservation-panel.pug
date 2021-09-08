@@ -1,0 +1,96 @@
+include ../h1-title/h1-title
+include ../datepicker-block/datepicker-block
+include ../dropdown/dropdown
+include ../main-button/main-button
+
+mixin reservation-panel(options) 
+  if !options
+    - options = {}
+
+  - 
+    const {action, 
+          room: {id, type, currentPrice} = {}, 
+          dates: {startDate, endDate}, 
+          dropdown: {dropdownValue, adultsCount = 0 , childrenCount = 0, infantsCount = 0} = {},
+          serviceFee,
+          sale,
+          additionalFee
+          } = options
+      
+  - 
+    const daysDiff = Math.abs(new Date(startDate) - new Date(endDate)) / (1000 * 60 * 60 * 24),
+          roomCost = currentPrice * daysDiff,
+          totalCost = roomCost + serviceFee - sale + additionalFee
+
+  .reservation-panel
+    .reservation-panel__room
+      .reservation-panel__room-info 
+        .reservation-panel__room-id= `№ ${id}` 
+        .reservation-panel__room-type= type
+      .reservation-panel__room-price 
+        span.reservation-panel__room-price-current= currentPrice.toLocaleString("ru")
+        = "в сутки"
+    form.reservation-panel__form(action = action)
+      .reservation-panel__datepicker 
+        +datepicker-block({
+          isCalendarHidden: true,
+          multipleFields: true,
+          fields: {
+            field1: {
+              label: "прибытие",
+              name: "check-date",
+              value: new Date(startDate).toLocaleDateString("ru"),
+              placeholder: "ДД.ММ.ГГГГ"
+            },
+            field2: {
+              label: "выезд",
+              name: "check-date",
+              value: new Date(endDate).toLocaleDateString("ru"),
+              placeholder: "ДД.ММ.ГГГГ"
+            }
+          }
+        })
+      .reservation-panel__dropdown
+        +dropdown({
+          isBig: true,
+          contentName: "guests",
+          field: {
+            isRequired: true,
+            label: "гости",
+            placeholder: "Сколько гостей",
+            value: dropdownValue
+          },
+          menuItems: [
+            {subject: "adults", subtitle: "взрослые", count: adultsCount},
+            {subject: "children", subtitle: "дети", count: childrenCount},
+            {subject: "infants", subtitle: "младенцы", count: infantsCount}
+          ]
+        })
+      .reservation-panel__summary
+        .reservation-panel__summary-item
+          .reservation-panel__summary-item-text= `${currentPrice.toLocaleString("ru")}₽ х ${daysDiff} ${daysDiff !== 1 ? "суток" : "сутки"}`
+          .reservation-panel__summary-item-count= `${roomCost.toLocaleString("ru")}₽`
+        .reservation-panel__summary-item
+          .reservation-panel__summary-item-text
+            = `Сбор за услуги: скидка ${sale.toLocaleString("ru")}₽`
+            .reservation-panel__summary-note
+              img.reservation-panel__summary-note-image(src="../../templates/components/reservation-panel/icons/note-sign.svg", alt = "note sign")
+          .reservation-panel__summary-item-count= `${serviceFee.toLocaleString("ru")}₽`
+        .reservation-panel__summary-item
+          .reservation-panel__summary-item-text
+            = "Сбор за дополнительные услуги"
+            .reservation-panel__summary-note
+              img.reservation-panel__summary-note-image(src="../../templates/components/reservation-panel/icons/note-sign.svg", alt = "note sign")
+          .reservation-panel__summary-item-count= `${additionalFee.toLocaleString("ru")}₽`
+      .reservation-panel__total
+        = "Итого"
+        span.reservation-panel__total-dots 
+        span.reservation-panel__total-cost= `${totalCost.toLocaleString("ru")}₽`
+      .reservation-panel__button 
+        +main-button({
+          isBig: true,
+          type: "submit",
+          style: "filled",
+          hasArrow: true,
+          text: 'забронировать'
+        })
