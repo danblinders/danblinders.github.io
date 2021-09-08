@@ -195,6 +195,10 @@
     @include set-size(100%);
   }
 
+  &__content {
+    @include set-flex($gap: 4rem);
+  }
+
   &__col {
     width: 33%;
     @include flex-column($gap: 4rem);
@@ -224,3 +228,4 @@
 @import '../../templates/components/datepicker-block/datepicker-block';
 @import '../../templates/components/search-panel/search-panel';
 @import '../../templates/components/registration-panel/registration-panel';
+@import '../../templates/components/login-panel/login-panel';

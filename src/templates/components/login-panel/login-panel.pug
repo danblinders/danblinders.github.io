@@ -1,0 +1,42 @@
+include ../h1-title/h1-title
+include ../text-field/text-field
+include ../main-button/main-button
+
+mixin login-panel(options) 
+  if !options
+    - options = {}
+
+  - const {action, title} = options
+
+  .login-panel
+    .login-panel__title
+      +h1-title(title)
+    form.login-panel__form(action = action)
+      .login-panel__user-login-info
+        +text-field({
+          type: "email",
+          name: "user-login-email",
+          placeholder: {text: "Email"},
+          isRequired: true
+        })
+        +text-field({
+          type: "password",
+          name: "user-login-password",
+           placeholder: {text: "Пароль"},
+          isRequired: true
+        })
+      .login-panel__button 
+        +main-button({
+          isBig: true,
+          type: "submit",
+          style: "filled",
+          hasArrow: true,
+          text: 'войти'
+        })
+    .login-panel__registration
+      = "Нет аккаунта на Toxin?"
+      a.login-panel__registration-link
+        +main-button({
+          style: "outlined",
+          text: "создать"
+        })

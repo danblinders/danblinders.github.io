@@ -33,6 +33,7 @@ block includes
   include ../../templates/components/datepicker-block/datepicker-block
   include ../../templates/components/search-panel/search-panel
   include ../../templates/components/registration-panel/registration-panel
+  include ../../templates/components/login-panel/login-panel
 
 block content
   section.colors-type
@@ -452,3 +453,9 @@ block content
             action: "add/link/to/server",
             title: "регистрация аккаунта"
           })
+        .cards__col
+          +login-panel({
+            action: "add/link/to/server",
+            title: "войти"
+          })
+        .cards__col
