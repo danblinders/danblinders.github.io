@@ -25,11 +25,15 @@ mixin reservation-panel(options)
   .reservation-panel
     .reservation-panel__room
       .reservation-panel__room-info 
-        .reservation-panel__room-id= `№ ${id}` 
+        .reservation-panel__room-id
+          | №
+          | 
+          span.reservation-panel__room-id-number= id
         .reservation-panel__room-type= type
       .reservation-panel__room-price 
-        span.reservation-panel__room-price-current= currentPrice.toLocaleString("ru")
-        = "в сутки"
+        span.reservation-panel__room-price-current= `${currentPrice.toLocaleString("ru")}₽ `
+        |
+        | в сутки
     form.reservation-panel__form(action = action)
       .reservation-panel__datepicker 
         +datepicker-block({
@@ -68,22 +72,37 @@ mixin reservation-panel(options)
         })
       .reservation-panel__summary
         .reservation-panel__summary-item
-          .reservation-panel__summary-item-text= `${currentPrice.toLocaleString("ru")}₽ х ${daysDiff} ${daysDiff !== 1 ? "суток" : "сутки"}`
-          .reservation-panel__summary-item-count= `${roomCost.toLocaleString("ru")}₽`
+          .reservation-panel__summary-item-descr
+            .reservation-panel__summary-item-text
+              span.reservation-panel__summary-item-price #{currentPrice.toLocaleString("ru")}
+              | ₽ x #{daysDiff} #{daysDiff !== 1 ? "суток" : "сутки"}
+          .reservation-panel__summary-item-count
+            span.reservation-panel__summary-room-cost #{roomCost.toLocaleString("ru")}
+            | ₽
         .reservation-panel__summary-item
-          .reservation-panel__summary-item-text
-            = `Сбор за услуги: скидка ${sale.toLocaleString("ru")}₽`
+          .reservation-panel__summary-item-descr
+            .reservation-panel__summary-item-text
+              | Сбор за услуги
+              if sale 
+                |: скидка
+                |
+                span.reservation-panel__summary-sale #{sale.toLocaleString("ru")}
+                | ₽
             .reservation-panel__summary-note
               img.reservation-panel__summary-note-image(src="../../templates/components/reservation-panel/icons/note-sign.svg", alt = "note sign")
-          .reservation-panel__summary-item-count= `${serviceFee.toLocaleString("ru")}₽`
+          .reservation-panel__summary-item-count
+            span.reservation-panel__summary-room-cost #{serviceFee.toLocaleString("ru")}
+            | ₽
         .reservation-panel__summary-item
-          .reservation-panel__summary-item-text
+          .reservation-panel__summary-item-descr
             = "Сбор за дополнительные услуги"
             .reservation-panel__summary-note
               img.reservation-panel__summary-note-image(src="../../templates/components/reservation-panel/icons/note-sign.svg", alt = "note sign")
-          .reservation-panel__summary-item-count= `${additionalFee.toLocaleString("ru")}₽`
+          .reservation-panel__summary-item-count
+            span.reservation-panel__summary-room-cost #{additionalFee.toLocaleString("ru")}
+            | ₽
       .reservation-panel__total
-        = "Итого"
+        | Итого
         span.reservation-panel__total-dots 
         span.reservation-panel__total-cost= `${totalCost.toLocaleString("ru")}₽`
       .reservation-panel__button 
