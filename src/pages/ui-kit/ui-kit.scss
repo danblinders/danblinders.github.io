@@ -200,7 +200,6 @@
   }
 
   &__col {
-    width: 33%;
     @include flex-column($gap: 4rem);
   }
 }
@@ -225,8 +224,10 @@
 @import '../../templates/components/range-slider/range-slider';
 @import '../../templates/components/pagination/pagination';
 @import '../../templates/components/dropdown/dropdown';
+@import '../../templates/components/calendar/calendar';
 @import '../../templates/components/datepicker-block/datepicker-block';
 @import '../../templates/components/search-panel/search-panel';
 @import '../../templates/components/registration-panel/registration-panel';
 @import '../../templates/components/login-panel/login-panel';
 @import '../../templates/components/reservation-panel/reservation-panel';
+@import '../../templates/components/room-card/room-card';

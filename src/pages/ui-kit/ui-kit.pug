@@ -30,11 +30,13 @@ block includes
   include ../../templates/components/range-slider/range-slider
   include ../../templates/components/pagination/pagination
   include ../../templates/components/dropdown/dropdown
+  include ../../templates/components/calendar/calendar
   include ../../templates/components/datepicker-block/datepicker-block
   include ../../templates/components/search-panel/search-panel
   include ../../templates/components/registration-panel/registration-panel
   include ../../templates/components/login-panel/login-panel
   include ../../templates/components/reservation-panel/reservation-panel
+  include ../../templates/components/room-card/room-card
 
 block content
   section.colors-type
@@ -479,3 +481,40 @@ block content
             title: "войти"
           })
         .cards__col
+          +room-card({
+            slider: {
+              slides: [
+                "../../templates/components/room-card/img/room-888.png",
+                "#",
+                "#", 
+                "#"
+              ],
+              activeSlide: 1
+            },
+            id: '888',
+            type: "люкс",
+            currentPrice: 9990,
+            rateButton: {
+              starsAmount: 5,
+              rating: 5
+            },
+            reviewsCount: 145
+          })
+          +room-card({
+            slider: {
+              slides: [
+                "../../templates/components/room-card/img/room-840.png",
+                "#",
+                "#", 
+                "#"
+              ],
+              activeSlide: 1
+            },
+            id: "840",
+            currentPrice: 9990,
+            rateButton: {
+              starsAmount: 5,
+              rating: 4
+            },
+            reviewsCount: 65
+          })

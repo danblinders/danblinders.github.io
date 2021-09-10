@@ -1,0 +1,46 @@
+include ../rate-button/rate-button
+
+mixin room-card(options) 
+  if !options
+    - options = {}
+
+  - const {slider: {slides, activeSlide} = {}, id, type, currentPrice, rateButton: {action = "add/link/to/server", starsAmount, rating, radioName} = {}, reviewsCount} = options
+
+  .room-card
+    .room-card__slider
+      .room-card__slider-items
+        .room-card__slider-prev
+        each slide in slides
+          .room-card__slider-item
+            img.room-card__slider-image(src = slide, alt = "room photo")
+        .room-card__slider-next
+      .room-card__slider-dots
+        - for(let i = 1; i <= slides.length; i++) 
+            .room-card__slider-dot(class = (i === +activeSlide) ? "room-card__slider-dot_active" : "", data-slide = i)
+    .room-card__container
+      .room-card__description
+        .room-card__info 
+          .room-card__info-id
+              | №
+              | 
+              span.room-card__info-id-number= id
+          if type
+            .room-card__info-type= type
+        .room-card__info-price
+          .room-card__info-price-wrapper 
+            span.room-card__info-price-current #{currentPrice.toLocaleString("ru")}
+            | ₽
+          |
+          | в сутки
+      .room-card__feedback
+        .room-card__feedback-rating
+          +rate-button({
+            action: action,
+            starsAmount: starsAmount,
+            rating: rating,
+            radioName: radioname ? radioName : `room-${id}-rating`
+          })
+        .room-card__feedback-reviews
+          span.room-card__feedback-reviews-count= reviewsCount
+          |
+          | Отзывов

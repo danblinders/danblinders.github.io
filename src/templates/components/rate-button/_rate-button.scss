@@ -1,5 +1,9 @@
 .rate-button {
   @include set-flex();
+
+  &__element {
+    display: flex;
+  }
   
   &__input {
     display: none;

@@ -29,9 +29,12 @@ mixin reservation-panel(options)
           | №
           | 
           span.reservation-panel__room-id-number= id
-        .reservation-panel__room-type= type
-      .reservation-panel__room-price 
-        span.reservation-panel__room-price-current= `${currentPrice.toLocaleString("ru")}₽ `
+        if type
+          .reservation-panel__room-type= type
+      .reservation-panel__room-price
+        .reservation-panel__room-price-wrapper 
+          span.reservation-panel__room-price-current #{currentPrice.toLocaleString("ru")}
+          | ₽
         |
         | в сутки
     form.reservation-panel__form(action = action)

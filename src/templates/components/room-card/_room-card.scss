@@ -1,0 +1,141 @@
+.room-card {
+  width: 100%;
+  max-width: 270px;
+  min-height: 257px;
+  box-shadow: 0 1rem 2rem $darkShade5;
+  border-radius: 0.4rem;
+
+  &__slider {
+    position: relative;
+    @include set-size(100%, 60%);
+    max-height: 151px;
+    overflow: hidden;
+
+    &-items {
+      @include set-size(100%);
+      @include set-flex();
+
+      &:hover {
+        .room-card__slider-prev {
+          left: 0;
+        }
+
+        .room-card__slider-next {
+          right: 0;
+        }
+      }
+    }
+
+    &-item {
+      flex-shrink: 0;
+      @include set-size(100%);
+    }
+    
+    &-image {
+      @include set-size(100%);
+    }
+
+    &-dots {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      @include set-flex($gap: 0.375rem);
+      z-index: 1;
+    }
+
+    &-dot {
+      @include set-min-size(7.5px);
+      @include set-size(0.75rem);
+      @include set-border($borderColor: #fff, $borderRadius: 50%);
+      cursor: pointer;
+
+      &_active {
+        background-color: #fff;
+      }
+    }
+
+    &-prev, &-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      @include set-min-size(30px);
+      @include set-size(4.4rem);
+      @include flex-center();
+      transition: 0.5s all;
+      cursor: pointer;
+
+      &::after {
+        content: "\e5cf";
+        @include set-font(2.4rem, 400, 2.4rem, #fff, "Material Icons", 'icons');
+      }
+    }
+
+    &-prev {
+      left: -20%;
+
+      &::after {
+        transform: rotate(90deg);
+      }
+    }
+
+    &-next {
+      right: -20%;
+
+      &::after {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  &__container {
+    padding: 2.3rem 2rem 1.9rem 2rem;
+  }
+
+  &__description {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $darkShade10;
+    margin-bottom: 0.9rem;
+    @include set-flex($mainAxis: space-between, $crossAxis: flex-end, $gap: 1rem);
+  }
+
+  &__info {
+    @include set-flex($crossAxis: flex-end, $gap: 0.1rem);
+
+    &-id {
+      @include set-font(1.4rem, 700, 1.7rem, $darkShade100);
+  
+      &-number {
+        font-size: 1.9rem;
+      }
+    }
+  
+    &-type {
+      @include set-font(1.2rem, 700, 1.5rem, $purple);
+      text-transform: uppercase;
+    }
+  
+    &-price {
+      @include set-font(1.2rem, 400, 1.8rem, $darkShade50);
+  
+      &-wrapper {
+        display: inline-block;
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__feedback {
+    @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 1rem);
+    color: $darkShade50;
+
+    &-reviews {
+      &-count {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+
+@import '../rate-button/rate-button';
