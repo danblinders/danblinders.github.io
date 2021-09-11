@@ -181,7 +181,7 @@
 
   &__content {
     position: relative;
-    @include set-flex($mainAxis: space-between, $crossAxis: center, $flexWrap: wrap);
+    @include set-flex($gap: 4rem, $flexWrap: wrap);
   }
 
   &__logo {
@@ -195,12 +195,12 @@
     @include set-size(100%);
   }
 
-  &__content {
-    @include set-flex($gap: 4rem);
-  }
-
   &__col {
     @include flex-column($gap: 4rem);
+
+    &:nth-of-type(3) {
+      margin-top: 0.4rem;
+    }
   }
 }
 

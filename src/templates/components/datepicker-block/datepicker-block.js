@@ -11,27 +11,14 @@ import Calendar from "../calendar/calendar";
   this.hideCalendar - method for hiding calendar
 */
 class Datepicker {
-  constructor({datepickerBlock, startCalendarDate, currentDate} = null) {
+  constructor(datepickerBlock) {
     this.datepickerBlock = $(datepickerBlock);
     this.datepickerType = this.datepickerBlock.attr("data-datepicker-type");
     this.calendarContainer = this.datepickerBlock.find(".datepicker-block__calendar");
-    this.calendar = new Calendar({container: this.calendarContainer.find(".calendar"), 
-                                startCalendarDate: startCalendarDate, 
-                                currentDate: currentDate
-                              });
-    if (this.datepickerBlock.attr("data-initial-start") && this.datepickerBlock.attr("data-initial-end")) {
-      this.dateInitialStart = this.datepickerBlock.attr("data-initial-start") ? this.datepickerBlock.attr("data-initial-start") : "";
-      this.dateInitialEnd = this.datepickerBlock.attr("data-initial-end") ? this.datepickerBlock.attr("data-initial-end") : "";
-
-      // Selecting initial date via air-datepicker plugin's API
-      this.calendar.calendarInstance.selectDate([new Date(this.dateInitialStart), new Date(this.dateInitialEnd)]);
-    }
-
+    this.calendar = new Calendar(this.calendarContainer.find(".calendar"));
     this.showCalendar = () => {
       this.calendarContainer.removeClass("datepicker-block__calendar_hidden");
     };
-
-    
     this.hideCalendar = () => {
       this.calendarContainer.addClass("datepicker-block__calendar_hidden");
     };
@@ -48,10 +35,8 @@ class Datepicker {
 
 */
 export class DatepickerWithMultipleFields extends Datepicker {
-  constructor({datepickerBlock, 
-              startCalendarDate, 
-              currentDate} = null) {
-    super({datepickerBlock: datepickerBlock, startCalendarDate: startCalendarDate, currentDate: currentDate});
+  constructor(datepickerBlock) {
+    super(datepickerBlock);
 
     this.startElement = {
       field: this.datepickerBlock.find(".datepicker-block__field[data-input='start']"),
@@ -143,8 +128,8 @@ export class DatepickerWithMultipleFields extends Datepicker {
       input - field's input
 */
 export class DatepickerWithSingleField extends Datepicker {
-  constructor({datepickerBlock, startCalendarDate, currentDate} = null) {
-    super({datepickerBlock: datepickerBlock, startCalendarDate: startCalendarDate, currentDate: currentDate});
+  constructor(datepickerBlock) {
+    super(datepickerBlock);
 
     this.rangeElement = {
       field: this.datepickerBlock.find(".datepicker-block__field"),

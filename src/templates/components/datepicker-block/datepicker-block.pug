@@ -8,18 +8,20 @@ mixin datepicker-block(options)
   - 
     const {
       isCalendarHidden,
-      multipleFields, 
-      initialDateRange: {start, end} = {},
-      fields: {field1, field2} = {}
+      hasMultipleFields, 
+      fields: {field1, field2} = {},
+      calendar : {
+        renderCalendarDate,
+        currentDate,
+        initialSelectedDates: {start, end} = {}
+      } = {}
     } = options
 
   .datepicker-block(
-      data-datepicker-type = multipleFields ? "multiple-fields" : "single-field",
-      data-initial-start = start ? start : null,
-      data-initial-end = end ? end : null
+      data-datepicker-type = hasMultipleFields ? "multiple-fields" : "single-field",
     )
     .datepicker-block__container
-      if multipleFields
+      if hasMultipleFields
         .datepicker-block__field(data-input = "start")
           +text-field({
             isActive: field1.isActive,
@@ -71,4 +73,8 @@ mixin datepicker-block(options)
           })
       .datepicker-block__calendar(class = isCalendarHidden ? "datepicker-block__calendar_hidden" : "")
         .datepicker-block__calendar-wrapper
-          +calendar({})
+          +calendar({
+            renderCalendarDate: renderCalendarDate,
+            currentDate: currentDate,
+            initialSelectedDates: initialSelectedDates
+          })

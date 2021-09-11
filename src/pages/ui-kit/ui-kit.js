@@ -7,6 +7,7 @@ import inputMask from "../../templates/components/text-field/text-field";
 import Dropdown from "../../templates/components/dropdown/dropdown";
 import {DatepickerWithMultipleFields, DatepickerWithSingleField} from "../../templates/components/datepicker-block/datepicker-block";
 import "./ui-kit.scss";
+import Calendar from "../../templates/components/calendar/calendar";
 
 $(document).ready(() => {
   $(".like-button").each(function() {
@@ -42,15 +43,15 @@ $(document).ready(() => {
     dropdownInstance.handleMenuItemsBtnClick();
   });
 
+  $(".calendar").each(function() {
+    const calendar = new Calendar(this);
+  });
+
   $(".datepicker-block").each(function() {
     if ($(this).attr("data-datepicker-type") === "multiple-fields") {
-      new DatepickerWithMultipleFields({
-        datepickerBlock: this
-      });
+      new DatepickerWithMultipleFields(this);
     } else {
-      new DatepickerWithSingleField({
-        datepickerBlock: this
-      });
+      new DatepickerWithSingleField(this);
     }
   });
 });
