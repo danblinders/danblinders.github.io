@@ -1,0 +1,99 @@
+.header-navbar {
+  width: 100%;
+  @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 2rem);
+
+  &__logo {
+    min-width: 75px;
+    min-height: 40px;
+    width: 10rem;
+    max-width: 150px;
+    
+    &-link {
+      display: inline-block;
+      @include set-size(100%);
+      border: none;
+      outline: none;
+      text-decoration: none;
+    }
+
+    &-image {
+      @include set-size(100%);
+    }
+  }
+
+  &__menu {
+    margin-left: auto;
+    font-size: $darkShade50;
+
+    &-list {
+      list-style: none;
+      margin: 0;
+      padding-left: 0;
+      @include set-flex($crossAxis: center, $gap: 2rem);
+    }
+
+    &-link, &-button {
+      border: none;
+      outline: none;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+
+      &:hover, &:focus, &:active, &_active {
+        text-decoration: none;
+        font-weight: 700;
+        color: $darkShade75;
+      }
+    }
+
+    &-item {
+      @include sentence-case();
+    }
+
+    &-button {
+      background: none;
+      padding: 0;
+      @include set-font(inherit, inherit, inherit, inherit, inherit);
+      @include set-flex($crossAxis: center);
+
+      &-text {
+        @include sentence-case();
+      }
+
+      &-expand {
+        display: inline-block;
+        font-family: "Material Icons";
+        font-size: 2.4rem;
+      }
+    }
+  }
+
+  &__auth {
+    &-buttons {
+      @include set-flex($crossAxis: center, $gap: 2rem);
+    }
+  }
+
+  &__user {
+    min-height: 30px;
+    border-left: 1px solid $darkShade10;
+    padding-left: 2rem;
+    @include set-flex($crossAxis: center);
+
+    &-link {
+      border: none;
+      outline: none;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      
+      &:hover, &:focus, &:active {
+        text-decoration: none;
+        font-weight: 700;
+        color: $darkShade75;
+      }
+    }
+  }
+}
+
+@import "../main-button/main-button";

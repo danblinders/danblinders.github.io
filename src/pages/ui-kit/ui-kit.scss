@@ -204,6 +204,32 @@
   }
 }
 
+.headers-footers {
+  padding-top: 14rem;
+  padding-bottom: 14rem;
+
+  &__content {
+    position: relative;
+    @include flex-column($gap: 4rem);
+  }
+
+  &__logo {
+    position: absolute;
+    top: -11.5rem;
+    left: -11rem;
+    @include set-size(4.8rem);
+  }
+
+  &__image {
+    @include set-size(100%);
+  }
+
+  &__header {
+    padding: 1.5rem 0;
+    box-shadow: 0 1rem 2rem $darkShade5;
+  }
+}
+
 @import '../../templates/components/h1-title/h1-title';
 @import '../../templates/components/h2-subtitle/h2-subtitle';
 @import '../../templates/components/h3-label-cta-text/h3-label-cta-text';
@@ -231,3 +257,4 @@
 @import '../../templates/components/login-panel/login-panel';
 @import '../../templates/components/reservation-panel/reservation-panel';
 @import '../../templates/components/room-card/room-card';
+@import '../../templates/components/header-navbar/header-navbar';

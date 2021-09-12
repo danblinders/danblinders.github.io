@@ -37,6 +37,7 @@ block includes
   include ../../templates/components/login-panel/login-panel
   include ../../templates/components/reservation-panel/reservation-panel
   include ../../templates/components/room-card/room-card
+  include ../../templates/components/header-navbar/header-navbar
 
 block content
   section.colors-type
@@ -526,3 +527,38 @@ block content
             },
             reviewsCount: 65
           })
+  section.headers-footers
+      .headers-footers__content
+        .headers-footers__logo
+          img.headers-footers__image(src = "../../icons/toxin-uikit-logo.svg")
+        .headers-footers__header
+          .page-ui-kit__container
+            +header-navbar({
+              logo: "../../templates/components/header-navbar/img/logo.svg",
+              homePageLink: "../index/index.pug",
+              menuItems: [
+                {type: "link", url: "add/link", text: "о нас", isActive: true},
+                {type: "button", url: "add/link", text: "услуги", hasArrow: true},
+                {type: "link", url: "add/link", text: "вакансии"},
+                {type: "link", url: "add/link", text: "новости"},
+                {type: "button", url: "add/link", text: "соглашения", hasArrow: true},
+              ]
+            })
+        .headers-footers__header
+          .page-ui-kit__container 
+            +header-navbar({
+              logo: "../../templates/components/header-navbar/img/logo.svg",
+              homePageLink: "../index/index.pug",
+              menuItems: [
+                {type: "link", url: "add/link", text: "о нас", isActive: true},
+                {type: "button", url: "add/link", text: "услуги", hasArrow: true},
+                {type: "link", url: "add/link", text: "вакансии"},
+                {type: "link", url: "add/link", text: "новости"},
+                {type: "button", url: "add/link", text: "соглашения", hasArrow: true},
+              ],
+              isUserLoggedIn: true,
+              user: {
+                name: "Юлий Цезарь",
+                profileUrl: "profile/url"
+              } 
+            })
