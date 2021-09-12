@@ -3,8 +3,6 @@
   border: none;
   background: none;
   padding: 0;
-  width: 100%;
-  max-width: 99px;
   text-transform: uppercase;
   @include set-font(1.2rem, 700, 1.5rem, $darkShade100, inherit);
   cursor: pointer;
@@ -12,8 +10,13 @@
   &__inner {
     position: relative;
     display: inline-block;
-    padding: 1.4rem 2rem 1.5rem 2rem;
+    padding: 1.2rem 1.8rem 1.3rem 1.8rem;
     @include set-size(100%);
+
+    &_side-padding_large {
+      padding-left: 2.6rem;
+      padding-right: 2.6rem;
+    }
   }
 
   &_simple {
@@ -31,8 +34,8 @@
   &_filled {
     background-origin: border-box;
     background-image: $primaryGradient;
+    @include set-border($borderWidth: 2px, $borderRadius: 2.2rem);
     color: #fff;
-    border-radius: 2.2rem;
     letter-spacing: -0.197px;
 
     &:hover, &:focus, &:active, &-active {
@@ -48,16 +51,13 @@
     color: $purple;
     letter-spacing: -0.197px;
 
-    .main-button__inner {
-      padding: 1.2rem 1.8rem 1.3rem 1.8rem;
-    }
-
     &:hover, &:focus, &:active, &-active {
       background-image: $whiteGradient, $primaryGradientSemiTransparent;
     }
   }
 
   &_big{
+    width: 100%;
     max-width: 320px;
   }
 

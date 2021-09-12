@@ -1,6 +1,7 @@
 //-
   classes - array of classes for button modification
   isBig - defines, whether button is big or not
+  isSidePaddingLarge - defines, whether left and right padding of button's inner container large or not
   type - button's type
   style - defines the style of button
   hasArrow - deifnes, whether button has arrow or not
@@ -12,7 +13,7 @@ mixin main-button(options)
     - options = {}
   
   - 
-    const {isBig, type = "button", style, hasArrow, isActive, text} = options
+    const {isBig, isSidePaddingLarge, type = "button", style, hasArrow, isActive, text} = options
 
     let classes = []
 
@@ -29,4 +30,4 @@ mixin main-button(options)
       when "simple": - classes.push("main-button_simple-active")
 
   button.main-button(class = classes, type = type)
-    span.main-button__inner= text
+    span.main-button__inner(class = isSidePaddingLarge ? "main-button__inner_side-padding_large" : "")= text
