@@ -1,6 +1,10 @@
-.header-navbar {
-  width: 100%;
-  @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 2rem);
+.header {
+  padding: 1.5rem 14rem;
+  box-shadow: 0 1rem 2rem $darkShade5;
+
+  &__content {
+    @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 2rem);
+  }
 
   &__logo {
     min-width: 75px;
@@ -21,7 +25,7 @@
     }
   }
 
-  &__menu {
+  &__navbar {
     margin-left: auto;
     font-size: $darkShade50;
 

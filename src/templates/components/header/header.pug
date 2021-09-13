@@ -1,0 +1,40 @@
+include ../main-button/main-button
+
+mixin header(options)
+  if !options
+    - options = {}
+
+  - const {homePageLink, menuItems = [], isUserLoggedIn, user: {name, profileUrl} = {}} = options
+
+  header.header
+    .header__content
+      .header__logo
+        a.header__logo-link(href= homePageLink)
+          img.header__logo-image(src = "../../templates/components/header/img/logo.svg", alt = "Toxin logo")
+      nav.header__navbar
+        ul.header__navbar-list 
+          each item in menuItems
+            li.header__navbar-item 
+              case item.type 
+                when "link"
+                  a.header__navbar-link(class = item.isActive ? "header__navbar-link_active" : "", href = item.url)= item.text 
+                when "button"
+                  button.header__navbar-button(class = item.isActive ? "header__navbar-button_active" : "")
+                    .header__navbar-button-text= item.text
+                    if item.hasArrow 
+                      span.header__navbar-button-expand= "expand_more"
+      if isUserLoggedIn 
+        .header__user
+          a.header__user-link(href = profileUrl)= name
+      else 
+        .header__auth-buttons 
+          .header__auth-login
+            +main-button({
+              style: "outlined",
+              text: "войти"
+            })
+          .header__auth-registration
+            +main-button({
+              style: "filled",
+              text: "зарегистрироваться"
+            })

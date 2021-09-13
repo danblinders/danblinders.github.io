@@ -223,11 +223,6 @@
   &__image {
     @include set-size(100%);
   }
-
-  &__header {
-    padding: 1.5rem 0;
-    box-shadow: 0 1rem 2rem $darkShade5;
-  }
 }
 
 @import '../../templates/components/h1-title/h1-title';
@@ -257,4 +252,5 @@
 @import '../../templates/components/login-panel/login-panel';
 @import '../../templates/components/reservation-panel/reservation-panel';
 @import '../../templates/components/room-card/room-card';
-@import '../../templates/components/header-navbar/header-navbar';
+@import '../../templates/components/header/header';
+@import '../../templates/components/footer/footer';

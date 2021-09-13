@@ -1,0 +1,15 @@
+@import './variables';
+@import './icons';
+
+@font-face {
+  font-family: 'Font Awesome Brands';
+  src: 
+		url('../../fonts/fa-brands-400.woff2') format('woff2'),
+		url('../../fonts/fa-brands-400.woff') format('woff'),
+		url('../../fonts/fa-brands-400.ttf') format('truetype'),
+		url('../../fonts/fa-brands-400.svg#fontawesome') format('svg'),
+		url('../../fonts/fa-brands-400.eot'),
+		url('../../fonts/fa-brands-400.eot?#iefix') format('embedded-opentype');
+  font-weight: 400;
+	font-style: normal;
+}

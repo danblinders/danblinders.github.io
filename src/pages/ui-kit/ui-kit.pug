@@ -37,7 +37,8 @@ block includes
   include ../../templates/components/login-panel/login-panel
   include ../../templates/components/reservation-panel/reservation-panel
   include ../../templates/components/room-card/room-card
-  include ../../templates/components/header-navbar/header-navbar
+  include ../../templates/components/header/header
+  include ../../templates/components/footer/footer
 
 block content
   section.colors-type
@@ -532,33 +533,44 @@ block content
         .headers-footers__logo
           img.headers-footers__image(src = "../../icons/toxin-uikit-logo.svg")
         .headers-footers__header
-          .page-ui-kit__container
-            +header-navbar({
-              logo: "../../templates/components/header-navbar/img/logo.svg",
-              homePageLink: "../index/index.pug",
-              menuItems: [
-                {type: "link", url: "add/link", text: "о нас", isActive: true},
-                {type: "button", url: "add/link", text: "услуги", hasArrow: true},
-                {type: "link", url: "add/link", text: "вакансии"},
-                {type: "link", url: "add/link", text: "новости"},
-                {type: "button", url: "add/link", text: "соглашения", hasArrow: true},
-              ]
-            })
+          +header({
+            homePageLink: "../index/index.pug",
+            menuItems: [
+              {type: "link", url: "add/link", text: "о нас", isActive: true},
+              {type: "button", url: "add/link", text: "услуги", hasArrow: true},
+              {type: "link", url: "add/link", text: "вакансии"},
+              {type: "link", url: "add/link", text: "новости"},
+              {type: "button", url: "add/link", text: "соглашения", hasArrow: true},
+            ]
+          })
         .headers-footers__header
-          .page-ui-kit__container 
-            +header-navbar({
-              logo: "../../templates/components/header-navbar/img/logo.svg",
-              homePageLink: "../index/index.pug",
-              menuItems: [
-                {type: "link", url: "add/link", text: "о нас", isActive: true},
-                {type: "button", url: "add/link", text: "услуги", hasArrow: true},
-                {type: "link", url: "add/link", text: "вакансии"},
-                {type: "link", url: "add/link", text: "новости"},
-                {type: "button", url: "add/link", text: "соглашения", hasArrow: true},
-              ],
-              isUserLoggedIn: true,
-              user: {
-                name: "Юлий Цезарь",
-                profileUrl: "profile/url"
-              } 
-            })
+          +header({
+            homePageLink: "../index/index.pug",
+            menuItems: [
+              {type: "link", url: "add/link", text: "о нас", isActive: true},
+              {type: "button", url: "add/link", text: "услуги", hasArrow: true},
+              {type: "link", url: "add/link", text: "вакансии"},
+              {type: "link", url: "add/link", text: "новости"},
+              {type: "button", url: "add/link", text: "соглашения", hasArrow: true},
+            ],
+            isUserLoggedIn: true,
+            user: {
+              name: "Юлий Цезарь",
+              profileUrl: "profile/url"
+            } 
+          })
+        .headers-footers__footer
+          +footer({
+            homePageLink: "../index/index.pug",
+            menu: [
+              {subtitle: "навигация", listItems: ["о нас", "новости", "слажба подержки", "услуги"]},
+              {subtitle: "о нас", listItems: ["о сервисе", "наша команда", "вакансии", "инвесторы"]},
+              {subtitle: "служба поддержки", listItems: ["соглашения", "сообщества", "связь с нами"]}
+            ],
+            copyright: "Copyright © 2018 Toxin отель. Все права защищены.",
+            socials: {
+              twtiier: "link/to/twitter",
+              facebook: "link/to/facebook",
+              instagram: "link/to/instagram"
+            }
+          })
