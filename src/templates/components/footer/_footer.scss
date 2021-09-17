@@ -1,53 +1,52 @@
 .footer {
-  padding-top: 10rem;
-  padding-bottom: 2.3rem;
-
+  background-color: #fff;
+  padding: 10rem 0 2.3rem 0;
   &__main {
-    @include set-flex($mainAxis: space-between);
-    padding: 0 14rem;
-    padding-bottom: 10rem;
+    @include set-flex($mainAxis: space-between, $crossAxis: flex-start, $flexWrap: wrap);
+    row-gap: 4rem;
+    padding: 0 14rem 10rem 14rem;
     border-bottom: 1px solid hsl(0, 0%, 90%);
-    margin-bottom: 2.3rem;
   }
 
   &__company {
-    @include flex-column($gap: 2rem);
-    max-width: 260px;
-    margin-right: 4rem;
-
     &-logo {
-      min-width: 75px;
-      min-height: 40px;
-      width: 10rem;
-      max-width: 150px;
+      max-width: 100%;
+      line-height: 0;
       cursor: pointer;
 
       &-link {
         display: inline-block;
-        @include set-size(100%);
         outline: none;
         border: none;
         text-decoration: none;
       }
       
       &-image {
+        display: inline-block;
         @include set-size(100%);
       }
+    }
+
+    &-description {
+      margin-top: 1.7rem;
+      max-width: 260px;
     }
   }
 
   &__subtitle {
+    margin: 0.4rem 0 2rem 0;
     @include label-cta-text();
     text-transform: uppercase;
   }
 
   &__menu {
-    @include set-flex($crossAxis: flex-start, $gap: 5rem);
+    @include set-flex($mainAxis: space-between, $crossAxis: flex-start);
+    padding: 0 5.1rem 0 4rem;
+    flex: 3;
     
     &-section {
-      flex-shrink: 0;
-      max-width: 150px;
-      @include flex-column($gap: 2.1rem);
+      min-width: 150px;
+      max-width: 250px;
     }
     
     &-list {
@@ -57,7 +56,7 @@
       @include flex-column($gap: 2rem);
 
       &-item {
-        line-height: 1.7rem;
+        line-height: 1.8rem;
         color: $darkShade50;
       }
 
@@ -77,13 +76,14 @@
   }
 
   &__subscription {
-    margin-left: 5.1rem;
-    @include flex-column($gap: 2rem);
-    max-width: 260px;
+    &-text {
+      max-width: 260px;
+      margin-bottom: 2rem;
+    }
   }
 
   &__secondary {
-    padding: 0 14rem;
+    padding: 2.3rem 14rem 0 14rem;
     @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 1rem);
   }
 
@@ -108,20 +108,50 @@
   }
 }
 
+@media(max-width: 1400px) {
+  .footer {
+    &__company {
+      order: 2;
+    }
+    
+    &__menu {
+      order: 2;
+      padding-right: 0;
+      padding-left: 1.5rem;
+    }
+
+    &__subscription {
+      order: 1;
+      flex-basis: 100%;
+      text-align: center;
+      &-text {
+        max-width: 100%;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}
+
 @media(max-width: 1024px) {
   .footer {
     padding-top: 12rem;
     padding-bottom: 12rem;
-    @include flex-column($crossAxis: center);
 
     &__main {
+      padding-bottom: 0;
       border-bottom: none;
       padding-bottom: 0;
-      margin-bottom: 1.9rem;
+      justify-content: center;
     }
 
     &__company {
-      margin-right: 0;
+      line-height: 0;
+      flex-grow: 0;
+      
+      &-logo {
+        margin: 0 auto;
+      }
+
       &-description {
         display: none;
       }
@@ -132,6 +162,7 @@
     }
 
     &__secondary {
+      padding-top: 2rem;
       @include flex-column($gap: 1.9rem)
     }
   }

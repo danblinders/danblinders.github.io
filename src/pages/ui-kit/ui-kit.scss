@@ -17,6 +17,7 @@
   margin: 0;
   @include set-font(1.4rem, 400, 2.4rem, $darkShade75, Montserrat);
   min-height: 100%;
+  background-color: hsl(0, 0%, 90%);
 
   &__container {
     width: 80%;
