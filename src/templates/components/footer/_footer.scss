@@ -1,11 +1,21 @@
 .footer {
   background-color: #fff;
   padding: 10rem 0 2.3rem 0;
+
+  &__container {
+    width: 80.5%;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
   &__main {
-    @include set-flex($mainAxis: space-between, $crossAxis: flex-start, $flexWrap: wrap);
-    row-gap: 4rem;
-    padding: 0 14rem 10rem 14rem;
+    padding-bottom: 10rem;
     border-bottom: 1px solid hsl(0, 0%, 90%);
+
+    &-content {
+      @include set-flex($mainAxis: space-between, $crossAxis: flex-start, $flexWrap: wrap);
+      row-gap: 4rem;
+    }
   }
 
   &__company {
@@ -40,13 +50,13 @@
   }
 
   &__menu {
-    @include set-flex($mainAxis: space-between, $crossAxis: flex-start);
-    padding: 0 5.1rem 0 4rem;
+    @include set-flex($mainAxis: space-between, $crossAxis: flex-start, $flexWrap: wrap);
+    max-width: 800px;
     flex: 3;
+    padding: 0 5.1rem 0 4rem;
     
     &-section {
-      min-width: 150px;
-      max-width: 250px;
+      min-width: 15rem;
     }
     
     &-list {
@@ -83,23 +93,28 @@
   }
 
   &__secondary {
-    padding: 2.3rem 14rem 0 14rem;
-    @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 1rem);
+    padding-top: 2.3rem;
+
+    &-content {
+      @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 1rem);
+    }
   }
 
   &__socials {
-    @include set-flex($crossAxis: center, $gap: 2rem);
+    @include set-flex($crossAxis: center, $gap: 2.1rem);
 
     &-link {
       display: inline-block;
       outline: none;
       border: none;
       text-decoration: none;
-      @include set-font(2.4rem, 400, 2.4rem, transparent, "Font Awesome Brands", 'icon');
-      font-family: "Font Awesome Brands";
       background-clip: text;
       background-image: $primaryGradient;
       cursor: pointer;
+
+      &::before {
+        @include set-font(2.4rem, 400, 2.4rem, transparent, "Font Awesome Brands", 'icons');
+      }
 
       &:hover, &:focus, &:active {
         background-image: $secondaryGradient;
@@ -108,7 +123,7 @@
   }
 }
 
-@media(max-width: 1400px) {
+@media(max-width: 1439px) {
   .footer {
     &__company {
       order: 2;
@@ -140,8 +155,10 @@
     &__main {
       padding-bottom: 0;
       border-bottom: none;
-      padding-bottom: 0;
-      justify-content: center;
+
+      &-content {
+        justify-content: center;
+      }
     }
 
     &__company {
@@ -163,7 +180,10 @@
 
     &__secondary {
       padding-top: 2rem;
-      @include flex-column($gap: 1.9rem)
+      
+      &-content {
+        @include flex-column($gap: 1.9rem)
+      }
     }
   }
 }

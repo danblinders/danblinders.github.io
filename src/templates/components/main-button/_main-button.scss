@@ -3,16 +3,16 @@
   border: none;
   background: none;
   padding: 0;
-  text-transform: uppercase;
+  @include set-size(100%);
   @include set-font(1.2rem, 700, 1.5rem, $darkShade100, inherit);
+  text-transform: uppercase;
   cursor: pointer;
 
   &__inner {
     position: relative;
-    display: inline-block;
-    padding: 1.2rem 1.8rem 1.3rem 1.8rem;
+    padding: 0 2rem;
     @include set-size(100%);
-
+    @include flex-center();
     &_side-padding_large {
       padding-left: 2.6rem;
       padding-right: 2.6rem;

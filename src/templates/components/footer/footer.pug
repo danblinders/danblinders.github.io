@@ -8,35 +8,39 @@ mixin footer(options)
 
   footer.footer
     .footer__main
-      .footer__company
-        .footer__company-logo
-          a.footer__company-logo-link(href = homePageLink)
-            img.footer__company-logo-image(src = "../../templates/components/header/img/logo.svg", alt = "Toxin logo")
-        .footer__company-description= "Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»"
-      .footer__menu 
-        each section in menu
-          .footer__menu-section 
-            .footer__subtitle= section.subtitle
-            ul.footer__menu-list
-              each item in section.listItems 
-                li.footer__menu-list-item 
-                  a.footer__menu-list-link= item
-      .footer__subscription 
-        .footer__subtitle= "подписка"
-        .footer__subscription-text= "Получайте специальные предложения и новости сервиса"
-        .footer__subscription-field
-          +subscription-field({
-            action: "add/link/to/server",
-            field: {
-              name: "subscription",
-              placeholder: {
-                text: "Email"
-              },
-            }
-          })
+      .footer__container
+        .footer__main-content
+          .footer__company
+            .footer__company-logo
+              a.footer__company-logo-link(href = homePageLink)
+                img.footer__company-logo-image(src = "../../templates/components/header/img/logo.svg", alt = "Toxin logo")
+            .footer__company-description= "Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»"
+          .footer__menu 
+            each section in menu
+              .footer__menu-section 
+                .footer__subtitle= section.subtitle
+                ul.footer__menu-list
+                  each item in section.listItems 
+                    li.footer__menu-list-item 
+                      a.footer__menu-list-link= item
+          .footer__subscription 
+            .footer__subtitle= "подписка"
+            .footer__subscription-text= "Получайте специальные предложения и новости сервиса"
+            .footer__subscription-field
+              +subscription-field({
+                action: "add/link/to/server",
+                field: {
+                  name: "subscription",
+                  placeholder: {
+                    text: "Email"
+                  },
+                }
+              })
     .footer__secondary
-      .footer__copyright= copyright
-      .footer__socials
-        a.footer__socials-link.fa-twitter(href = twitter)
-        a.footer__socials-link.fa-facebook-square(href = facebook)
-        a.footer__socials-link.fa-instagram(href = instagram)
+      .footer__container
+        .footer__secondary-content
+          .footer__copyright= copyright
+          .footer__socials
+            a.footer__socials-link.fa-twitter(href = twitter)
+            a.footer__socials-link.fa-facebook-square(href = facebook)
+            a.footer__socials-link.fa-instagram(href = instagram)

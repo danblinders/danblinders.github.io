@@ -1,39 +1,46 @@
 .header {
-  padding: 1.5rem 14rem;
   box-shadow: 0 1rem 2rem $darkShade5;
+  background-color: #fff;
+
+  &__container {
+    width: 80.5%;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
 
   &__content {
-    @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 2rem);
+    padding: 1.5rem 0;
+    @include set-flex($mainAxis: space-between, $crossAxis: center);
   }
 
   &__logo {
-    min-width: 75px;
-    min-height: 40px;
-    width: 10rem;
     max-width: 150px;
+    line-height: 0;
     
     &-link {
       display: inline-block;
-      @include set-size(100%);
+      max-width: 100%;
       border: none;
       outline: none;
       text-decoration: none;
     }
 
     &-image {
-      @include set-size(100%);
+      max-width: 100%;
     }
   }
 
   &__navbar {
     margin-left: auto;
+    padding: 0.2rem 1rem;
+    line-height: 1.8rem;
     font-size: $darkShade50;
 
     &-list {
       list-style: none;
       margin: 0;
       padding-left: 0;
-      @include set-flex($crossAxis: center, $gap: 2rem);
+      @include set-flex($crossAxis: center);
     }
 
     &-link, &-button {
@@ -51,6 +58,7 @@
     }
 
     &-item {
+      padding: 0 1rem;
       @include sentence-case();
     }
 
@@ -74,7 +82,8 @@
 
   &__auth {
     &-buttons {
-      @include set-flex($crossAxis: center, $gap: 2rem);
+      @include set-flex($gap: 2rem);
+      min-height: 3.4rem;
     }
   }
 
