@@ -226,6 +226,18 @@
   }
 }
 
+@media(max-width: 1200px) {
+  .document-ui-kit {
+    font-size: 60%;
+  }
+}
+
+@media(max-width: 767px) {
+  .document-ui-kit {
+    font-size: 55%;
+  }
+}
+
 @import '../../templates/components/h1-title/h1-title';
 @import '../../templates/components/h2-subtitle/h2-subtitle';
 @import '../../templates/components/h3-label-cta-text/h3-label-cta-text';

@@ -6,8 +6,9 @@ import Pagination from "../../templates/components/pagination/pagintaion";
 import inputMask from "../../templates/components/text-field/text-field";
 import Dropdown from "../../templates/components/dropdown/dropdown";
 import {DatepickerWithMultipleFields, DatepickerWithSingleField} from "../../templates/components/datepicker-block/datepicker-block";
-import "./ui-kit.scss";
 import Calendar from "../../templates/components/calendar/calendar";
+import Header from "../../templates/components/header/header";
+import "./ui-kit.scss";
 
 $(document).ready(() => {
   $(".like-button").each(function() {
@@ -53,5 +54,9 @@ $(document).ready(() => {
     } else {
       new DatepickerWithSingleField(this);
     }
+  });
+
+  $(".header").each(function() {
+    new Header(this);
   });
 });

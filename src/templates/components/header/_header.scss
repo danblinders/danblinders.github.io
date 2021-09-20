@@ -10,11 +10,12 @@
 
   &__content {
     padding: 1.5rem 0;
-    @include set-flex($mainAxis: space-between, $crossAxis: center);
+    @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 2rem 0, $flexWrap: wrap);
   }
 
   &__logo {
     max-width: 150px;
+    min-width: 80px;
     line-height: 0;
     
     &-link {
@@ -32,15 +33,20 @@
 
   &__navbar {
     margin-left: auto;
-    padding: 0.2rem 1rem;
+    @include set-flex($crossAxis: center, $flexWrap: wrap);
     line-height: 1.8rem;
-    font-size: $darkShade50;
+    color: $darkShade50;
+    transition: 0.5s all ease-in-out;
 
-    &-list {
+    &-site-navigation{
       list-style: none;
       margin: 0;
-      padding-left: 0;
-      @include set-flex($crossAxis: center);
+      padding: 0.2rem 2rem;
+      @include set-flex($crossAxis: center, $gap: 2rem, $flexWrap: wrap);
+    }
+
+    &-item {
+      @include sentence-case();
     }
 
     &-link, &-button {
@@ -49,64 +55,194 @@
       text-decoration: none;
       color: inherit;
       cursor: pointer;
-
-      &:hover, &:focus, &:active, &_active {
+  
+      &:hover, &:focus {
         text-decoration: none;
+        color: $darkShade75;
+      }
+  
+      &_active {
         font-weight: 700;
         color: $darkShade75;
       }
     }
-
-    &-item {
-      padding: 0 1rem;
-      @include sentence-case();
-    }
-
+  
     &-button {
       background: none;
       padding: 0;
       @include set-font(inherit, inherit, inherit, inherit, inherit);
       @include set-flex($crossAxis: center);
-
+  
       &-text {
+        display: inline-block;
         @include sentence-case();
       }
-
+  
       &-expand {
         display: inline-block;
         font-family: "Material Icons";
         font-size: 2.4rem;
       }
     }
-  }
 
-  &__auth {
-    &-buttons {
-      @include set-flex($gap: 2rem);
-      min-height: 3.4rem;
+    &-authentication {
+      @include set-flex($gap: 2rem, $crossAxis: center, $flexWrap: wrap);
+    }
+
+    &-login, &-registration {
+      height: 3.4rem;
+    }
+  
+    &-user-profile {
+      min-height: 30px;
+      border-left: 1px solid $darkShade10;
+      padding-left: 2rem;
+      @include set-flex($crossAxis: center);
+      color: $darkShade50;
     }
   }
 
-  &__user {
-    min-height: 30px;
-    border-left: 1px solid $darkShade10;
-    padding-left: 2rem;
-    @include set-flex($crossAxis: center);
+  &__menu-hamburger {
+    position: relative;
+    display: none;
+    @include set-min-size(40px, 30px);
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
 
-    &-link {
-      border: none;
-      outline: none;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-      
-      &:hover, &:focus, &:active {
-        text-decoration: none;
-        font-weight: 700;
-        color: $darkShade75;
+    &-item {
+      position: absolute;
+      left: 0;
+      @include set-size(40px, 5px);
+      background-image: $primaryGradient;
+      border-radius: 4px;
+      transition: 0.5s all ease-in-out;
+
+      &:first-of-type {
+        top: 0;
+      }
+
+      &:nth-of-type(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:last-of-type {
+        bottom: 0;
       }
     }
   }
+}
+
+@media(max-width: 1200px) {
+  .header {
+    &__container {
+      width: 95%;
+    }
+
+    &__navbar {
+      &-site-navigation {
+        padding: 0 0.5rem;
+        gap: 1rem;
+      }
+
+      &-authentication {
+        gap: 1rem;
+      }
+    }
+  }  
+}
+
+@media(max-width: 1023px) {
+  .header {
+    &__navbar {
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: -70%;
+      width: 70%;
+      height: 100vh;
+      @include flex-column($mainAxis: center, $gap: 5rem);
+      background-color: #fff;
+    
+      &-site-navigation {
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        font-size: 3rem;
+        line-height: 3rem;
+      }
+
+      &-authentication {
+        gap: 2rem;
+      }
+
+      &-login, &-registration {
+        height: 4rem;
+      }  
+
+      &-button {
+        &-expand {
+          font-size: 3rem;
+          line-height: 3.4rem;
+        }
+      }
+
+      &-user-profile {
+        padding: 3rem 0;
+        border-left: none;
+        border-top: 1px solid $darkShade10;
+        border-bottom: 1px solid $darkShade10;
+        font-size: 3rem;
+        line-height: 3.4rem;
+      }
+
+      &_open {
+        left: 0;
+      }
+    }
+
+    &__menu-hamburger {
+      display: block;
+
+      &_close {
+        justify-content: center;
+        .header__menu-hamburger-item {
+          &:first-of-type {
+            top: 40%;
+            transform: rotate(-45deg);
+          }
+
+          &:nth-of-type(2) {
+            transform: translateX(-100%);
+            opacity: 0;
+          }
+
+          &:last-of-type {
+            top: 40%;
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+  }  
+}
+
+@media(max-width: 424px) {
+  .header {
+    &__navbar {
+      &-site-navigation, &-user-profie {
+        font-size: 2.5rem;
+        line-height: 2.7rem;
+      }
+
+      &-authentication {
+        flex-direction: column;
+      }
+    }
+  }  
 }
 
 @import "../main-button/main-button";

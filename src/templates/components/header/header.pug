@@ -13,7 +13,7 @@ mixin header(options)
           a.header__logo-link(href= homePageLink)
             img.header__logo-image(src = "../../templates/components/header/img/logo.svg", alt = "Toxin logo")
         nav.header__navbar
-          ul.header__navbar-list 
+          ul.header__navbar-site-navigation
             each item in menuItems
               li.header__navbar-item 
                 case item.type 
@@ -21,21 +21,26 @@ mixin header(options)
                     a.header__navbar-link(class = item.isActive ? "header__navbar-link_active" : "", href = item.url)= item.text 
                   when "button"
                     button.header__navbar-button(class = item.isActive ? "header__navbar-button_active" : "")
-                      .header__navbar-button-text= item.text
+                      span.header__navbar-button-text= item.text
                       if item.hasArrow 
                         span.header__navbar-button-expand= "expand_more"
-        if isUserLoggedIn 
-          .header__user
-            a.header__user-link(href = profileUrl)= name
-        else 
-          .header__auth-buttons 
-            .header__auth-login
-              +main-button({
-                style: "outlined",
-                text: "войти"
-              })
-            .header__auth-registration
-              +main-button({
-                style: "filled",
-                text: "зарегистрироваться"
-              })
+          .header__navbar-user-navigation
+            if isUserLoggedIn
+              .header__navbar-user-profile 
+                a.header__navbar-link(href = profileUrl)= name
+            else 
+              .header__navbar-authentication
+                .header__navbar-login
+                  +main-button({
+                    style: "outlined",
+                    text: "войти"
+                  })
+                .header__navbar-registration
+                  +main-button({
+                    style: "filled",
+                    text: "зарегистрироваться"
+                  })
+        button.header__menu-hamburger
+          span.header__menu-hamburger-item
+          span.header__menu-hamburger-item
+          span.header__menu-hamburger-item
