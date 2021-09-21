@@ -86,11 +86,11 @@
     }
 
     &-authentication {
-      @include set-flex($gap: 2rem, $crossAxis: center, $flexWrap: wrap);
+      @include set-flex($gap: 2rem, $flexWrap: wrap);
     }
 
     &-login, &-registration {
-      height: 3.4rem;
+      min-height: 3.4rem;
     }
   
     &-user-profile {
@@ -179,10 +179,6 @@
         gap: 2rem;
       }
 
-      &-login, &-registration {
-        height: 4rem;
-      }  
-
       &-button {
         &-expand {
           font-size: 3rem;
@@ -239,7 +235,7 @@
       }
 
       &-authentication {
-        flex-direction: column;
+        justify-content: center;
       }
     }
   }  

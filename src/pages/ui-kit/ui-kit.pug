@@ -171,41 +171,47 @@ block content
             +h3-label-cta-text("buttons")
           .form-elements__main-buttons-content
             .form-elements__main-buttons-wrapper
-              +main-button({
-                style: "filled",
-                text: 'click me'
-              })
-              +main-button({
+              .form-elements__main-buttons-item
+                +main-button({
+                  style: "filled",
+                  text: 'click me'
+                })
+              .form-elements__main-buttons-item
+                +main-button({
                 style: "filled",
                 text: 'click me',
                 isActive: true
               })
             .form-elements__main-buttons-wrapper
-              +main-button({
-                style: "outlined",
-                text: 'click me'
-              })
-              +main-button({
-                style: "outlined",
-                text: 'click me',
-                isActive: true
-              })
+              .form-elements__main-buttons-item
+                +main-button({
+                  style: "outlined",
+                  text: 'click me'
+                })
+              .form-elements__main-buttons-item
+                +main-button({
+                  style: "outlined",
+                  text: 'click me',
+                  isActive: true
+                })
             .form-elements__main-buttons-wrapper
+              .form-elements__main-buttons-item_simple
+                +main-button({
+                  style: "simple",
+                  text: 'click me'
+                })
+              .form-elements__main-buttons-item.form-elements__main-buttons-item_simple
+                +main-button({
+                  style: "simple",
+                  text: 'click me',
+                  isActive: true
+                })
+            .form-elements__main-buttons-item.form-elements__main-buttons-item_big
               +main-button({
-                style: "simple",
-                text: 'click me'
+                style: "filled",
+                hasArrow: true,
+                text: 'перейти к оплате'
               })
-              +main-button({
-                style: "simple",
-                text: 'click me',
-                isActive: true
-              })
-            +main-button({
-              isBig: true,
-              style: "filled",
-              hasArrow: true,
-              text: 'перейти к оплате'
-            })
         .form-elements__bullet-list 
           .form-elements__bullet-list-title 
             +h3-label-cta-text("bullet list")

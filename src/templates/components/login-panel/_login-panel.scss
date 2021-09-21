@@ -16,6 +16,8 @@
   }
   
   &__button {
+    display: flex;
+    min-height: 4.4rem;
     margin-bottom: 3rem;
   }
 
@@ -24,6 +26,8 @@
     
     &-link {
       flex-shrink: 0;
+      display: flex;
+      min-height: 4.4rem;
       outline: none;
       background: none;
       text-decoration: none;

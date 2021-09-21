@@ -3,7 +3,7 @@
   border: none;
   background: none;
   padding: 0;
-  @include set-size(100%);
+  @include set-min-size(100%);
   @include set-font(1.2rem, 700, 1.5rem, $darkShade100, inherit);
   text-transform: uppercase;
   cursor: pointer;
@@ -13,6 +13,8 @@
     padding: 0 2rem;
     @include set-size(100%);
     @include flex-center();
+    letter-spacing: -0.18px;
+
     &_side-padding_large {
       padding-left: 2.6rem;
       padding-right: 2.6rem;
@@ -36,7 +38,6 @@
     background-image: $primaryGradient;
     @include set-border($borderWidth: 2px, $borderRadius: 2.2rem);
     color: #fff;
-    letter-spacing: -0.197px;
 
     &:hover, &:focus, &:active, &-active {
       opacity: 0.5;
@@ -49,16 +50,10 @@
     background-clip: padding-box, border-box;
     @include set-border($borderWidth: 2px, $borderRadius: 2.2rem);
     color: $purple;
-    letter-spacing: -0.197px;
 
     &:hover, &:focus, &:active, &-active {
       background-image: $whiteGradient, $primaryGradientSemiTransparent;
     }
-  }
-
-  &_big{
-    width: 100%;
-    max-width: 320px;
   }
 
   &_has {

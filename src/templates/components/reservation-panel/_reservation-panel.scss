@@ -79,6 +79,11 @@
       border-bottom: 1px dotted $darkShade25;
     }
   }
+
+  &__button {
+    display: flex;
+    min-height: 4.4rem;
+  }
 }
 
 

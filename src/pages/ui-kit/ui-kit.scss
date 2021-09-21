@@ -99,6 +99,7 @@
     &-title {
       margin-bottom: 1.6rem;
     }
+
     &-content {
       @include flex-column($gap: 1.4rem);
     }
@@ -106,14 +107,30 @@
 
   &__main-buttons {
     width: 33%;
+
     &-title {
       margin-bottom: 1.6rem;
     }
+
     &-content {
       @include flex-column($gap: 3rem);
     }
+
     &-wrapper {
       @include set-flex($crossAxis: center, $gap: 2rem);
+    }
+
+    &-item {
+      display: flex;
+      min-height: 4.4rem;
+
+      &_simple {
+        min-height: 0;
+      }
+
+      &_big {
+        width: 100%;
+      }
     }
   }
 
@@ -125,6 +142,7 @@
 
   &__text-fields {
     width: 33%;
+
     &-top {
       @include flex-column($gap: 2rem);
       margin-bottom: 4rem;
