@@ -46,6 +46,7 @@ export default class Dropdown {
     };
 
     this.changeDropdownInputStyles();
+    this.changeDropdownMenuVisibility();
 
     this.bindEventListeners();
   }

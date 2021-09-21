@@ -39,9 +39,6 @@ $(document).ready(() => {
   
   $(".dropdown").each(function() {
     const dropdownInstance = new Dropdown(this);
-
-    dropdownInstance.changeDropdownMenuVisibility();
-    dropdownInstance.handleMenuItemsBtnClick();
   });
 
   $(".calendar").each(function() {

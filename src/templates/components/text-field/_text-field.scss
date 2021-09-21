@@ -7,7 +7,7 @@
     @include set-size(100%, 4.4rem);
     @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem 0.4rem 0 0);
     @include set-font(1.4rem, 400, 1.8rem, $darkShade75, inherit);
-    background: none;
+    background-color: #fff;
     outline: none;
     letter-spacing: -0.02rem;
 

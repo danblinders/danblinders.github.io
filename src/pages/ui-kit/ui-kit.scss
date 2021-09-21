@@ -28,6 +28,7 @@
 
 .colors-type {
     padding: 14.5rem 0;
+    background-color: #fff;
 
   &__content {
     position: relative;
@@ -59,6 +60,7 @@
 .form-elements {
   padding-top: 14.3rem;
   padding-bottom: 13.1rem;
+  background-color: #fff;
 
   &__content {
     position: relative;
@@ -130,6 +132,7 @@
 
       &_big {
         width: 100%;
+        max-width: 320px;
       }
     }
   }
