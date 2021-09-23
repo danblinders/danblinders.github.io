@@ -26,8 +26,7 @@ export default class Dropdown {
         if(!isTargetParentDropdownMenu) {
           this.dropdown.removeClass("dropdown_expanded");
           this.changeDropdownInputStyles();
-
-          this.changeDropdownMenuVisibility();
+          this.dropdownMenu.slideUp();
         } 
       } else {
         this.toggleDropdown();
@@ -46,7 +45,6 @@ export default class Dropdown {
     };
 
     this.changeDropdownInputStyles();
-    this.changeDropdownMenuVisibility();
 
     this.bindEventListeners();
   }
@@ -148,15 +146,6 @@ export default class Dropdown {
     this.dropdownBtnClear.toggleClass("dropdown__button-clear_hidden", totalCount === 0);
   }
 
-  // Method for hiding and expanding dropdown menu
-  changeDropdownMenuVisibility() {
-    if (this.dropdown.hasClass("dropdown_expanded")) {
-      this.dropdownMenu.css("height", this.dropdownMenuHeight);
-    } else {
-      this.dropdownMenu.css("height", 0);
-    }
-  }
-
   changeDropdownInputStyles() {
     if (this.dropdownContentType === "guests") {
       this.dropdownFieldInput.toggleClass("text-field__input_each-border_rounded", !this.dropdown.hasClass("dropdown_expanded"));
@@ -172,7 +161,7 @@ export default class Dropdown {
 
     this.changeDropdownInputStyles();
 
-    this.changeDropdownMenuVisibility();
+    this.dropdownMenu.slideToggle();
   }
 
   // Method for setting new value for menu's item

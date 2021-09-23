@@ -59,13 +59,16 @@
   &_has {
     &_arrow {
       .main-button__inner {
+        padding-left: 4.4rem;
+        padding-right: 4.4rem;
+
         &::after {
           content: "\e5c8";
           position: absolute;
           top: 0;
           right: 0;
           background: transparent;
-          @include set-size(4.4rem);
+          @include set-size(4.4rem, 100%);
           @include flex-center();
           @include set-font(clamp(15px, 2.4rem, 50px), 400, 2.4rem, #fff, "Material Icons", "icons");
         }

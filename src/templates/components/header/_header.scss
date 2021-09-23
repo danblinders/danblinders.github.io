@@ -36,7 +36,7 @@
     @include set-flex($crossAxis: center, $flexWrap: wrap);
     line-height: 1.8rem;
     color: $darkShade50;
-    transition: 0.5s all ease-in-out;
+    transition: 0.5s left ease-in-out;
 
     &-site-navigation{
       list-style: none;
@@ -163,23 +163,38 @@
       top: 0;
       left: -70%;
       width: 70%;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 5%;
       @include flex-column($mainAxis: center, $gap: 5rem);
       background-color: #fff;
     
       &-site-navigation {
+        width: 100%;
         flex-direction: column;
-        align-items: center;
         gap: 3rem;
         font-size: 3rem;
         line-height: 3rem;
+      }
+
+      &-item {
+        width: 100%;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid $darkShade10;
       }
 
       &-authentication {
         gap: 2rem;
       }
 
+      &-login, &-registration {
+        width: 100%;
+        min-height: 4.4rem;
+      }
+
       &-button {
+        width: 100%;
+        @include set-flex($mainAxis: space-between, $flexWrap: wrap);
+
         &-expand {
           font-size: 3rem;
           line-height: 3.4rem;

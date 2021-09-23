@@ -2,12 +2,13 @@
   width: 100%;
   max-width: 320px;
 
-  &__container {
-    // position: relative;
-    @include set-flex($crossAxis: center, $gap: 0 2rem, $flexWrap: wrap);
+  &__fields {
+    width: 100%;
+    @include set-flex($mainAxis: space-between, $gap: 2rem, $crossAxis: center);
   }
 
   &__field {
+    flex: 1;
     max-width: 150px;
 
     &_big {

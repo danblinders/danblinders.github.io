@@ -9,10 +9,10 @@
   &__menu {
     position: absolute;
     z-index: 1;
+    display: none;
     width: 100%;
     background-color: #fff;
     overflow: hidden;
-    transition: height 0.5s;
 
     &-container {
       padding: 0.7rem;

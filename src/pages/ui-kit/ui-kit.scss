@@ -34,7 +34,7 @@
     position: relative;
     padding-left: 1rem;
     padding-right: 1.8rem;
-    @include set-flex($mainAxis: space-between);
+    @include set-flex($mainAxis: space-between, $gap: 4rem, $flexWrap: wrap);
   }
 
   &__logo {
@@ -64,7 +64,6 @@
 
   &__content {
     position: relative;
-    @include set-flex($mainAxis: space-between, $crossAxis: center, $flexWrap: wrap);
   }
 
   &__logo {
@@ -78,6 +77,55 @@
     @include set-size(100%);
   }
 
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10rem;
+  }
+
+  &__text-fields, &__expandable-checkbox-list, &__room-features {
+    grid-column: 1/5;
+
+    &-top {
+      @include flex-column($gap: 2rem);
+      margin-bottom: 4rem;
+    }
+
+    &-bottom {
+      @include flex-column($gap: 4rem);
+    }
+
+    &-item {
+      max-width: 320px;
+
+      &_subscription {
+        max-width: 267px;
+      }
+    }
+  }
+
+  &__check-elements, &__buttons{
+    @include flex-column($gap: 4rem);
+  }
+
+  &__check-elements, &__rich-checkbox-buttons {
+    grid-column: 5/9;
+  }
+
+  &__buttons,  &__bullet-list{
+    grid-column: 9/13;
+  }
+
+  &__small-dropdowns {
+    grid-column: 1/5;
+    @include flex-column($gap: 2rem);
+  }
+
+  &__big-dropdowns, &__feed {
+    grid-column: 5/13;
+    @include set-flex($mainAxis: space-between, $crossAxis: flex-start);
+  }
+  
   &__checkbox-buttons,
   &__rich-checkbox-buttons {
     &-title {
@@ -108,8 +156,9 @@
   }
 
   &__main-buttons {
-    width: 33%;
-
+    width: 100%;
+    max-width: 320px;
+    
     &-title {
       margin-bottom: 1.6rem;
     }
@@ -132,7 +181,6 @@
 
       &_big {
         width: 100%;
-        max-width: 320px;
       }
     }
   }
@@ -140,15 +188,6 @@
   &__bullet-list {
     &-title {
       margin-bottom: 1.6rem;
-    }
-  }
-
-  &__text-fields {
-    width: 33%;
-
-    &-top {
-      @include flex-column($gap: 2rem);
-      margin-bottom: 4rem;
     }
   }
 
@@ -163,7 +202,6 @@
   }
 
   &__room-features {
-    width: 33%;
     @include flex-column($gap: 2rem);
   }
 
@@ -175,10 +213,6 @@
     &-content {
       @include set-flex($gap: 2rem, $flexWrap: wrap);
     }
-  }
-
-  &__range-slider {
-    width: 33%;
   }
 
   &__pagination {
@@ -256,6 +290,31 @@
 @media(max-width: 767px) {
   .document-ui-kit {
     font-size: 55%;
+  }
+
+  .page-ui-kit {
+    &__container {
+      width: 90%;
+    }
+  }
+
+  .form-elements {
+    &__content {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+@media(max-width: 374px) {
+  .document-ui-kit {
+    font-size: 52%;
+  }
+  
+  .page-ui-kit {
+    &__container {
+      width: 95%;
+    }
   }
 }
 

@@ -11,7 +11,7 @@ mixin dropdown(options)
   if !options
     - options = {}
 
-  - const {isBig, isExpanded, contentName, field: {isActive, isEachBorderRounded, label, state, name = contentName, placeholder, value, isRequired} = {}, menuItems} = options
+  - const {isBig, contentName, field: {isActive, isEachBorderRounded, label, state, name = contentName, placeholder, value, isRequired} = {}, menuItems} = options
 
   .dropdown(
     class = isBig ? "dropdown_big" : "",

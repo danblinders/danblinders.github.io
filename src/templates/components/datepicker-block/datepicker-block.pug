@@ -20,7 +20,7 @@ mixin datepicker-block(options)
   .datepicker-block(
       data-datepicker-type = hasMultipleFields ? "multiple-fields" : "single-field",
     )
-    .datepicker-block__container
+    .datepicker-block__fields
       if hasMultipleFields
         .datepicker-block__field(data-input = "start")
           +text-field({
@@ -71,10 +71,10 @@ mixin datepicker-block(options)
             isDisabled: field1.isDisabled,
             mask: "date"
           })
-      .datepicker-block__calendar(class = isCalendarHidden ? "datepicker-block__calendar_hidden" : "")
-        .datepicker-block__calendar-wrapper
-          +calendar({
-            renderCalendarDate: renderCalendarDate,
-            currentDate: currentDate,
-            initialSelectedDates: initialSelectedDates
-          })
+    .datepicker-block__calendar(class = isCalendarHidden ? "datepicker-block__calendar_hidden" : "")
+      .datepicker-block__calendar-wrapper
+        +calendar({
+          renderCalendarDate: renderCalendarDate,
+          currentDate: currentDate,
+          initialSelectedDates: initialSelectedDates
+        })
