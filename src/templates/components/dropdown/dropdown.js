@@ -43,7 +43,7 @@ export default class Dropdown {
       });
     };
 
-    this.changeDropdownInputStyles();
+    this.handleMenuItemsBtnClick();
 
     this.bindEventListeners();
   }
@@ -64,6 +64,7 @@ export default class Dropdown {
       // after  click on minus button
       minusBtn.on("click", () => {
         // If menu item data-subject attribute is adults:
+        console.log("hi");
         if(menuItem.attr("data-subject") === "adults") {
           // Variable for checking, if count of menu items with data-subject attributes "children" and "infants" isn't equal to 0
           let childrenAndInfantsCount = 0;
