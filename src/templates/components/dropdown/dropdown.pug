@@ -11,15 +11,16 @@ mixin dropdown(options)
   if !options
     - options = {}
 
-  - const {isBig, contentName, field: {isActive, isEachBorderRounded, label, state, name = contentName, placeholder, value, isRequired} = {}, menuItems} = options
+  - const {isBig, isExpanded, contentName, field: {isActive, isEachBorderRounded, label, state, name = contentName, placeholder, value, isRequired} = {}, menuItems} = options
 
   .dropdown(
     class = isBig ? "dropdown_big" : "",
     class = isExpanded ? "dropdown_expanded" : "",
     data-content = contentName
   )
+    .dropdown__overlay(class = isExpanded ? "dropdown__overlay_visible" : "")
     .dropdown__container 
-      .dropdown__field
+      .dropdown__field(class = isExpanded ? "text-field__input_active text-field__input_border-bottom_hidden": "")
         +text-field({
           isActive: isActive,
           btn: {icon: "expand_more"},
@@ -36,7 +37,7 @@ mixin dropdown(options)
           isRequired: isRequired,
           isDisabled: true
         })
-        .dropdown__menu 
+        .dropdown__menu(class = isExpanded ? "dropdown__menu_expanded" : "") 
           .dropdown__menu-container
             ul.dropdown__menu-items
               - let totalCount = 0

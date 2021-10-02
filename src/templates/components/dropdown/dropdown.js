@@ -4,18 +4,17 @@ export default class Dropdown {
   constructor(dropdownSelector) {
     this.dropdown = $(dropdownSelector);
     this.dropdownContentType = this.dropdown.attr("data-content");
+    this.dropdownOverlay = this.dropdown.find(".dropdown__overlay");
     this.dropdownField = this.dropdown.find(".dropdown__field .text-field");
     this.dropdownFieldInput = this.dropdown.find(".dropdown__field .text-field__input");
     this.dropdownMenu = this.dropdown.find(".dropdown__menu");
-    this.dropdownMenuHeight = this.dropdownMenu.css("height");
     this.dropdownMenuItems = this.dropdown.find(".dropdown__item");
     this.dropdownBtnClear = this.dropdown.find(".dropdown__button-clear");
     this.dropdownBtnApply = this.dropdown.find(".dropdown__button-apply");
-    this.toggleDropdown = this.toggleDropdown.bind(this);
 
     // after click on document
-    // if target isn't dropdownField and it's child and drodopwnMenu, hide dropdown menu
-    // else toggle dropdownMenu
+    // if target isn't dropdownField and it's child and drodopwnMenu, hide dropdown menu, chnage dropdown styles
+    // else toggle dropdown state
     this.handleDocumentClick = (event) => {
       const eTarget = event.target,
       isTargetDropdownField = this.dropdownField.is(eTarget),

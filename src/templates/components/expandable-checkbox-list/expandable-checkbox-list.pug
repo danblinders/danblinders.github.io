@@ -11,14 +11,15 @@ mixin expandable-checkbox-list(options)
 
   - const {selectText, isExpanded, items} = options
 
-  .expandable-checkbox-list(class = isExpanded ? "expandable-checkbox-list_expanded" : "")
+  .expandable-checkbox-list()
     .expandable-checkbox-list__select= selectText
       .expandable-checkbox-list__icon(class = isExpanded ? "expandable-checkbox-list__icon_inverted" : "") 
-    ul.expandable-checkbox-list__content 
-      each item in items
-        li.expandable-checkbox-list__item
-          +checkbox({
-            label: item.label,
-            name: item.name,
-            checked: item.checked
-          })
+    .expandable-checkbox-list__content
+      ul.expandable-checkbox-list__items 
+        each item in items
+          li.expandable-checkbox-list__item
+            +checkbox({
+              label: item.label,
+              name: item.name,
+              checked: item.checked
+            })

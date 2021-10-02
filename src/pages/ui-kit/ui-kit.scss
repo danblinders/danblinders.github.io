@@ -79,12 +79,11 @@
 
   &__row {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
     grid-gap: 10rem;
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  &__text-fields, &__expandable-checkbox-list, &__room-features {
-    grid-column: 1/5;
+  &__text-fields{
 
     &-top {
       @include flex-column($gap: 2rem);
@@ -108,21 +107,12 @@
     @include flex-column($gap: 4rem);
   }
 
-  &__check-elements, &__rich-checkbox-buttons {
-    grid-column: 5/9;
-  }
-
-  &__buttons,  &__bullet-list{
-    grid-column: 9/13;
-  }
-
   &__small-dropdowns {
-    grid-column: 1/5;
     @include flex-column($gap: 2rem);
   }
 
-  &__big-dropdowns, &__feed {
-    grid-column: 5/13;
+  &__feed {
+    grid-column: 2/4;
     @include set-flex($mainAxis: space-between, $crossAxis: flex-start);
   }
   
@@ -216,6 +206,7 @@
   }
 
   &__pagination {
+    @include flex-column($crossAxis: flex-start);
     &-title {
       margin-bottom: 1.6rem;
     }

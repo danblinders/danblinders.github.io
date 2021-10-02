@@ -105,7 +105,7 @@ block content
       .form-elements__content
         .form-elements__logo
           img.form-elements__image(src = "../../icons/toxin-uikit-logo.svg")
-        .form-elements__row.form-elements__row_1
+        .form-elements__row
           .form-elements__text-fields 
             .form-elements__text-fields-top
               .form-elements__text-fields-item
@@ -344,7 +344,7 @@ block content
                   infoText: "1 – 12 из 100+ вариантов аренды"
                 })
 
-        .form-elements__row.form-elements__row_2
+        .form-elements__row
           .form-elements__small-dropdowns 
             +dropdown({
               contentName: "rooms",
@@ -378,7 +378,7 @@ block content
                 {subject: "bathrooms", subtitle: "ванные комнаты", count: "0"}
               ]
             })
-          .form-elements__big-dropdowns
+          .form-elements__big-dropdown
             +dropdown({
               isBig: true,
               contentName: "guests",
@@ -394,6 +394,7 @@ block content
                 {subject: "infants", subtitle: "младенцы", count: "0"}
               ]
             })
+          .form-elements__big-dropdown
             +dropdown({
               isBig: true,
               contentName: "guests",
@@ -410,10 +411,20 @@ block content
                 {subject: "infants", subtitle: "младенцы", count: "0"}
               ]
             })
-        .form-elements__row.form-elements__row_3
+        .form-elements__row
           .form-elements__expandable-checkbox-list 
             +expandable-checkbox-list({
-              isExpanded: false,
+              selectText: "expandable checkbox list",
+              items: [
+                {name: "includes", checked: false, label: "Завтрак"},
+                {name: "includes", checked: true, label: "Письменный стол"},
+                {name: "includes", checked: true, label: "Стул для кормления"},
+                {name: "includes", checked: true, label: "Кроватка"},
+                {name: "includes", checked: false, label: "Телевизор"},
+                {name: "includes", checked: false, label: "Шампунь"}
+              ]
+            })
+            +expandable-checkbox-list({
               selectText: "expandable checkbox list",
               items: [
                 {name: "includes", checked: false, label: "Завтрак"},
@@ -451,7 +462,7 @@ block content
                   "Время прибытия — после 13:00, а выезд до 12:00"
                 ]
               })
-        .form-elements__row.form-elements__row_4
+        .form-elements__row
           .form-elements__room-features 
             +room-features-item({
               icon: "insert_emoticon",

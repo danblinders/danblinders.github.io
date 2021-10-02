@@ -2,6 +2,16 @@
   width: 100%;
   max-width: 266px;
 
+  &__overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+
+    &_visible {
+      display: block;
+    }
+  }
+
   &__container {
     position: relative;
   }
@@ -11,9 +21,10 @@
     z-index: 1;
     display: none;
     width: 100%;
+    @include set-border($borderColor: $darkShade50, $borderRadius: 0 0 0.4rem 0.4rem);
     background-color: #fff;
     overflow: hidden;
-
+    
     &-container {
       padding: 0.7rem;
       padding-left: 1.5rem;
@@ -89,10 +100,6 @@
         border-bottom: none;
         border-radius: 0.4rem 0.4rem 0 0;
         border-color: $darkShade50;
-      }
-
-      &__menu {
-        @include set-border($borderColor: $darkShade50, $borderRadius: 0 0 0.4rem 0.4rem);
       }
     }
   }

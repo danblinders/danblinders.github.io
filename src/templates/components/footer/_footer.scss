@@ -147,6 +147,14 @@
   }
 }
 
+@media(max-width: 1200px) {
+  .footer {
+    &__container {
+      width: 95%;
+    }
+  }
+}
+
 @media(max-width: 1023px) {
   .footer {
     padding-top: 12rem;
