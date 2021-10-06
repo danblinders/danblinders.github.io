@@ -6,7 +6,7 @@ mixin subscription-field(options)
   if !options
     - options = {}
 
-  - const {action, field: {isActive, label, state, name, type, value, placeholder, isRequired, isDisabled, mask}} = options
+  - const {action, field: {isActive, label, state, name, type, value, placeholder = {}, isRequired, isDisabled, mask}} = options
 
   form.subscription-field(action = action)
     +text-field({

@@ -9,11 +9,11 @@ mixin datepicker-block(options)
     const {
       isCalendarHidden,
       hasMultipleFields, 
-      fields: {field1, field2} = {},
+      fields: {field1, field2},
       calendar : {
         renderCalendarDate,
         currentDate,
-        initialSelectedDates: {start, end} = {}
+        initialSelectedDates = {}
       } = {}
     } = options
 

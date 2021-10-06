@@ -21,29 +21,31 @@ mixin text-field(options)
   if !options
     - options = {}
 
-  - const {label, state, btn: {icon, color, btnType = "button"} = {}, isActive, isEachBorderRounded = true, type = "text", name, value, placeholder : {text, isUppercase, isDark} = {}, isRequired, isDisabled, mask} = options
+  - const {label, state, btn = {}, isActive, isEachBorderRounded = true, type = "text", name, value, placeholder = {}, isRequired, isDisabled, mask} = options
+
+  - const hasButton = Object.keys(btn).length !== 0
 
   .text-field
     label.text-field__container
       if label 
-        span.text-field__label= label 
+        span.text-field__label= label
           if state 
             span.text-field__state= state
       span.text-field__input-container
         input.text-field__input(
           class = isActive ? "text-field__input_active" : "",
-          class = (btn !== {}) ? "text-field__input_padding-right_big" : "",
+          class = hasButton ? "text-field__input_padding-right_big" : "",
           class = isEachBorderRounded ? "text-field__input_each-border_rounded" : "",
-          class = isDark ? "text-field__input_placeholder_darkshade_75" : "",
-          class = isUppercase ? "text-field__input_placeholder_with_uppercase" : "",
+          class = placeholder.isDark ? "text-field__input_placeholder_darkshade_75" : "",
+          class = placeholder.isUppercase ? "text-field__input_placeholder_with_uppercase" : "",
           type = type, 
           name = name, 
           value = value,
-          placeholder = text, 
+          placeholder = placeholder.text, 
           required = isRequired,
           disabled = isDisabled,
           spellcheck = "false",
           data-mask = mask
         )
-        if btn !== {}
-          button.text-field__button(class = (color === "gradient") ? "text-field__button_gradient" : "", type = btnType)= icon
+        if hasButton
+          button.text-field__button(class = (btn.color === "gradient") ? "text-field__button_gradient" : "", type = btn.btnType ? btn.btnType : "button")= btn.icon
