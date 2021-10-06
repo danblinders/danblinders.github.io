@@ -64,6 +64,7 @@
 
   &__content {
     position: relative;
+    @include flex-column($gap: 10rem);
   }
 
   &__logo {
@@ -79,7 +80,7 @@
 
   &__row {
     display: grid;
-    grid-gap: 10rem;
+    grid-gap: 0 5rem;
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -107,13 +108,53 @@
     @include flex-column($gap: 4rem);
   }
 
+  &__check-elements {
+    margin-left: 4rem;
+  }
+
+  &__buttons {
+    margin-left: 3rem;
+  }
+
+  &__dropdowns, &__lists {
+    grid-column: 1/4;
+    display: grid;
+    grid-gap: 0 10rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__dropdowns {
+    margin-bottom: 4rem;
+  }
+
   &__small-dropdowns {
+    min-height: 26rem;
+    @include flex-column($gap: 2rem);
+  }
+
+  &__big {
+    &-dropdowns {
+      grid-column: 2/4;
+      margin-left: 3rem;
+      @include set-flex($mainAxis: space-between, $gap: 1rem);
+    }
+
+    &-dropdown {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+
+
+  &__expandable-checkbox-lists {
+    min-height: 28rem;
     @include flex-column($gap: 2rem);
   }
 
   &__feed {
     grid-column: 2/4;
     @include set-flex($mainAxis: space-between, $crossAxis: flex-start);
+    margin-left: 4rem;
   }
   
   &__checkbox-buttons,
@@ -124,6 +165,10 @@
     &-content {
       @include flex-column($gap: 1rem);
     }
+  }
+
+  &__rich-checkbox-buttons {
+    margin-left: 2.5rem;
   }
   
   &__radio-buttons {

@@ -136,7 +136,6 @@ block content
                   field: {
                     isRequired: true,
                     label: "dropdown",
-                    state: "default",
                     placeholder: "Сколько гостей"
                   },
                   menuItems: [
@@ -342,123 +341,127 @@ block content
                 })
 
         .form-elements__row
-          .form-elements__small-dropdowns 
-            +dropdown({
-              contentName: "rooms",
-              field: {
-                isRequired: true,
-                label: "dropdown",
-                state: "default",
-                value: "2 спальни, 2 кровати...",
-                placeholder: "Конфигурация номера...",
-                isEachBorderRounded: false
-              },
-              menuItems: [
-                {subject: "bedrooms", subtitle: "спальни", count: "2"},
-                {subject: "beds", subtitle: "кровати", count: "2"},
-                {subject: "bathrooms", subtitle: "ванные комнаты", count: "0"}
-              ]
-            })
-            +dropdown({
-              contentName: "rooms",
-              field: {
-                isRequired: true,
-                label: "dropdown",
-                state: "expanded",
-                value: "2 спальни, 2 кровати...",
-                placeholder: "Конфигурация номера...",
-                isEachBorderRounded: false
-              },
-              menuItems: [
-                {subject: "bedrooms", subtitle: "спальни", count: "2"},
-                {subject: "beds", subtitle: "кровати", count: "2"},
-                {subject: "bathrooms", subtitle: "ванные комнаты", count: "0"}
-              ]
-            })
-          .form-elements__big-dropdown
-            +dropdown({
-              isBig: true,
-              contentName: "guests",
-              field: {
-                isRequired: true,
-                label: "dropdown",
-                state: "default",
-                placeholder: "Сколько гостей"
-              },
-              menuItems: [
-                {subject: "adults", subtitle: "взрослые", count: "0"},
-                {subject: "children", subtitle: "дети", count: "0"},
-                {subject: "infants", subtitle: "младенцы", count: "0"}
-              ]
-            })
-          .form-elements__big-dropdown
-            +dropdown({
-              isBig: true,
-              contentName: "guests",
-              field: {
-                isRequired: true,
-                label: "dropdown",
-                state: "expanded",
-                value: "3 гостя",
-                placeholder: "Сколько гостей"
-              },
-              menuItems: [
-                {subject: "adults", subtitle: "взрослые", count: "2"},
-                {subject: "children", subtitle: "дети", count: "1"},
-                {subject: "infants", subtitle: "младенцы", count: "0"}
-              ]
-            })
-        .form-elements__row
-          .form-elements__expandable-checkbox-list 
-            +expandable-checkbox-list({
-              selectText: "expandable checkbox list",
-              items: [
-                {name: "includes", checked: false, label: "Завтрак"},
-                {name: "includes", checked: true, label: "Письменный стол"},
-                {name: "includes", checked: true, label: "Стул для кормления"},
-                {name: "includes", checked: true, label: "Кроватка"},
-                {name: "includes", checked: false, label: "Телевизор"},
-                {name: "includes", checked: false, label: "Шампунь"}
-              ]
-            })
-            +expandable-checkbox-list({
-              selectText: "expandable checkbox list",
-              items: [
-                {name: "includes", checked: false, label: "Завтрак"},
-                {name: "includes", checked: true, label: "Письменный стол"},
-                {name: "includes", checked: true, label: "Стул для кормления"},
-                {name: "includes", checked: true, label: "Кроватка"},
-                {name: "includes", checked: false, label: "Телевизор"},
-                {name: "includes", checked: false, label: "Шампунь"}
-              ]
-            })
-          .form-elements__rich-checkbox-buttons
-            .form-elements__rich-checkbox-buttons-title 
-              +h3-label-cta-text("rich checkbox buttons")
-            .form-elements__rich-checkbox-buttons-content
-              +checkbox({
-                isRich: true,
-                label: "широкий коридор",
-                description: "ширина коридоров в номере <br> не менее 91 см.",
-                name: "add-ins"
-              })
-              +checkbox({
-                isRich: true,
-                label: "помощник для инвалидов",
-                description: "на 1 этаже вас встретит специалист <br> и проводит до номера.",
-                name: "add-ins"
-              })
-          .form-elements__bullet-list 
-            .form-elements__bullet-list-title 
-              +h3-label-cta-text("bullet list")
-            .form-elements__bullet-list-content 
-              +bullet-list({
-                items: [
-                  "нельзя с питомцами",
-                  "без вечеринок и мероприятий",
-                  "Время прибытия — после 13:00, а выезд до 12:00"
+          .form-elements__dropdowns
+            .form-elements__small-dropdowns 
+              +dropdown({
+                contentName: "rooms",
+                field: {
+                  isRequired: true,
+                  label: "dropdown",
+                  state: "default",
+                  value: "2 спальни, 2 кровати...",
+                  placeholder: "Конфигурация номера...",
+                  isEachBorderRounded: false
+                },
+                menuItems: [
+                  {subject: "bedrooms", subtitle: "спальни", count: "2"},
+                  {subject: "beds", subtitle: "кровати", count: "2"},
+                  {subject: "bathrooms", subtitle: "ванные комнаты", count: "0"}
                 ]
               })
+              +dropdown({
+                contentName: "rooms",
+                field: {
+                  isRequired: true,
+                  label: "dropdown",
+                  state: "expanded",
+                  value: "2 спальни, 2 кровати...",
+                  placeholder: "Конфигурация номера...",
+                  isEachBorderRounded: false
+                },
+                menuItems: [
+                  {subject: "bedrooms", subtitle: "спальни", count: "2"},
+                  {subject: "beds", subtitle: "кровати", count: "2"},
+                  {subject: "bathrooms", subtitle: "ванные комнаты", count: "0"}
+                ]
+              })
+            .form-elements__big-dropdowns
+              .form-elements__big-dropdown
+                +dropdown({
+                  isBig: true,
+                  contentName: "guests",
+                  field: {
+                    isRequired: true,
+                    label: "dropdown",
+                    state: "default",
+                    placeholder: "Сколько гостей"
+                  },
+                  menuItems: [
+                    {subject: "adults", subtitle: "взрослые", count: "0"},
+                    {subject: "children", subtitle: "дети", count: "0"},
+                    {subject: "infants", subtitle: "младенцы", count: "0"}
+                  ]
+                })
+              .form-elements__big-dropdown
+                +dropdown({
+                  isBig: true,
+                  contentName: "guests",
+                  field: {
+                    isRequired: true,
+                    label: "dropdown",
+                    state: "expanded",
+                    value: "3 гостя",
+                    placeholder: "Сколько гостей"
+                  },
+                  menuItems: [
+                    {subject: "adults", subtitle: "взрослые", count: "2"},
+                    {subject: "children", subtitle: "дети", count: "1"},
+                    {subject: "infants", subtitle: "младенцы", count: "0"}
+                  ]
+                })
+          .form-elements__lists
+            .form-elements__expandable-checkbox-lists
+              .form-elements__expandable-checkbox-list
+                +expandable-checkbox-list({
+                  selectText: "expandable checkbox list",
+                  items: [
+                    {name: "includes", checked: false, label: "Завтрак"},
+                    {name: "includes", checked: true, label: "Письменный стол"},
+                    {name: "includes", checked: true, label: "Стул для кормления"},
+                    {name: "includes", checked: true, label: "Кроватка"},
+                    {name: "includes", checked: false, label: "Телевизор"},
+                    {name: "includes", checked: false, label: "Шампунь"}
+                  ]
+                })
+              .form-elements__expandable-checkbox-list
+                +expandable-checkbox-list({
+                  selectText: "expandable checkbox list",
+                  items: [
+                    {name: "includes", checked: false, label: "Завтрак"},
+                    {name: "includes", checked: true, label: "Письменный стол"},
+                    {name: "includes", checked: true, label: "Стул для кормления"},
+                    {name: "includes", checked: true, label: "Кроватка"},
+                    {name: "includes", checked: false, label: "Телевизор"},
+                    {name: "includes", checked: false, label: "Шампунь"}
+                  ]
+                })
+            .form-elements__rich-checkbox-buttons
+              .form-elements__rich-checkbox-buttons-title 
+                +h3-label-cta-text("rich checkbox buttons")
+              .form-elements__rich-checkbox-buttons-content
+                +checkbox({
+                  isRich: true,
+                  label: "широкий коридор",
+                  description: "ширина коридоров в номере <br> не менее 91 см.",
+                  name: "add-ins"
+                })
+                +checkbox({
+                  isRich: true,
+                  label: "помощник для инвалидов",
+                  description: "на 1 этаже вас встретит специалист <br> и проводит до номера.",
+                  name: "add-ins"
+                })
+            .form-elements__bullet-list 
+              .form-elements__bullet-list-title 
+                +h3-label-cta-text("bullet list")
+              .form-elements__bullet-list-content 
+                +bullet-list({
+                  items: [
+                    "нельзя с питомцами",
+                    "без вечеринок и мероприятий",
+                    "Время прибытия — после 13:00, а выезд до 12:00"
+                  ]
+                })
         .form-elements__row
           .form-elements__room-features 
             +room-features-item({
