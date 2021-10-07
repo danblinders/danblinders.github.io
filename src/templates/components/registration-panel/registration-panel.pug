@@ -73,7 +73,7 @@ mixin registration-panel(options)
         })
     .registration-panel__authentification
       = "Уже есть аккаунт на Toxin"
-      a.registration-panel__authentification-link
+      a.registration-panel__authentification-link(href = "./login.html")
         +main-button({
           isSidePaddingLarge: true,
           style: "outlined",

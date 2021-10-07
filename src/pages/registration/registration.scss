@@ -2,7 +2,7 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
-.document-index-page {
+.document-registration-page {
   font-size: 62.5%;
   color: $darkShade75;
   font-family: sans-serif;
@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-.page-index {
+.page-registration {
   margin: 0;
   @include set-font(1.4rem, 400, 2.4rem, $darkShade75, Montserrat);
   min-height: 100%;
@@ -32,38 +32,29 @@
   }
 
   .main-content {
-    padding: 14rem 0 1.8rem;
-    background: url("./img/index-bg.jpg") center center/cover no-repeat;
+    padding: 8.9rem 0 1.9rem;
+    background: url("./img/registration-bg.jpg") center center/cover no-repeat;
 
-    &__caption {
-      max-width: 300px;
-      margin-top: 32rem;
-      margin-left: auto;
-      text-align: right;
+    &__registration-panel {
+      @include flex-center();
     }
   }
 }
 
 @media(max-width: 768px) {
-  .document-index-page {
+  .document-registration-page {
     font-size: 57%;
   }
 
-  .page-index {
+  .page-registration {
     &__container {
       width: 95%;
-    }
-
-    .main-content {
-      &__caption {
-        margin-top: 16rem;
-      }
     }
   }
 }
 
 @media(max-width: 375px) {
-  .document-index-page {
+  .document-registration-page {
     font-size: 53%;
   }
 }

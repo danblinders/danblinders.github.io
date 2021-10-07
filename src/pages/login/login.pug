@@ -2,12 +2,12 @@ extends ../../templates/layouts/layout-main
 
 block variables 
   -
-    let docClasses = "document-index-page",
+    let docClasses = "document-login-page",
         language = "ru",
-        keywords = "index page, find your room",
-        description = "Landing page, conataining search form",
-        docTitle = "Toxin",
-        bodyClasses = "page-index"
+        keywords = "login page, password, account",
+        description = "Login page, conataining login panel",
+        docTitle = "Toxin-login",
+        bodyClasses = "page-login"
     
 block includes
   include ../../templates/components/h1-title/h1-title
@@ -41,7 +41,7 @@ block includes
   include ../../templates/components/footer/footer
 
 block header 
-  header.page-index__header 
+  header.page-login__header 
     +header({
       menuItems: [
         {type: "link", url: "add/link", text: "о нас"},
@@ -53,18 +53,17 @@ block header
     })
 
 block content
-  main.main-content 
-    .page-index__container
+  main.main-content
+    .page-login__container
       .main-content__wrapper
-        .main-content__search-panel 
-            +search-panel({
+        .main-content__login-panel 
+            +login-panel({
               action: "add/link/to/server",
-              title: "найдём номера под ваши пожелания"
+              title: "войти"
             }) 
-        .main-content__caption= "Лучшие номера для вашей работы, отдыха и просто вдохновения"
 
 block footer
-  footer.page-index__footer
+  footer.page-login__footer
     +footer({
       menu: [
         {subtitle: "навигация", listItems: ["о нас", "новости", "слажба подержки", "услуги"]},

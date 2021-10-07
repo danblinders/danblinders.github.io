@@ -4,13 +4,13 @@ mixin header(options)
   if !options
     - options = {}
 
-  - const {homePageLink, menuItems = [], isUserLoggedIn, user: {name, profileUrl} = {}} = options
+  - const {menuItems = [], isUserLoggedIn, user: {name, profileUrl} = {}} = options
 
-  header.header
+  .header
     .header__container
       .header__content
         .header__logo
-          a.header__logo-link(href= homePageLink)
+          a.header__logo-link(href= "./index.html")
             img.header__logo-image(src = "../../templates/components/header/img/logo.svg", alt = "Toxin logo")
         nav.header__navbar
           ul.header__navbar-site-navigation
@@ -30,12 +30,12 @@ mixin header(options)
                 a.header__navbar-link(href = profileUrl)= name
             else 
               .header__navbar-authentication
-                .header__navbar-login
+                a.header__navbar-login(href = "./login.html")
                   +main-button({
                     style: "outlined",
                     text: "войти"
                   })
-                .header__navbar-registration
+                a.header__navbar-registration(href = "./registration.html")
                   +main-button({
                     style: "filled",
                     text: "зарегистрироваться"

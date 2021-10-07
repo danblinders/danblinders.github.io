@@ -4,15 +4,15 @@ mixin footer(options)
   if !options
     - options = {}
 
-  - const {homePageLink, menu = [], copyright, socials: {twitter, facebook, instagram} = {}} = options
+  - const {menu = [], copyright, socials: {twitter, facebook, instagram} = {}} = options
 
-  footer.footer
+  .footer
     .footer__main
       .footer__container
         .footer__main-content
           .footer__company
             .footer__company-logo
-              a.footer__company-logo-link(href = homePageLink)
+              a.footer__company-logo-link(href = './index.html')
                 img.footer__company-logo-image(src = "../../templates/components/header/img/logo.svg", alt = "Toxin logo")
             .footer__company-description= "Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»"
           .footer__menu 
