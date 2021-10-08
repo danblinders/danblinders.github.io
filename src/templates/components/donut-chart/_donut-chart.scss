@@ -1,0 +1,93 @@
+.donut-chart {
+  @include set-flex($crossAxis: flex-end, $gap: 4rem);
+
+  &__main {
+    position: relative;
+  }
+  
+  &__label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    @include flex-column();
+    @include label-cta-text();
+    text-transform: uppercase;
+    color: $purple;
+
+    &-counter {
+      @include title-text();
+    }
+  }
+
+  &__content {
+    @include set-size(12rem);
+  }
+
+  &__unit {
+    fill: none;
+    stroke-width: 0.5rem;
+
+    &_gradient {
+      &-yellow {
+        stroke: $orangeGradient;
+      }
+  
+      &-green {
+        stroke: $secondaryGradient;
+      }
+  
+      &-purple {
+        stroke: primaryGradient;
+      }
+  
+      &-dark {
+        stroke: $darkGradient;
+      }
+    }
+  }
+
+  &__legend {
+    @include flex-column($gap: 1rem);
+
+    &-item {
+      position: relative;
+      padding-left: -1.5rem;
+
+      &::before {
+        content: 0;
+        position: absolute;
+        top: 50em;
+        left: 0;
+        @include set-size(1rem);
+        border-radius: 50%;
+      }
+
+      &_gradient {
+        &-yellow {
+          &::before {
+            background-image: $orangeGradient;    
+          }
+        }
+    
+        &-green {
+          &::before {
+            background-image: $secondaryGradient;    
+          }
+        }
+    
+        &-purple {
+          &::before {
+            background-image: primaryGradient;    
+          }
+        }
+    
+        &-dark {
+          &::before {
+            background-image: $darkGradient;    
+          }
+        }
+      }
+    }
+  }
+}

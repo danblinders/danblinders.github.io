@@ -1,0 +1,22 @@
+mixin donut-chart(options)
+  if !options
+    - options = {}
+
+  - const {counter, units = {}} = options
+  
+  .donut-chart
+    .donut-chart__main
+      .donut-chart__main-label 
+        span.donut-chart__main-counter= counter
+        | голосов
+      svg.donut-chart__content(viewBox = "0 0 12rem 12rem")
+        each unit in units
+          circle.donut-chart__unit(class = `donut-chart__unit_${unit.gradient}`, 
+                                  r="50", 
+                                  cx="50%", 
+                                  cy="50%",
+                                  stroke-dasharray = unit.strokeDasharray,
+                                  stroke-dashoffset = unit.strokeDashoffset)
+    .donut-chart__legend 
+      each unit in units 
+        .donut-chart__legend-item(class = `donut-chart__legend-item_${unit.gradient}`)= unit.legend
