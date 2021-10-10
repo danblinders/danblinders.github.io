@@ -3,61 +3,66 @@
 
   &__main {
     position: relative;
-  }
-  
-  &__label {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%);
-    @include flex-column();
-    @include label-cta-text();
-    text-transform: uppercase;
-    color: $purple;
+    @include set-size(12rem);
+
+    &-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @include flex-column();
+      @include label-cta-text();
+      text-transform: uppercase;
+      text-align: center;
+      color: $purple;
+    }
 
     &-counter {
       @include title-text();
+      color: inherit;
     }
   }
 
   &__content {
-    @include set-size(12rem);
+    @include set-size(100%);
   }
 
   &__unit {
     fill: none;
-    stroke-width: 0.5rem;
+    stroke-width: 0.4rem;
+    transform-origin: center;
 
     &_gradient {
       &-yellow {
-        stroke: $orangeGradient;
+        stroke: yellow;
       }
   
       &-green {
-        stroke: $secondaryGradient;
+        stroke: green;
       }
   
       &-purple {
-        stroke: primaryGradient;
+        stroke: red;
       }
   
       &-dark {
-        stroke: $darkGradient;
+        stroke: black;
       }
     }
   }
 
   &__legend {
-    @include flex-column($gap: 1rem);
+    @include flex-column();
 
     &-item {
       position: relative;
-      padding-left: -1.5rem;
+      padding-left: 1.5rem;
+      @include sentence-case();
 
       &::before {
-        content: 0;
+        content: '';
         position: absolute;
-        top: 50em;
+        top: 0.5em;
         left: 0;
         @include set-size(1rem);
         border-radius: 50%;
@@ -66,7 +71,7 @@
       &_gradient {
         &-yellow {
           &::before {
-            background-image: $orangeGradient;    
+            background-image: $yellowGradient;    
           }
         }
     
@@ -78,7 +83,7 @@
     
         &-purple {
           &::before {
-            background-image: primaryGradient;    
+            background-image: $primaryGradient;    
           }
         }
     

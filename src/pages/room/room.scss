@@ -1,0 +1,173 @@
+@import '../../scss/fonts';
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.document-room-page {
+  font-size: 62.5%;
+  color: $darkShade75;
+  font-family: sans-serif;
+  background-color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page-room {
+  margin: 0;
+  @include set-font(1.4rem, 400, 2.4rem, $darkShade75, Montserrat);
+  min-height: 100%;
+  background-color: hsl(0, 0%, 100%);
+
+  &__container {
+    width: 80%;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .main-content {
+    padding: 7rem 0;
+    
+    &__photos {
+      margin-bottom: 7rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 24.3rem;
+    }
+
+    &__photo {
+      &-image {
+        @include set-size(100%);
+      }
+
+      &_big {
+        grid-column: 1/3;
+        grid-row: 1/3;
+      }
+    }
+
+    &__wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 3rem 1rem;
+    }
+
+    &__room-features {
+      &-subtitle {
+        margin-bottom: 2rem;
+      }
+      
+      &-items {
+        @include flex-column($gap: 2rem);
+      }
+    }
+
+    &__chart {
+      &-subtitle {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &__reservation-panel {
+      grid-column: 3/4;
+      grid-row: 1/3;
+      justify-content: flex-end;
+    }
+
+    &__reviews {
+      grid-column: 1/3;
+
+      &-header {
+        @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 1rem, $flexWrap: wrap);
+      }
+
+      &-total {
+        color: $darkShade50;
+      }
+
+      &-subtitle {
+        margin-bottom: 2rem;
+      }
+
+      &-group {
+        @include flex-column($gap: 2.2rem);
+      }
+    }
+
+    &__rules {
+      &-subtitle {
+        margin-bottom: 2rem;
+        padding-left: 2rem;
+      }
+    }
+
+    &__cancellation {
+      &-subtitle {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}
+
+@media(max-width: 1440px) {
+  .page-room {
+    &__container {
+      max-width: 1160px;
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .document-room-page {
+    font-size: 57%;
+  }
+
+  .page-room {
+    &__container {
+      width: 95%;
+    }
+  }
+}
+
+@media(max-width: 375px) {
+  .document-room-page {
+    font-size: 53%;
+  }
+}
+
+@import '../../templates/components/h1-title/h1-title';
+@import '../../templates/components/h2-subtitle/h2-subtitle';
+@import '../../templates/components/h3-label-cta-text/h3-label-cta-text';
+@import '../../templates/components/colors-item/colors-item';
+@import '../../templates/components/type-item/type-item';
+@import '../../templates/components/checkbox/checkbox';
+@import '../../templates/components/radio-button/radio-button';
+@import '../../templates/components/toggle/toggle';
+@import '../../templates/components/main-button/main-button';
+@import '../../templates/components/bullet-list/bullet-list';
+@import '../../templates/components/text-field/text-field';
+@import '../../templates/components/subscription-field/subscription-field';
+@import '../..//templates/components/like-button/like-button';
+@import '../../templates/components/feed/feed';
+@import '../../templates/components/room-features-item/room-features-item';
+@import '../../templates/components/expandable-checkbox-list/expandable-checkbox-list';
+@import '../../templates/components/rate-button/rate-button';
+@import '../../templates/components/range-slider/range-slider';
+@import '../../templates/components/pagination/pagination';
+@import '../../templates/components/dropdown/dropdown';
+@import '../../templates/components/calendar/calendar';
+@import '../../templates/components/datepicker-block/datepicker-block';
+@import '../../templates/components/search-panel/search-panel';
+@import '../../templates/components/registration-panel/registration-panel';
+@import '../../templates/components/login-panel/login-panel';
+@import '../../templates/components/reservation-panel/reservation-panel';
+@import '../../templates/components/room-card/room-card';
+@import '../../templates/components/header/header';
+@import '../../templates/components/footer/footer';
+@import '../../templates/components/donut-chart/donut-chart'
