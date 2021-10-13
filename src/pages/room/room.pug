@@ -56,120 +56,123 @@ block header
 block content
   main.main-content
     .main-content__photos
-      .main-content__photo.main-content__photo_big
-        img.main-content__photo-image(src= "./img/room-image-1.jpg", alt = "room photo") 
-      .main-content__photo
-        img.main-content__photo-image(src= "./img/room-image-2.jpg", alt = "room photo") 
-      .main-content__photo
-        img.main-content__photo-image(src= "./img/room-image-3.jpg", alt = "room photo")  
+      .main-content__photos-main
+        .main-content__photo.main-content__photo_big
+          img.main-content__photo-image(src= "./img/room-image-1.jpg", alt = "room photo") 
+      .main-content__photos-secondary
+        .main-content__photo
+          img.main-content__photo-image(src= "./img/room-image-2.jpg", alt = "room photo") 
+        .main-content__photo
+          img.main-content__photo-image(src= "./img/room-image-3.jpg", alt = "room photo")  
     .page-room__container
       .main-content__wrapper
-        .main-content__room-features
-          .main-content__room-features-subtitle 
-            +h2-subtitle("сведения о номере")
-          .main-content__room-features-items
-            +room-features-item({
-              icon: "insert_emoticon",
-              subtitle: "комфорт",
-              descr: "шумопоглощающие стены"
+        .main-content__info
+          .main-content__room-features
+            .main-content__room-features-subtitle 
+              +h2-subtitle("сведения о номере")
+            .main-content__room-features-items
+              .main-content__room-features-item   
+                +room-features-item({
+                    icon: "insert_emoticon",
+                    subtitle: "комфорт",
+                    descr: "шумопоглощающие стены"
+                })
+              .main-content__room-features-item 
+                +room-features-item({
+                    icon: "location_city",
+                    subtitle: "удобство",
+                    descr: "окно в каждой из спален"
+                })
+              .main-content__room-features-item  
+                +room-features-item({
+                    icon: "whatshot",
+                    subtitle: "уют",
+                    descr: "номер оснащен камином"
+                })
+          .main-content__chart
+            .main-content__chart-subtitle
+              +h2-subtitle("впечатления от номера")
+            .main-content__chart-element 
+              +donut-chart({
+                counter: 260,
+                units: [
+                  {count: "65", gradient: "purple", strokeDasharray: 24, strokeDashoffset: -89, legend: "великолепно"},
+                  {count: "65", gradient: "green", strokeDasharray: 24, strokeDashoffset: 1, legend: "хорошо"},
+                  {count: "139", gradient: "yellow", strokeDasharray: 49, strokeDashoffset: 91, legend: "удовлетворительно"},
+                  {count: "0", gradient: "dark", strokeDasharray: 0, strokeDashoffset: 0, legend: "разочарован"}
+                ]
+              })
+          .main-content__reviews 
+            .main-content__reviews-header 
+              .main-content__reviews-subtitle
+                +h2-subtitle("отзывы посетителей номера") 
+              .main-content__reviews-total= "2 отзыва"
+            .main-content__reviews-group 
+              +feed({
+                image: "../../templates/components/feed/img/profile-1.png",
+                author: "мурад сарафанов",
+                date: "5 дней назад",
+                text: "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.",
+                button: {
+                  isActive: true,
+                  count: "12",
+                  borderColor: "gradient",
+                  iconColor: "purple",
+                  isIconFilled: true,
+                  counterColor: "purple"
+                }
+              })
+              +feed({
+                image: "../../templates/components/feed/img/profile-2.png",
+                author: "патрисия стёклышкова",
+                date: "неделю назад",
+                text: "Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент",
+                button: {
+                  count: "2",
+                  borderColor: "gradient",
+                  iconColor: "purple",
+                  isIconFilled: true,
+                  counterColor: "purple"
+                }
+              })
+          .main-content__rules 
+            .main-content__rules-subtitle
+              +h2-subtitle("правила") 
+            .main-content__rules-list
+              +bullet-list({
+                items: [
+                  "нельзя с питомцами",
+                  "без вечеринок и мероприятий",
+                  "Время прибытия — после 13:00, а выезд до 12:00"
+                ]
+              })
+          .main-content__cancellation 
+            .main-content__cancellation-subtitle
+              +h2-subtitle("отмена")
+            .main-content__canecllation-text 
+              | Бесплатная отмена в течение 48 ч. 
+              | После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
+        .main-content__form
+          .main-content__reservation-panel 
+            +reservation-panel({
+              action: "add/link/to/server",
+              room: {
+                id: "888", 
+                type: "люкс", 
+                currentPrice: 9990
+              }, 
+              dates: {
+                startDate: "08.19.2019", 
+                endDate: "08.23.2019"
+              }, 
+              dropdown: {
+                dropdownValue: "3 гостя", 
+                adultsCount: 3
+              },
+              serviceFee: 0,
+              sale: 2179,
+              additionalFee: 300
             })
-            +room-features-item({
-              icon: "location_city",
-              subtitle: "удобство",
-              descr: "окно в каждой из спален"
-            })
-            +room-features-item({
-              icon: "whatshot",
-              subtitle: "уют",
-              descr: "номер оснащен камином"
-            })
-        .main-content__chart
-          .main-content__chart-subtitle
-            +h2-subtitle("впечатления от номера")
-          .main-content__chart-element 
-            +donut-chart({
-              counter: 260,
-              units: [
-                {count: "65", gradient: "purple", strokeDasharray: 24, strokeDashoffset: -89, legend: "великолепно"},
-                {count: "65", gradient: "green", strokeDasharray: 24, strokeDashoffset: 1, legend: "хорошо"},
-                {count: "139", gradient: "yellow", strokeDasharray: 49, strokeDashoffset: 91, legend: "удовлетворительно"},
-                {count: "0", gradient: "dark", strokeDasharray: 0, strokeDashoffset: 0, legend: "разочарован"}
-              ]
-            })
-        .main-content__reservation-panel 
-          +reservation-panel({
-            action: "add/link/to/server",
-            room: {
-              id: "888", 
-              type: "люкс", 
-              currentPrice: 9990
-            }, 
-            dates: {
-              startDate: "08.19.2019", 
-              endDate: "08.23.2019"
-            }, 
-            dropdown: {
-              dropdownValue: "3 гостя", 
-              adultsCount: 3
-            },
-            serviceFee: 0,
-            sale: 2179,
-            additionalFee: 300
-          })
-        .main-content__reviews 
-          .main-content__reviews-header 
-            .main-content__reviews-subtitle
-              +h2-subtitle("отзывы посетителей номера") 
-            .main-content__reviews-total= "2 отзыва"
-          .main-content__reviews-group 
-            +feed({
-              image: "../../templates/components/feed/img/profile-1.png",
-              author: "мурад сарафанов",
-              date: "5 дней назад",
-              text: "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.",
-              button: {
-                isActive: true,
-                count: "12",
-                borderColor: "gradient",
-                iconColor: "purple",
-                isIconFilled: true,
-                counterColor: "purple"
-              }
-            })
-            +feed({
-              image: "../../templates/components/feed/img/profile-1.png",
-              author: "патрисия стёклышкова",
-              date: "неделю назад",
-              text: "Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент",
-              button: {
-                isActive: true,
-                count: "12",
-                borderColor: "gradient",
-                iconColor: "purple",
-                isIconFilled: true,
-                counterColor: "purple"
-              }
-            })
-        .main-content__rules 
-          .main-content__rules-subtitle
-            +h2-subtitle("правила") 
-          .main-content__rules-list
-            +bullet-list({
-              items: [
-                "нельзя с питомцами",
-                "без вечеринок и мероприятий",
-                "Время прибытия — после 13:00, а выезд до 12:00"
-              ]
-            })
-        .main-content__cancellation 
-          .main-content__cancellation-subtitle
-            +h2-subtitle("отмена")
-          .main-content__canecllation-text 
-            | Бесплатная отмена в течение 48 ч. 
-            | После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
-
-
-
 
 block footer
   footer.page-room__footer

@@ -36,29 +36,48 @@
     
     &__photos {
       margin-bottom: 7rem;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: 24.3rem;
+      height: 48.5rem;
+      @include set-flex();
+
+      &-main {
+        @include set-size(68%, 100%);
+      }
+
+      &-secondary {
+        @include set-size(32%, 100%);
+        @include set-flex($flexWrap: wrap);
+      }
     }
 
     &__photo {
+      @include set-size(100%, 50%);
+
       &-image {
+        display: inline-block;
         @include set-size(100%);
       }
-
+    
       &_big {
-        grid-column: 1/3;
-        grid-row: 1/3;
+        height: 100%;
       }
     }
 
     &__wrapper {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 3rem 1rem;
+      @include set-flex($mainAxis: space-between, $flexWrap: wrap);
+    }
+
+    &__info {
+      width: 63%;
+      @include set-flex($flexWrap: wrap);
+    }
+
+    &__form {
+      width: 33%;
     }
 
     &__room-features {
+      width: 50%;
+  
       &-subtitle {
         margin-bottom: 2rem;
       }
@@ -66,33 +85,37 @@
       &-items {
         @include flex-column($gap: 2rem);
       }
+
+      &-item {
+        max-width: 280px;
+
+        &:not(:last-of-type) {
+          padding-bottom: 1.7rem;
+          border-bottom: 1px solid $darkShade10;
+        }
+      }
     }
 
     &__chart {
+      width: 50%;
+      flex-shrink: 0;
       &-subtitle {
         margin-bottom: 2rem;
       }
     }
 
-    &__reservation-panel {
-      grid-column: 3/4;
-      grid-row: 1/3;
-      justify-content: flex-end;
-    }
-
     &__reviews {
-      grid-column: 1/3;
+      margin: 4rem 0 3rem;
+      width: 100%;
+      max-width: 710px;
 
       &-header {
+        margin-bottom: 2rem;
         @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 1rem, $flexWrap: wrap);
       }
 
       &-total {
         color: $darkShade50;
-      }
-
-      &-subtitle {
-        margin-bottom: 2rem;
       }
 
       &-group {
@@ -101,6 +124,7 @@
     }
 
     &__rules {
+      width: 50%;
       &-subtitle {
         margin-bottom: 2rem;
         padding-left: 2rem;
@@ -108,6 +132,9 @@
     }
 
     &__cancellation {
+      width: 50%;
+      max-width: 340px;
+
       &-subtitle {
         margin-bottom: 2rem;
       }
@@ -115,10 +142,72 @@
   }
 }
 
-@media(max-width: 1440px) {
+@media(max-width: 1439px) {
   .page-room {
     &__container {
       max-width: 1160px;
+    }
+  }
+}
+
+@media(max-width: 1200px) {
+  .page-room {
+    &__container {
+      width: 90%;
+    }
+
+    .main-content {
+      &__info {
+        width: 55%;
+      }
+
+      &__form {
+        width: 40%;
+      }
+
+      &__room-features, &__chart {
+        margin-bottom: 2rem;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media(max-width: 1023px) {
+  .page-room {
+    .main-content {
+      padding-bottom: 0;
+
+      &__photos {
+        margin-bottom: 4rem;
+
+        &-main {
+          width: 60%;
+        }
+
+        &-secondary {
+          width: 40%;
+        }
+      }
+
+      &__wrapper {
+        flex-direction: column;
+      }
+
+      &__info {
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 5rem;
+      }
+
+      &__form {
+        width: 100%;
+        @include flex-center();
+      }
+
+      &__room-features, &__chart, &__rules, &__cancellation {
+        width: 45%;
+      }
     }
   }
 }
@@ -131,6 +220,51 @@
   .page-room {
     &__container {
       width: 95%;
+    }
+
+    .main-content {
+      &__photos {
+        height: 45rem;
+        flex-wrap: wrap;
+
+        &-main, &-secondary {
+          width: 100%;
+          height: 50%;
+        }
+      }
+
+      &__photo {
+        width: 50%;
+        height: 100%;
+        
+        &_big {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 425px) {
+  .page-room {
+    .main-content {
+      &__info {
+        flex-direction: column;
+      }
+
+      &__room-features, &__chart, &__rules, &__cancellation {
+        width: 100%;
+      }
+
+      &__rules, &__room-features {
+        margin-bottom: 3rem;
+      }
+
+      &__rules {
+        &-subtitle {
+          padding-left: 0;
+        } 
+      }
     }
   }
 }
@@ -170,4 +304,4 @@
 @import '../../templates/components/room-card/room-card';
 @import '../../templates/components/header/header';
 @import '../../templates/components/footer/footer';
-@import '../../templates/components/donut-chart/donut-chart'
+@import '../../templates/components/donut-chart/donut-chart';

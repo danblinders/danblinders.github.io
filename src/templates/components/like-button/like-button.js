@@ -48,11 +48,15 @@ export default class LikeButton {
     // If button's data-active attribute is true, increment countValue and set new value to data-count attribute and text inside counter
     // Else decrement countValue and set new value to data-count attribute and text inside counter
     if (this.btn.attr("data-active") === "true") {
-      this.btn.attr("data-active", `${++countValue}`);
+      countValue++;
+
+      this.btn.attr("data-count", `${countValue}`);
 
       this.btnCounter.text(`${countValue}`);
     } else {
-      this.btn.attr("data-count", `${--countValue}`);
+      countValue--;
+
+      this.btn.attr("data-count", `${countValue}`);
 
       this.btnCounter.text(`${countValue}`);
     }

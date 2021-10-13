@@ -1,9 +1,10 @@
 .donut-chart {
-  @include set-flex($crossAxis: flex-end, $gap: 4rem);
+  @include set-flex($crossAxis: flex-end, $gap: 1rem 3rem, $flexWrap: wrap);
 
   &__main {
     position: relative;
     @include set-size(12rem);
+    flex-shrink: 0;
 
     &-label {
       position: absolute;

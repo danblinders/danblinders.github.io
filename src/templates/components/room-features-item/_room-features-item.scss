@@ -1,9 +1,7 @@
 .room-features-item {
   width: 100%;
   max-width: 280px;
-  padding-bottom: 1.7rem;
   padding-right: 2rem;
-  border-bottom: 1px solid $darkShade10;
   @include set-flex($gap: 1rem);
 
   &__icon {
