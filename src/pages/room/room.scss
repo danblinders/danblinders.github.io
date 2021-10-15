@@ -107,7 +107,6 @@
     &__reviews {
       margin: 4rem 0 3rem;
       width: 100%;
-      max-width: 710px;
 
       &-header {
         margin-bottom: 2rem;
@@ -142,10 +141,16 @@
   }
 }
 
-@media(max-width: 1439px) {
+@media(max-width: 1440px) {
   .page-room {
     &__container {
       max-width: 1160px;
+    }
+
+    .main-content {
+      &__reviews {
+        max-width: 710px;
+      }
     }
   }
 }
@@ -173,7 +178,7 @@
   }
 }
 
-@media(max-width: 1023px) {
+@media(max-width: 1024px) {
   .page-room {
     .main-content {
       padding-bottom: 0;

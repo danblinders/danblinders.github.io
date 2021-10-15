@@ -1,0 +1,420 @@
+extends ../../templates/layouts/layout-main 
+
+block variables 
+  -
+    let docClasses = "document-catalog-page",
+        language = "ru",
+        keywords = "catalog page, find your room",
+        description = "Catalog page, conataining a set of rooms and filter block",
+        docTitle = "Toxin-catalog",
+        bodyClasses = "page-catalog"
+    
+block includes
+  include ../../templates/components/h1-title/h1-title
+  include ../../templates/components/h2-subtitle/h2-subtitle
+  include ../../templates/components/h3-label-cta-text/h3-label-cta-text
+  include ../../templates/components/colors-item/colors-item
+  include ../../templates/components/type-item/type-item
+  include ../../templates/components/checkbox/checkbox
+  include ../../templates/components/radio-button/radio-button
+  include ../../templates/components/toggle/toggle
+  include ../../templates/components/main-button/main-button
+  include ../../templates/components/bullet-list/bullet-list
+  include ../../templates/components/text-field/text-field
+  include ../../templates/components/subscription-field/subscription-field
+  include ../..//templates/components/like-button/like-button
+  include ../../templates/components/feed/feed
+  include ../../templates/components/room-features-item/room-features-item
+  include ../../templates/components/expandable-checkbox-list/expandable-checkbox-list
+  include ../../templates/components/rate-button/rate-button
+  include ../../templates/components/range-slider/range-slider
+  include ../../templates/components/pagination/pagination
+  include ../../templates/components/dropdown/dropdown
+  include ../../templates/components/calendar/calendar
+  include ../../templates/components/datepicker-block/datepicker-block
+  include ../../templates/components/search-panel/search-panel
+  include ../../templates/components/registration-panel/registration-panel
+  include ../../templates/components/login-panel/login-panel
+  include ../../templates/components/reservation-panel/reservation-panel
+  include ../../templates/components/room-card/room-card
+  include ../../templates/components/header/header
+  include ../../templates/components/footer/footer
+
+block header 
+  header.page-catalog__header 
+    +header({
+      menuItems: [
+        {type: "link", url: "add/link", text: "о нас"},
+        {type: "button", url: "add/link", text: "услуги", hasArrow: true},
+        {type: "link", url: "add/link", text: "вакансии"},
+        {type: "link", url: "add/link", text: "новости"},
+        {type: "button", url: "add/link", text: "соглашения", hasArrow: true},
+      ]
+    })
+
+block content
+  .filter-overlay
+  main.main-content 
+    .page-catalog__container
+      .main-content__wrapper
+        .main-content__filter-trigger= "Фильтры"
+        .main-content__filter
+          .main-content__filter-close
+          .main-content__filter-inner
+            .main-content__dates
+              +datepicker-block({
+                isCalendarHidden: true,
+                fields: {
+                  field1: {
+                    label: "даты пребывания в отеле",
+                    name: "check-date-field",
+                    placeholder: "ДД.ММ.ГГГГ"
+                  }
+                }
+              })
+            .main-content__guests
+              +dropdown({
+                isBig: true,
+                contentName: "guests",
+                field: {
+                  isRequired: true,
+                  label: "гости",
+                  state: "default",
+                  placeholder: "Сколько гостей"
+                },
+                menuItems: [
+                  {subject: "adults", subtitle: "взрослые", count: "0"},
+                  {subject: "children", subtitle: "дети", count: "0"},
+                  {subject: "infants", subtitle: "младенцы", count: "0"}
+                ]
+              })
+            .main-content__price 
+              +range-slider({
+                subtitle: "диапазон цены",
+                name: "price",
+                min: "0",
+                max: "16000",
+                start: "5000",
+                end: "10000"
+              })
+              span.main-content__price-caption= "стоимость за сутки пребывания в номере"
+            .main-content__rules
+              .main-content__rules-subtitle
+                +h3-label-cta-text("правила дома") 
+              .main-content__rules-items
+                +checkbox({
+                  label: "можно курить",
+                  name: "permissions",
+                  checked: true
+                })
+                +checkbox({
+                  label: "можно с питомцами",
+                  name: "permissions",
+                  checked: true
+                })
+                +checkbox({
+                  label: "можно пригласить гостей (до 10 человек)",
+                  name: "permissions",
+                  checked: true
+                })
+            .main-content__accessibility
+              .main-content__accessibility-subtitle
+                +h3-label-cta-text("доступность")
+              .main-content__accessibility-items
+                +checkbox({
+                  isRich: true,
+                  label: "широкий коридор",
+                  description: "ширина коридоров в номере <br> не менее 91 см.",
+                  name: "add-ins"
+                })
+                +checkbox({
+                  isRich: true,
+                  label: "помощник для инвалидов",
+                  description: "на 1 этаже вас встретит специалист <br> и проводит до номера.",
+                  name: "add-ins"
+                })
+            .main-content__facilities
+              +dropdown({
+                contentName: "rooms",
+                field: {
+                  isRequired: true,
+                  label: "удобства номера",
+                  value: "2 спальни, 2 кровати...",
+                  placeholder: "Конфигурация номера...",
+                  isEachBorderRounded: false
+                },
+                menuItems: [
+                  {subject: "bedrooms", subtitle: "спальни", count: "2"},
+                  {subject: "beds", subtitle: "кровати", count: "2"},
+                  {subject: "bathrooms", subtitle: "ванные комнаты", count: "0"}
+                ]
+              })
+            .main-content__includes
+              +expandable-checkbox-list({
+                selectText: "дополнительные удобства",
+                items: [
+                  {name: "includes", checked: false, label: "Завтрак"},
+                  {name: "includes", checked: false, label: "Письменный стол"},
+                  {name: "includes", checked: false, label: "Стул для кормления"},
+                  {name: "includes", checked: false, label: "Кроватка"},
+                  {name: "includes", checked: false, label: "Телевизор"},
+                  {name: "includes", checked: false, label: "Шампунь"}
+                ]
+              })
+
+        .main-content__rooms
+          .main-content__rooms-title 
+            +h1-title("номера, которые мы для вас подобрали")
+          .main-content__rooms-cards
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-888.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '888',
+                type: "люкс",
+                currentPrice: 9990,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 5
+                },
+                reviewsCount: 145
+              })
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-840.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '840',
+                currentPrice: 9990,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 4
+                },
+                reviewsCount: 65
+              })
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-980.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '980',
+                type: "люкс",
+                currentPrice: 8500,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 3
+                },
+                reviewsCount: 35
+              })
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-856.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '856',
+                currentPrice: 7300,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 5
+                },
+                reviewsCount: 19
+              })
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-740.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '740',
+                currentPrice: 6000,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 4
+                },
+                reviewsCount: 44
+              })
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-982.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '982',
+                currentPrice: 5800,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 3
+                },
+                reviewsCount: 56
+              })
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-678.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '678',
+                currentPrice: 5500,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 5
+                },
+                reviewsCount: 45
+              })
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-450.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '450',
+                currentPrice: 5300,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 4
+                },
+                reviewsCount: 39
+              })
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-350.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '350',
+                currentPrice: 5000,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 3
+                },
+                reviewsCount: 77
+              })
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-666.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '666',
+                currentPrice: 5000,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 5
+                },
+                reviewsCount: 25
+              })
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-444.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '444',
+                currentPrice: 5000,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 4
+                },
+                reviewsCount: 15
+              })
+            .main-content__rooms-card
+              +room-card({
+                slider: {
+                  slides: [
+                    "../../templates/components/room-card/img/room-352.png",
+                    "#",
+                    "#", 
+                    "#"
+                  ],
+                  activeSlide: 1
+                },
+                id: '352',
+                currentPrice: 5000,
+                rateButton: {
+                  starsAmount: 5,
+                  rating: 3
+                },
+                reviewsCount: 55
+              }) 
+          .main-content__rooms-pagination 
+            +pagination({
+              pages: 15,
+              activePage: 1,
+              infoText: "1 – 12 из 100+ вариантов аренды"
+            })
+
+block footer
+  footer.page-catalog__footer
+    +footer({
+      menu: [
+        {subtitle: "навигация", listItems: ["о нас", "новости", "слажба подержки", "услуги"]},
+        {subtitle: "о нас", listItems: ["о сервисе", "наша команда", "вакансии", "инвесторы"]},
+        {subtitle: "служба поддержки", listItems: ["соглашения", "сообщества", "связь с нами"]}
+      ],
+      copyright: "Copyright © 2018 Toxin отель. Все права защищены.",
+      socials: {
+        twtiier: "link/to/twitter",
+        facebook: "link/to/facebook",
+        instagram: "link/to/instagram"
+      }
+    })

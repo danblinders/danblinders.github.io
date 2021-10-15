@@ -1,0 +1,300 @@
+@import '../../scss/fonts';
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.document-catalog-page {
+  font-size: 62.5%;
+  color: $darkShade75;
+  font-family: sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page-catalog {
+  margin: 0;
+  @include set-font(1.4rem, 400, 2.4rem, $darkShade75, Montserrat);
+  min-height: 100%;
+  background-color: hsl(0, 0%, 100%);
+
+  &__container {
+    width: 81%;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .filter-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    @include set-size(100%);
+    z-index: 1000;
+
+    &_visible {
+      display: block;
+    }
+  }
+
+  .main-content {
+    padding: 10rem 0 7rem;
+
+    &__wrapper {
+      position: relative;
+      @include set-flex($mainAxis: space-between, $gap: 6rem);
+    }
+
+    &__filter {
+
+      &-inner {
+        min-width: 266px;
+      }
+  
+
+      &-close {
+        display: none;
+        position: absolute;
+        @include set-size(3.8rem);
+
+        &::before, &::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 0;
+          @include set-size(100%, 0.5rem);
+          background-color: $purple;
+          border-radius: 0.4rem;
+        }
+
+        &::before {
+          transform: translateY(-50%) rotate(45deg);
+        }
+
+        &::after {
+          transform: translateY(-50%) rotate(-45deg);
+        }
+      }
+
+      &-trigger {
+        display: none;
+        align-self: flex-start;
+        padding: 3rem 0;
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+        color: $darkShade50;
+        cursor: pointer;
+        
+        &::before {
+          content: '\ef4f';
+          @include set-font(4.8rem, 400, 4.8rem, $darkShade50, "Material Icons", 'icons');
+        }
+      }
+    }
+
+    &__guests,
+    &__rules,
+    &__accessibility {
+      width: 100%;
+      margin-bottom: 3rem;
+    }
+
+    &__price,
+    &__dates {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    &__facilities {
+      margin-bottom: 1.6rem;
+    }
+
+    &__price {
+      &-caption {
+        display: inline-block;
+        margin-top: 1.4rem;
+        width: 100%;
+        text-align: center;
+        @include sentence-case();
+        @include set-font(1.2rem, 400, 1.4rem, $darkShade50);
+      }
+    }
+
+    &__rules, &__accessibility {
+      &-subtitle {
+        margin-bottom: 1.6rem;
+      }
+
+      &-items {
+        @include flex-column($gap: 1rem);
+      }
+    }
+
+    &__rooms {
+      &-title {
+        margin-bottom: 2rem;
+      }
+
+      &-cards {
+        margin-bottom: 3rem;
+        @include set-flex($mainAxis: space-between, $crossAxis: center, $gap: 2rem 1.2rem, $flexWrap: wrap);
+      }
+
+      &-card {
+        flex-basis: 30%;
+        min-width: 270px;
+      }
+
+      &-pagination {
+        @include flex-center();
+      }
+    }
+  }
+}
+
+
+
+@media(max-width: 1439px) {
+  .page-catalog {
+    &__container {
+      max-width: 1160px;
+    }
+
+    .main-content {
+      &__rooms {
+        &-card {
+          flex-basis: 45%;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 1200px) {
+  .page-catalog {
+    &__container {
+      width: 90%;
+    }
+  }
+}
+
+@media(max-width: 1024px) {
+  .page-catalog {
+    .main-content {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+
+      &__wrapper {
+        flex-direction: column;
+      }
+
+      &__filter {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 7rem 5% 3rem;
+        background-color: hsl(0, 0%, 100%);
+        z-index: 1100;
+
+        &-trigger {
+          @include flex-center($gap: 0.5rem);
+        }
+
+        &-close {
+          position: absolute;
+          top: 1rem;
+          left: 1rem;
+          display: block;
+        }
+
+        &_visible {
+          display: block;
+        }
+      }
+      &__rooms {
+        width: 100%;
+
+        &-title {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .document-catalog-page {
+    font-size: 57%;
+  }
+
+  .page-catalog {
+    &__container {
+      width: 95%;
+    }
+
+    .main-content {
+      &__rooms {
+        &-cards {
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 425px) {
+  .page-catalog {
+    .main-content {
+      &__rooms {
+        &-card {
+          flex-basis: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 375px) {
+  .document-catalog-page {
+    font-size: 53%;
+  }
+}
+
+@import '../../templates/components/h1-title/h1-title';
+@import '../../templates/components/h2-subtitle/h2-subtitle';
+@import '../../templates/components/h3-label-cta-text/h3-label-cta-text';
+@import '../../templates/components/colors-item/colors-item';
+@import '../../templates/components/type-item/type-item';
+@import '../../templates/components/checkbox/checkbox';
+@import '../../templates/components/radio-button/radio-button';
+@import '../../templates/components/toggle/toggle';
+@import '../../templates/components/main-button/main-button';
+@import '../../templates/components/bullet-list/bullet-list';
+@import '../../templates/components/text-field/text-field';
+@import '../../templates/components/subscription-field/subscription-field';
+@import '../..//templates/components/like-button/like-button';
+@import '../../templates/components/feed/feed';
+@import '../../templates/components/room-features-item/room-features-item';
+@import '../../templates/components/expandable-checkbox-list/expandable-checkbox-list';
+@import '../../templates/components/rate-button/rate-button';
+@import '../../templates/components/range-slider/range-slider';
+@import '../../templates/components/pagination/pagination';
+@import '../../templates/components/dropdown/dropdown';
+@import '../../templates/components/calendar/calendar';
+@import '../../templates/components/datepicker-block/datepicker-block';
+@import '../../templates/components/search-panel/search-panel';
+@import '../../templates/components/registration-panel/registration-panel';
+@import '../../templates/components/login-panel/login-panel';
+@import '../../templates/components/reservation-panel/reservation-panel';
+@import '../../templates/components/room-card/room-card';
+@import '../../templates/components/header/header';
+@import '../../templates/components/footer/footer';

@@ -1,6 +1,5 @@
 .room-card {
   width: 100%;
-  max-width: 270px;
   box-shadow: 0 1rem 2rem $darkShade5;
   border-radius: 0.4rem;
   background-color: #fff;
@@ -136,6 +135,5 @@
     }
   }
 }
-
 
 @import '../rate-button/rate-button';

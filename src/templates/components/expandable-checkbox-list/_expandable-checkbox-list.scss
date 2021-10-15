@@ -3,7 +3,7 @@
   max-width: 266px;
   &__select {
     min-height: 4.4rem;
-    @include set-flex($crossAxis: center, $gap: 3rem);
+    @include set-flex($mainAxis: space-between, $crossAxis: center);
     @include label-cta-text();
     text-transform: uppercase;
   }

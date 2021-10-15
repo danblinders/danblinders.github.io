@@ -45,6 +45,7 @@
       @include set-border(2px, solid, #fff, 50%);
       top: -0.5rem;
       background-image: $secondaryGradient;
+      z-index: 0;
       cursor: pointer;
     }
   }
