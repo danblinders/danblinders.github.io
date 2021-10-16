@@ -14,8 +14,9 @@
 
 .page-catalog {
   margin: 0;
+  min-height: 100vh;
+  @include flex-column();
   @include set-font(1.4rem, 400, 2.4rem, $darkShade75, Montserrat);
-  min-height: 100%;
   background-color: hsl(0, 0%, 100%);
 
   &__container {
@@ -30,6 +31,10 @@
     z-index: 100;
   }
 
+  &__footer{
+    margin-top: auto;
+  }
+
   .filter-overlay {
     position: fixed;
     left: 0;
@@ -38,10 +43,6 @@
     background-color: rgba(0, 0, 0, 0.5);
     @include set-size(100%);
     z-index: 1000;
-
-    &_visible {
-      display: block;
-    }
   }
 
   .main-content {
@@ -49,7 +50,7 @@
 
     &__wrapper {
       position: relative;
-      @include set-flex($mainAxis: space-between, $gap: 6rem);
+      @include set-flex($mainAxis: space-between, $gap: 2rem 6rem);
     }
 
     &__filter {
@@ -149,7 +150,6 @@
 
       &-card {
         flex-basis: 30%;
-        min-width: 270px;
       }
 
       &-pagination {
@@ -163,14 +163,10 @@
 
 @media(max-width: 1439px) {
   .page-catalog {
-    &__container {
-      max-width: 1160px;
-    }
-
     .main-content {
       &__rooms {
         &-card {
-          flex-basis: 45%;
+          flex-basis: 48%;
         }
       }
     }
@@ -185,10 +181,16 @@
   }
 }
 
-@media(max-width: 1024px) {
+@media(max-width: 1023px) {
   .page-catalog {
+    .filter-overlay {
+      &_visible {
+        display: block;
+      }
+    }
+
     .main-content {
-      padding-top: 3rem;
+      padding-top: 7rem;
       padding-bottom: 3rem;
 
       &__wrapper {
@@ -231,7 +233,7 @@
   }
 }
 
-@media(max-width: 768px) {
+@media(max-width: 767px) {
   .document-catalog-page {
     font-size: 57%;
   }
@@ -240,18 +242,26 @@
     &__container {
       width: 95%;
     }
+  }
+}
 
+@media(max-width: 579px) {
+  .page-catalog {
     .main-content {
       &__rooms {
         &-cards {
           justify-content: center;
+        }
+
+        &-card {
+          flex-basis: 75%;
         }
       }
     }
   }
 }
 
-@media(max-width: 425px) {
+@media(max-width: 424px) {
   .page-catalog {
     .main-content {
       &__rooms {
@@ -263,7 +273,7 @@
   }
 }
 
-@media(max-width: 375px) {
+@media(max-width: 374px) {
   .document-catalog-page {
     font-size: 53%;
   }

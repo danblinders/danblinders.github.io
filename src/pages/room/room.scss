@@ -15,12 +15,13 @@
 
 .page-room {
   margin: 0;
+  min-height: 100vh;
+  @include flex-column();
   @include set-font(1.4rem, 400, 2.4rem, $darkShade75, Montserrat);
-  min-height: 100%;
   background-color: hsl(0, 0%, 100%);
 
   &__container {
-    width: 80%;
+    width: 81%;
     max-width: 1920px;
     margin: 0 auto;
   }
@@ -29,6 +30,10 @@
     position: fixed;
     width: 100%;
     z-index: 100;
+  }
+
+  &__footer{
+    margin-top: auto;
   }
 
   .main-content {
@@ -141,7 +146,7 @@
   }
 }
 
-@media(max-width: 1440px) {
+@media(max-width: 1439px) {
   .page-room {
     &__container {
       max-width: 1160px;
@@ -178,7 +183,7 @@
   }
 }
 
-@media(max-width: 1024px) {
+@media(max-width: 1023px) {
   .page-room {
     .main-content {
       padding-bottom: 0;
@@ -217,7 +222,7 @@
   }
 }
 
-@media(max-width: 768px) {
+@media(max-width: 767px) {
   .document-room-page {
     font-size: 57%;
   }
@@ -250,7 +255,7 @@
   }
 }
 
-@media(max-width: 425px) {
+@media(max-width: 424px) {
   .page-room {
     .main-content {
       &__info {
@@ -274,7 +279,7 @@
   }
 }
 
-@media(max-width: 375px) {
+@media(max-width: 374px) {
   .document-room-page {
     font-size: 53%;
   }

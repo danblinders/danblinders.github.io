@@ -15,14 +15,15 @@
 
 .page-index {
   margin: 0;
+  min-height: 100vh;
+  @include flex-column();
   @include set-font(1.4rem, 400, 2.4rem, $darkShade75, Montserrat);
-  min-height: 100%;
   background-color: hsl(0, 0%, 90%);
 
   &__container {
-    width: 80%;
-    max-width: 1160px;
+    width: 81%;
     margin: 0 auto;
+    max-width: 1920px;
   }
 
   &__header {
@@ -35,6 +36,10 @@
     padding: 14rem 0 1.8rem;
     background: url("./img/index-bg.jpg") center center/cover no-repeat;
 
+    &__search-panel {
+      @include set-flex();
+    }
+
     &__caption {
       max-width: 300px;
       margin-top: 32rem;
@@ -42,18 +47,14 @@
       text-align: right;
     }
   }
+
+  &__footer{
+    margin-top: auto;
+  }
 }
 
-@media(max-width: 768px) {
-  .document-index-page {
-    font-size: 57%;
-  }
-
+@media(max-width: 1200px) {
   .page-index {
-    &__container {
-      width: 95%;
-    }
-
     .main-content {
       &__caption {
         margin-top: 16rem;
@@ -62,7 +63,35 @@
   }
 }
 
-@media(max-width: 375px) {
+@media(max-width: 1023px) {
+  .page-index {
+    .main-content {
+      padding-top: 12rem;
+
+      &__search-panel {
+        justify-content: center;
+      }
+  
+      &__caption {
+        margin-top: 8rem;
+      }
+    }
+  }
+}
+
+@media(max-width: 767px) {
+  .document-index-page {
+    font-size: 57%;
+  }
+
+  .page-index {
+    &__container {
+      width: 95%;
+    }
+  }
+}
+
+@media(max-width: 374px) {
   .document-index-page {
     font-size: 53%;
   }
