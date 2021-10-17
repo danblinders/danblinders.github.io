@@ -170,7 +170,8 @@ module.exports = (env, options) => {
           filename: page.replace(/\.pug/i, ".html"),
           chunks: [`${page.replace(/\.pug/i, "")}`],
           chunksSortMode: "manual",
-          cache: false
+          cache: false,
+          favicon: `${PATH_SRC}/icons/favicon.ico`
         })
       );
     });
