@@ -9,7 +9,6 @@
     flex-shrink: 0;
     margin: 0;
     appearance: none;
-    @include set-min-size(10px);
     @include set-size(2rem);
     @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem);
     transition: border-color 0.5s;

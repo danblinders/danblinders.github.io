@@ -14,12 +14,15 @@
     border-bottom: 1px solid hsl(0, 0%, 90%);
 
     &-content {
-      @include set-flex($mainAxis: space-between, $crossAxis: flex-start, $flexWrap: wrap);
-      row-gap: 4rem;
+      @include set-flex($mainAxis: space-between, $crossAxis: flex-start, $gap: 5rem 0, $flexWrap: wrap);
     }
   }
 
   &__company {
+    flex-basis: 22%;
+    max-width: 1000px;
+    min-width: 260px;
+
     &-logo {
       max-width: 100%;
       line-height: 0;
@@ -40,7 +43,6 @@
 
     &-description {
       margin-top: 1.7rem;
-      max-width: 260px;
     }
   }
 
@@ -51,13 +53,13 @@
   }
 
   &__menu {
+    max-width: 1000px;
+    flex-basis: 50%;
     @include set-flex($mainAxis: space-between, $crossAxis: flex-start, $flexWrap: wrap);
-    max-width: 800px;
-    flex: 3;
-    padding: 0 5.1rem 0 4rem;
     
     &-section {
-      min-width: 15rem;
+      flex-basis: 31%;
+      padding: 0 1rem;
     }
     
     &-list {
@@ -87,8 +89,11 @@
   }
 
   &__subscription {
+    flex-basis: 22%;
+    max-width: 1000px;
+    min-width: 260px;
+
     &-text {
-      max-width: 260px;
       margin-bottom: 2rem;
     }
   }
@@ -126,23 +131,35 @@
 
 @media(max-width: 1439px) {
   .footer {
+    padding-top: 7rem;
+    
     &__company {
       order: 2;
+      flex-basis: 30%;
     }
     
     &__menu {
-      order: 2;
+      order: 3;
+      flex-basis: 65%;
       padding-right: 0;
-      padding-left: 1.5rem;
+
+      &-section {
+        flex-basis: auto;
+      }
     }
 
     &__subscription {
       order: 1;
+      margin: 0 auto;
       flex-basis: 100%;
       text-align: center;
+
       &-text {
-        max-width: 100%;
         margin-bottom: 2rem;
+      }
+
+      &-field {
+        @include set-flex($mainAxis: center);
       }
     }
   }
@@ -172,8 +189,9 @@
     }
 
     &__company {
+      flex-basis: 100%;
       line-height: 0;
-      flex-grow: 0;
+      @include flex-center();
       
       &-logo {
         margin: 0 auto;
