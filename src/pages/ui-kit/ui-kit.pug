@@ -171,7 +171,7 @@ block content
                     }
                   }
                 })
-              .form-elements__text-fields-item
+              .form-elements__text-fields-item.form-elements__text-fields-item_small
                 +datepicker-block({
                   isCalendarHidden: true,
                   fields: {
@@ -182,7 +182,7 @@ block content
                     }
                   }
                 })
-              .form-elements__text-fields-item_subscription
+              .form-elements__text-fields-item.form-elements__text-fields-item_small
                 +subscription-field({
                   action: "add/link/to/server",
                   field: {
@@ -378,7 +378,7 @@ block content
             .form-elements__big-dropdowns
               .form-elements__big-dropdown
                 +dropdown({
-                  isBig: true,
+                  hasButtons: true,
                   contentName: "guests",
                   field: {
                     isRequired: true,
@@ -394,7 +394,7 @@ block content
                 })
               .form-elements__big-dropdown
                 +dropdown({
-                  isBig: true,
+                  hasButtons: true,
                   contentName: "guests",
                   field: {
                     isRequired: true,
@@ -530,51 +530,54 @@ block content
             title: "войти"
           })
         .cards__col
-          +calendar({
-            renderCalendarDate: "08.08.2019",
-            currentDate: "08.08.2019",
-            initialSelectedDates: {
-              start: "08.19.2019",
-              end: "08.23.2019"
-            }
-          })
-          +room-card({
-            slider: {
-              slides: [
-                "../../templates/components/room-card/img/room-888.png",
-                "#",
-                "#", 
-                "#"
-              ],
-              activeSlide: 1
-            },
-            id: '888',
-            type: "люкс",
-            currentPrice: 9990,
-            rateButton: {
-              starsAmount: 5,
-              rating: 5
-            },
-            reviewsCount: 145
-          })
-          +room-card({
-            slider: {
-              slides: [
-                "../../templates/components/room-card/img/room-840.png",
-                "#",
-                "#", 
-                "#"
-              ],
-              activeSlide: 1
-            },
-            id: "840",
-            currentPrice: 9990,
-            rateButton: {
-              starsAmount: 5,
-              rating: 4
-            },
-            reviewsCount: 65
-          })
+          .cards__calendar
+            +calendar({
+              renderCalendarDate: "08.08.2019",
+              currentDate: "08.08.2019",
+              initialSelectedDates: {
+                start: "08.19.2019",
+                end: "08.23.2019"
+              }
+            })
+          .cards__room-card
+            +room-card({
+              slider: {
+                slides: [
+                  "../../templates/components/room-card/img/room-888.png",
+                  "#",
+                  "#", 
+                  "#"
+                ],
+                activeSlide: 1
+              },
+              id: '888',
+              type: "люкс",
+              currentPrice: 9990,
+              rateButton: {
+                starsAmount: 5,
+                rating: 5
+              },
+              reviewsCount: 145
+            })
+          .cards__room-card
+            +room-card({
+              slider: {
+                slides: [
+                  "../../templates/components/room-card/img/room-840.png",
+                  "#",
+                  "#", 
+                  "#"
+                ],
+                activeSlide: 1
+              },
+              id: "840",
+              currentPrice: 9990,
+              rateButton: {
+                starsAmount: 5,
+                rating: 4
+              },
+              reviewsCount: 65
+            })
   section.headers-footers
       .headers-footers__content
         .headers-footers__logo

@@ -1,6 +1,6 @@
 .calendar {
   width: 100%;
-  max-width: 320px;
+  max-width: 600px;
   box-shadow: 0 1rem 2rem $darkShade5;
   background-color: #fff;
   @include set-border($borderColor: $darkShade25, $borderRadius: 0.4rem);
@@ -74,6 +74,7 @@
 
     &-title {
       @include subtitle-text();
+      text-align: center;
 
       &:hover {
         background: none;
@@ -179,7 +180,7 @@
 
   &--cell {
     &-day {
-      height: 4rem;
+      padding: 4.5% 0;
     }
   }
 }

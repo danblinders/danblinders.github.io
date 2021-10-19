@@ -9,11 +9,6 @@
 
   &__field {
     flex: 1;
-    max-width: 150px;
-
-    &_big {
-      max-width: 266px;
-    }
   }
 
   &__calendar {
@@ -28,6 +23,7 @@
       position: absolute;
       top: 0;
       left: 0;
+      @include set-flex($mainAxis: center);
     }
 
     &_hidden {

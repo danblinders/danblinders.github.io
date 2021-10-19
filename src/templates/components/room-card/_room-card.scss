@@ -8,12 +8,11 @@
 
   &__slider {
     position: relative;
-    @include set-size(100%, 60%);
+    width: 100%;
     min-height: 15.1rem;
     overflow: hidden;
 
     &-items {
-      @include set-size(100%);
       @include set-flex();
 
       &:hover {
@@ -29,11 +28,12 @@
 
     &-item {
       flex-shrink: 0;
-      @include set-size(100%);
+      width: 100%;
     }
     
     &-image {
       @include set-size(100%);
+      aspect-ratio: 9/5;
     }
 
     &-dots {

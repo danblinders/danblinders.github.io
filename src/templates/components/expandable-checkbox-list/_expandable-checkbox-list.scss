@@ -1,6 +1,7 @@
 .expandable-checkbox-list {
   width: 100%;
-  max-width: 266px;
+  min-width: 100px;
+  max-width: 320px;
   &__select {
     min-height: 4.4rem;
     @include set-flex($mainAxis: space-between, $crossAxis: center);

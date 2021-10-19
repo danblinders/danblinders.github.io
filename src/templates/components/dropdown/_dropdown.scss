@@ -1,6 +1,7 @@
 .dropdown {
   width: 100%;
-  max-width: 266px;
+  min-width: 100px;
+  max-width: 320px;
 
   &__overlay {
     display: none;
@@ -88,10 +89,6 @@
     &_hidden {
       visibility: hidden;
     }
-  }
-
-  &_big {
-    max-width: 320px;
   }
 
   &_expanded {

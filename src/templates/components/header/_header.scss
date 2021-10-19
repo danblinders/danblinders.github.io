@@ -14,6 +14,7 @@
   }
 
   &__logo {
+    flex-shrink: 0;
     max-width: 150px;
     min-width: 80px;
     line-height: 0;
@@ -32,7 +33,6 @@
   }
 
   &__navbar {
-    margin-left: auto;
     @include set-flex($crossAxis: center, $flexWrap: wrap);
     line-height: 1.8rem;
     color: $darkShade50;
@@ -41,7 +41,7 @@
     &-site-navigation{
       list-style: none;
       margin: 0;
-      padding: 0.2rem 2rem;
+      padding: 0 2rem;
       @include set-flex($crossAxis: center, $gap: 2rem, $flexWrap: wrap);
     }
 
@@ -82,6 +82,7 @@
         display: inline-block;
         font-family: "Material Icons";
         font-size: 2.4rem;
+        line-height: 1;
       }
     }
 
@@ -90,7 +91,7 @@
     }
 
     &-login, &-registration {
-      min-height: 3.4rem;
+      height: 3.4rem;
     }
   
     &-user-profile {
@@ -165,15 +166,14 @@
       width: 70%;
       min-height: 100vh;
       padding: 5%;
-      @include flex-column($mainAxis: center, $gap: 5rem);
+      @include flex-column($crossAxis: stretch, $gap: 5rem);
       background-color: #fff;
     
       &-site-navigation {
-        width: 100%;
         flex-direction: column;
         gap: 3rem;
         font-size: 3rem;
-        line-height: 3rem;
+        line-height: 1;
       }
 
       &-item {
@@ -183,12 +183,21 @@
       }
 
       &-authentication {
+        flex-direction: column;
+        align-items: center;
         gap: 2rem;
       }
 
       &-login, &-registration {
-        width: 100%;
-        min-height: 4.4rem;
+        height: 4.4rem;
+      }
+
+      &-login {
+        width: 35%;
+      }
+
+      &-registration {
+        width: 50%;
       }
 
       &-button {
@@ -196,8 +205,7 @@
         @include set-flex($mainAxis: space-between, $flexWrap: wrap);
 
         &-expand {
-          font-size: 3rem;
-          line-height: 3.4rem;
+          font-size: 5rem;
         }
       }
 
@@ -236,6 +244,20 @@
             transform: rotate(45deg);
           }
         }
+      }
+    }
+  }  
+}
+
+@media(max-width: 767px) {
+  .header {
+    &__navbar {
+      &-login {
+        width: 50%;
+      }
+
+      &-registration {
+        width: 90%;
       }
     }
   }  

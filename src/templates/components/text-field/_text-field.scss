@@ -1,6 +1,9 @@
 .text-field {
   width: 100%;
   @include flex-column();
+  min-width: 100px;
+  max-width: 1000px;
+
   &__input {
     display: inline-block;
     padding: 1.3rem 1.5rem;

@@ -50,12 +50,14 @@
 
     &__wrapper {
       position: relative;
-      @include set-flex($mainAxis: space-between, $gap: 2rem 6rem);
+      @include set-flex($mainAxis: space-between, $gap: 2rem 5%);
     }
 
     &__filter {
+      flex-basis: 22%;
 
       &-inner {
+        width: 100%;
         min-width: 266px;
       }
   
@@ -139,6 +141,7 @@
     }
 
     &__rooms {
+      flex-basis: 72%;
       &-title {
         margin-bottom: 2rem;
       }
@@ -223,7 +226,7 @@
         }
       }
       &__rooms {
-        width: 100%;
+        flex-basis: 100%;
 
         &-title {
           text-align: center;

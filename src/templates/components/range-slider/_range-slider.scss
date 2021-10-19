@@ -1,6 +1,6 @@
 .range-slider {
   width: 100%;
-  max-width: 266px;
+  max-width: 320px;
 
   &__header {
     @include set-flex($mainAxis: space-between, $crossAxis: center);
