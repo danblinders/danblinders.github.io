@@ -3,6 +3,7 @@
   max-width: 320px;
 
   &__fields {
+    margin-bottom: 0.55rem;
     width: 100%;
     @include set-flex($mainAxis: space-between, $gap: 2rem, $crossAxis: center);
   }
@@ -13,7 +14,6 @@
 
   &__calendar {
     position: relative;
-    top: 0.55rem;
     width: 100%;
     z-index: 1;
     opacity: 1;
@@ -22,7 +22,8 @@
     &-wrapper {
       position: absolute;
       top: 0;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       @include set-flex($mainAxis: center);
     }
 

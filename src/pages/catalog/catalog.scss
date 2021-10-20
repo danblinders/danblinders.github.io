@@ -20,7 +20,7 @@
   background-color: hsl(0, 0%, 100%);
 
   &__container {
-    width: 81%;
+    width: 80.5%;
     max-width: 1920px;
     margin: 0 auto;
   }
@@ -103,13 +103,13 @@
     }
 
     &__guests,
+    &__price,
     &__rules,
     &__accessibility {
       width: 100%;
       margin-bottom: 3rem;
     }
-
-    &__price,
+    
     &__dates {
       width: 100%;
       margin-bottom: 2rem;
@@ -283,7 +283,7 @@
 }
 
 @import '../../templates/components/h1-title/h1-title';
-@import '../../templates/components/h2-subtitle/h2-subtitle';
+@import '../../templates/components/h3-label-cta-text/h3-label-cta-text';
 @import '../../templates/components/checkbox/checkbox';
 @import '../../templates/components/expandable-checkbox-list/expandable-checkbox-list';
 @import '../../templates/components/range-slider/range-slider';
