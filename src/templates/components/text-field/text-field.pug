@@ -13,15 +13,14 @@
   placeholder - input's placeholder
     text - placceholder's text
     isDark - defiens, whether placeholder text's color is dark or not
-  isRequired - defines, whether text filed's input is required or not
-  isDisabled - defines, whether text field's input diabled or not
+  isReadOnly - defines, whether user can type text inside input or not
   mask - defines the value of data-mask attribute
 
 mixin text-field(options)
   if !options
     - options = {}
 
-  - const {label, state, btn = {}, isActive, isEachBorderRounded = true, type = "text", name, value, placeholder = {}, isRequired, isDisabled, mask} = options
+  - const {label, state, btn = {}, isActive, isEachBorderRounded = true, type = "text", name, value, placeholder = {}, isReadOnly, mask} = options
 
   - const hasButton = Object.keys(btn).length !== 0
 
@@ -45,7 +44,8 @@ mixin text-field(options)
           required = isRequired,
           disabled = isDisabled,
           spellcheck = "false",
-          data-mask = mask
+          data-mask = mask,
+          readonly = isReadOnly ? true : false
         )
         if hasButton
           button.text-field__button(class = (btn.color === "gradient") ? "text-field__button_gradient" : "", type = btn.btnType ? btn.btnType : "button")= btn.icon

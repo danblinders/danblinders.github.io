@@ -4,6 +4,7 @@ import Dropdown from "../../templates/components/dropdown/dropdown";
 import Calendar from "../../templates/components/calendar/calendar";
 import {DatepickerWithMultipleFields, DatepickerWithSingleField} from "../../templates/components/datepicker-block/datepicker-block";
 import Header from "../../templates/components/header/header";
+import FormValidation from "../../js/formValidation";
 import "./room.scss";
 
 $(document).ready(() => {
@@ -28,4 +29,6 @@ $(document).ready(() => {
   $(".header").each(function() {
     new Header(this);
   });
+
+  FormValidation();
 });

@@ -27,6 +27,13 @@
 
     }
 
+    &_valid {
+      border-color: $green;
+    }
+    &_invalid {
+      border-color: $errorColor;
+    }
+
     &_cursor {
       &_pointer {
         cursor: pointer;
@@ -72,6 +79,15 @@
       cursor: pointer;
     }
   }
+
+  &__error-message {
+    display: inline-block;
+    width: 100%;
+    margin-top: 0.3rem;
+    text-align: center;
+    color: $errorColor;
+  }
+
   &__button {
     position: absolute;
     top: 0;

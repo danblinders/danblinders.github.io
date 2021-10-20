@@ -13,54 +13,49 @@ mixin registration-panel(options)
   .registration-panel
     .registration-panel__title
       +h1-title(title)
-    form.registration-panel__form(action = action)
+    form.registration-panel__form.js-validate(action = action)
       .registration-panel__user-name
         +text-field({
-          name: "user-name",
+          name: "userName",
           placeholder: {text: "Имя"},
-          isRequired: true
         })
         +text-field({
-          name: "user-surname",
+          name: "userSurname",
           placeholder: {text: "Фамилия"},
-          isRequired: true
         })
       .registration-panel__user-gender
         +radio-button({
           label: "Мужчина",
-          name: "gender-ui-kit",
+          name: "gender",
           isChecked: true
         })
         +radio-button({
           label: "Женщина",
-          name: "gender-ui-kit"
+          name: "gender"
         })
       .registration-panel__user-birthdate 
         +text-field({
           label: "дата рождения",
-          name: "user-birthdate",
+          name: "userBirthDate",
           placeholder: {text: "дд.мм.гггг", isUppercase: true},
-          isRequired: true,
           mask: "date"
         })
       .registration-panel__user-login-info
         +text-field({
           label: "данные для входа в сервис",
           type: "email",
-          name: "user-email",
+          name: "userEmail",
           placeholder: {text: "Email"},
-          isRequired: true
         })
         +text-field({
           type: "password",
-          name: "user-password",
-           placeholder: {text: "Пароль"},
-          isRequired: true
+          name: "userPassword",
+          placeholder: {text: "Пароль"},
         })
       .registration-panel__additional-info
         +toggle({
           label: "получать спецпредложения",
-          name: "special-offer",
+          name: "specialOffer",
           isRequired: true
         })
       .registration-panel__button 

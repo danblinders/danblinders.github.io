@@ -11,19 +11,17 @@ mixin login-panel(options)
   .login-panel
     .login-panel__title
       +h1-title(title)
-    form.login-panel__form(action = action)
+    form.login-panel__form.js-validate(action = action)
       .login-panel__user-login-info
         +text-field({
           type: "email",
-          name: "user-login-email",
+          name: "userEmail",
           placeholder: {text: "Email"},
-          isRequired: true
         })
         +text-field({
           type: "password",
-          name: "user-login-password",
+          name: "userPassword",
            placeholder: {text: "Пароль"},
-          isRequired: true
         })
       .login-panel__button 
         +main-button({

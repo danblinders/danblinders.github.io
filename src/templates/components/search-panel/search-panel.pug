@@ -12,7 +12,7 @@ mixin search-panel(options)
   .search-panel
     .search-panel__title
       +h1-title(title)
-    form.search-panel__form(action = action)
+    form.search-panel__form.js-validate(action = action)
       .search-panel__datepicker 
         +datepicker-block({
           isCalendarHidden: true,
@@ -20,12 +20,12 @@ mixin search-panel(options)
           fields: {
             field1: {
               label: "прибытие",
-              name: "check-date",
+              name: "checkDateStart",
               placeholder: "ДД.ММ.ГГГГ"
             },
             field2: {
               label: "выезд",
-              name: "check-date",
+              name: "checkDateEnd",
               placeholder: "ДД.ММ.ГГГГ"
             }
           }
@@ -37,6 +37,7 @@ mixin search-panel(options)
           field: {
             isRequired: true,
             label: "гости",
+            name: "guests",
             placeholder: "Сколько гостей"
           },
           menuItems: [

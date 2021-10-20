@@ -37,7 +37,7 @@ mixin reservation-panel(options)
           | ₽
         |
         | в сутки
-    form.reservation-panel__form(action = action)
+    form.reservation-panel__form.js-validate(action = action)
       .reservation-panel__datepicker 
         +datepicker-block({
           isCalendarHidden: true,
@@ -45,13 +45,13 @@ mixin reservation-panel(options)
           fields: {
             field1: {
               label: "прибытие",
-              name: "check-date",
+              name: "checkDateStart",
               value: new Date(startDate).toLocaleDateString("ru"),
               placeholder: "ДД.ММ.ГГГГ"
             },
             field2: {
               label: "выезд",
-              name: "check-date",
+              name: "checkDateEnd",
               value: new Date(endDate).toLocaleDateString("ru"),
               placeholder: "ДД.ММ.ГГГГ"
             }
@@ -62,8 +62,8 @@ mixin reservation-panel(options)
           hasButtons: true,
           contentName: "guests",
           field: {
-            isRequired: true,
             label: "гости",
+            name: "guests",
             placeholder: "Сколько гостей",
             value: dropdownValue
           },

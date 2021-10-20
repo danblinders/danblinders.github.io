@@ -124,7 +124,7 @@ block content
                   label: "text field",
                   state: "hover / focus",
                   name: "field",
-                  type: "email",
+                  type: "email-focus",
                   placeholder: {
                     text:"This is pretty awesome"
                   }
@@ -136,6 +136,7 @@ block content
                   field: {
                     isRequired: true,
                     label: "dropdown",
+                    name: "ui-kit-guests",
                     placeholder: "Сколько гостей"
                   },
                   menuItems: [
@@ -147,7 +148,7 @@ block content
               .form-elements__text-fields-item
                 +text-field({
                   label: "masked text field",
-                  name: "field",
+                  name: "field-masked",
                   placeholder: {
                     text:"ДД.ММ.ГГГГ"
                   },
@@ -219,12 +220,12 @@ block content
               .form-elements__radio-buttons-content
                 +radio-button({
                   label: "мужчина",
-                  name: "gender",
+                  name: "gender-ui-kit",
                   isChecked: true
                 })
                 +radio-button({
                   label: "женщина",
-                  name: "gender"
+                  name: "gender-ui-kit"
                 })
             .form-elements__toggle-buttons
               .form-elements__toggle-buttons-title 

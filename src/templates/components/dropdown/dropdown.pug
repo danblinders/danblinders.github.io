@@ -26,15 +26,14 @@ mixin dropdown(options)
           isEachBorderRounded: isEachBorderRounded,
           label: label,
           state: state,
-          type: "email",
+          type: "text",
           name: name,
           value: value,
           placeholder: {
             text: placeholder,
             isDark: true
           },
-          isRequired: isRequired,
-          isDisabled: true
+          isReadOnly: true
         })
         .dropdown__menu(class = isExpanded ? "dropdown__menu_expanded" : "") 
           .dropdown__menu-container
