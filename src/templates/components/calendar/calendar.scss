@@ -112,6 +112,16 @@
       border-radius: 50%;
       font-weight: 700;
       color: #fff;
+      &.-selected- {
+        background-image: $primaryGradient;
+      }
+      &.-focus- {
+        color: #fff;
+      }
+    }
+
+    .-disabled- {
+      pointer-events: none;
     }
 
     .-other-month {

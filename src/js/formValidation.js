@@ -2,7 +2,6 @@ import 'jquery-validation';
 
 const FormValidation = () => {
   $(".js-validate").each(function() {
-    $.validator.messages.required = "Обязательное поле!";
     $.validator.addMethod("rightDateFormat", function(value) {
       const [day, month, year] = value.split(".");
     
@@ -12,8 +11,17 @@ const FormValidation = () => {
       const [day, month, year] = value.split(".");
       const dateValue = new Date(`${month}/${day}/${year}`);
 
-      return dateValue < new Date();
+      return dateValue <= new Date();
     });
+    $.validator.addMethod("noSpaces", function(value) {
+      return !new RegExp(/\s/ig).test(value);
+    });
+
+    $.validator.messages.required = "Обязательное поле!";
+    $.validator.messages.noSpaces = "Присутствуют пробелы!";
+    $.validator.messages.rightDateFormat = "Неверный формат даты!";
+    $.validator.messages.noFutureDates = "Нельзя вводить даты из будущего!";
+
     $(this).validate({
       highlight: function(element) {
         $(element).addClass("text-field__input_invalid");
@@ -31,13 +39,16 @@ const FormValidation = () => {
           email: true
         },
         userName: {
-          required: true
+          required: true,
+          noSpaces: true
         },
         userSurname: {
-          required: true
+          required: true,
+          noSpaces: true
         },
         userPassword: {
-          required: true
+          required: true,
+          noSpaces: true
         },
         userBirthDate: {
           required: true,
@@ -45,10 +56,12 @@ const FormValidation = () => {
           noFutureDates: true,
         },
         checkDateStart: {
-          required: true
+          required: true,
+          rightDateFormat: true,
         },
         checkDateEnd: {
-          required: true
+          required: true,
+          rightDateFormat: true,
         },
         guests: {
           required: true
@@ -57,11 +70,16 @@ const FormValidation = () => {
       messages: {
         userEmail: {
           email: "Неверный формат e-mail!"
-        },
-        userBirthDate: {
-          rightDateFormat: "Неверный формат даты!",
-          noFutureDates: "Нельзя вводить даты из будущего!"
         }
+      },
+      errorPlacement: function(error, element) {
+        if ($(element).parents(".dropdown").length > 0) {
+          error.addClass("text-field__error-message_after_label");
+          error.insertAfter( $(element).parents(".dropdown").find(".text-field__label"));
+          return;
+        } 
+
+        error.insertAfter($(element));
       }
     });
   });

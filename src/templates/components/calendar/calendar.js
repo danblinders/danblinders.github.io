@@ -14,7 +14,7 @@ export default class Calendar {
     this.calendarBlock = $(container);
     this.calendarContent = this.calendarBlock.find(".calendar__content");
     this.renderCalendarDate = this.calendarBlock.attr("data-render-date") ? new Date(this.calendarBlock.attr("data-render-date")) : new Date();
-    this.currentDate = this.calendarBlock.attr("data-current") ?new Date(this.calendarBlock.attr("data-current")) : new Date();
+    this.currentDate = this.calendarBlock.attr("data-current") ? new Date(this.calendarBlock.attr("data-current")) : new Date();
     this.clearBtn = this.calendarBlock.find(".calendar__button[data-action='clear']");
     this.applyBtn = this.calendarBlock.find(".calendar__button[data-action='apply']");
     this.calendarInstance = this.calendarContent.datepicker({
@@ -37,6 +37,12 @@ export default class Calendar {
         if (areDaysMatched && areMonthsMatched && areYearsMatched) {
           return {
             classes: "-current-"
+          };
+        }
+
+        if (date < this.currentDate) {
+          return {
+            classes: "-disabled-"
           };
         }
       }

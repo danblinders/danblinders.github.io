@@ -86,6 +86,13 @@
     margin-top: 0.3rem;
     text-align: center;
     color: $errorColor;
+
+    &_after {
+      &_label {
+        margin-top: 0;
+        text-align: left;
+      }
+    }
   }
 
   &__button {
