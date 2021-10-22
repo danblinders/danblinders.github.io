@@ -1,19 +1,21 @@
 //-
-  options.name - name attribute for checkbox's input
-  options.checked - defines, whether checkbox is checked or not
-  options.label - label for checkbox
-  options.isRich - defines, whether checkbox is rich type or not
-  options.description - description for checkbox
+  name - name attribute for checkbox's input
+  checked - defines, whether checkbox is checked or not
+  label - label for checkbox
+  isRich - defines, whether checkbox is rich type or not
+  description - description for checkbox
 
 mixin checkbox(options)
   if !options
     - options = {}
 
+  - const {name, checked, label, isRich, description} = options
+
   label.checkbox
-      input.checkbox__input(type = "checkbox", name = options.name, checked = options.checked)
-      if options.isRich
+      input.checkbox__input(type = "checkbox", name = name, checked = checked)
+      if isRich
         span.checkbox__text
-          span.checkbox__label.checkbox__label_type_rich!= options.label
-          span.checkbox__description!= options.description
+          span.checkbox__label.checkbox__label_type_rich!= label
+          span.checkbox__description!= description
       else 
-        span.checkbox__label!= options.label
+        span.checkbox__label!= label

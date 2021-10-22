@@ -1,11 +1,13 @@
 //-
-  options.items - array of bullet list's items
+  items - array of bullet list's items
 
 mixin bullet-list(options) 
   if !options
     - options = {}
 
+  - const {items} = options
+
   .bullet-list
     ul.bullet-list__wrapper  
-      each item in options.items 
+      each item in items 
         li.bullet-list__item= item

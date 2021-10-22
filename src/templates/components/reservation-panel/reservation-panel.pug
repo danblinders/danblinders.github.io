@@ -3,6 +3,15 @@ include ../datepicker-block/datepicker-block
 include ../dropdown/dropdown
 include ../main-button/main-button
 
+//-
+  action - link to the server
+  room - room's info (id, type, price)
+  dropdown - dropdown settings
+  serviceFee - fee for main services
+  sale - customer's sale
+  additionalFee - fee for secondary services
+
+
 mixin reservation-panel(options) 
   if !options
     - options = {}

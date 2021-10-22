@@ -1,6 +1,11 @@
 include ../text-field/text-field
 include ../calendar/calendar
 
+//- 
+  isCalendarHidden - defines, whether calendar displayed or not
+  hasMultipleields - defines, that datepicker has multiple input's or not
+  fields - objet with all fields in datepicker
+
 mixin datepicker-block(options)
   if !options
     - options = {}

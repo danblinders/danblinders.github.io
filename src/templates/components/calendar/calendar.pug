@@ -1,5 +1,10 @@
 include ../main-button/main-button
 
+//-
+  renderCalendarDate - date, which will be shown after calendar first render
+  currentDate - today's date (created mainly for setting current date on ui-kit's celendar)
+  initialSelectedDates - date range, that will be selected after first claendar render (created mainly for setting date range on ui-kit's calendar)
+
 mixin calendar(options)
   if !options
     - options = {}
