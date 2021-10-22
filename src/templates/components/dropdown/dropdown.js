@@ -4,8 +4,8 @@ export default class Dropdown {
   constructor(dropdownSelector) {
     this.dropdown = $(dropdownSelector);
     this.dropdownContentType = this.dropdown.attr("data-content");
-    this.dropdownOverlay = this.dropdown.find(".dropdown__overlay");
     this.dropdownField = this.dropdown.find(".dropdown__field .text-field");
+    this.dropdownFieldContainer = this.dropdown.find(".dropdown__field .text-field__input-container");
     this.dropdownFieldInput = this.dropdown.find(".dropdown__field .text-field__input");
     this.dropdownMenu = this.dropdown.find(".dropdown__menu");
     this.dropdownMenuItems = this.dropdown.find(".dropdown__item");
@@ -21,15 +21,19 @@ export default class Dropdown {
       isTargetDropdownFieldChild = $.contains(this.dropdownField.get(0), eTarget),
       isTargetParentDropdownMenu = $(eTarget).parents(".dropdown__menu").length !== 0;
 
-      if (!isTargetDropdownField && !isTargetDropdownFieldChild) {
+      if (this.dropdown.hasClass("dropdown_expanded")) {
         if(!isTargetParentDropdownMenu) {
-          this.dropdown.removeClass("dropdown_expanded");
-          this.changeDropdownInputStyles();
-          this.dropdownMenu.slideUp();
+          if (!isTargetDropdownField && !isTargetDropdownFieldChild) {
+            this.dropdown.removeClass("dropdown_expanded");
+            this.changeDropdownInputStyles();
+            this.dropdownMenu.slideUp();
+          } 
         } 
-      } else {
-        this.toggleDropdown();
       }
+    };
+
+    this.handleDropdownFieldClick = () => {
+      this.toggleDropdown();
     };
 
     // method for clearing dropdown after click on dropdown's clear button
@@ -51,6 +55,7 @@ export default class Dropdown {
   bindEventListeners() {
     $(document).on("click", this.handleDocumentClick);
     this.dropdownBtnClear.on("click", this.handleDropdownBtnClearClick);
+    this.dropdownFieldContainer.on("click", this.handleDropdownFieldClick);
   }
 
   // method for changing menu item's count after clicck on minus or plus buttons
@@ -64,7 +69,6 @@ export default class Dropdown {
       // after  click on minus button
       minusBtn.on("click", () => {
         // If menu item data-subject attribute is adults:
-        console.log("hi");
         if(menuItem.attr("data-subject") === "adults") {
           // Variable for checking, if count of menu items with data-subject attributes "children" and "infants" isn't equal to 0
           let childrenAndInfantsCount = 0;

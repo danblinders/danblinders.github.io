@@ -112,6 +112,10 @@
     margin-left: 4rem;
   }
 
+  &__range-slider {
+    max-width: 266px;
+  }
+
   &__buttons {
     margin-left: 3rem;
   }
@@ -155,7 +159,7 @@
   &__feed {
     grid-column: 2/4;
     @include set-flex($mainAxis: space-between, $crossAxis: flex-start);
-    margin-left: 4rem;
+    margin-left: 4.4rem;
   }
   
   &__checkbox-buttons,
