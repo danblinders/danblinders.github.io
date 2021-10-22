@@ -29,7 +29,7 @@
       padding: 0;
     }
     
-    &:hover, &:focus, &:active, &-active {
+    &:hover, &:focus, &-active {
       color: $darkShade50;
     }
   }

@@ -9,11 +9,16 @@
     margin: 0;
     flex-shrink: 0;
     appearance: none;
+    outline: none;
     @include set-min-size(30px, 15px);
     @include set-size(4rem, 2rem);
     @include set-border($borderColor: $darkShade25, $borderRadius: 1rem);
     transition: border-color 0.5s;
     cursor: pointer;
+
+    &:hover, &:focus {
+      box-shadow: 0 0 1rem $purple;
+    }
 
     &::after {
       content: '';

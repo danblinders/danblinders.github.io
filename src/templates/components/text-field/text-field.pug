@@ -34,6 +34,7 @@ mixin text-field(options)
         input.text-field__input(
           class = isActive ? "text-field__input_active" : "",
           class = hasButton ? "text-field__input_padding-right_big" : "",
+          class = isReadOnly ? "text-field__input_cursor_pointer" : "".
           class = isEachBorderRounded ? "text-field__input_each-border_rounded" : "",
           class = placeholder.isDark ? "text-field__input_placeholder_darkshade_75" : "",
           class = placeholder.isUppercase ? "text-field__input_placeholder_with_uppercase" : "",

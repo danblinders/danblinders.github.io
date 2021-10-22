@@ -7,12 +7,17 @@
     margin: 0;
     flex-shrink: 0;
     appearance: none;
+    outline: none;
     @include flex-center();
     @include set-min-size(10px);
     @include set-size(2rem);
     @include set-border($borderColor: $darkShade25, $borderRadius: 50%);
     transition: border-color 0.3s;
     cursor: pointer;
+
+    &:hover, &:focus {
+      box-shadow: 0 0 1rem $purple;
+    }
 
     &::after {
       content: '';
