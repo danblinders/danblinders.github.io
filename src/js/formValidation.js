@@ -18,6 +18,7 @@ const FormValidation = () => {
     });
 
     $.validator.messages.required = "Обязательное поле!";
+    $.validator.messages.email = "Неверный формат e-mail!";
     $.validator.messages.noSpaces = "Присутствуют пробелы!";
     $.validator.messages.rightDateFormat = "Неверный формат даты!";
     $.validator.messages.noFutureDates = "Нельзя вводить даты из будущего!";
@@ -65,11 +66,10 @@ const FormValidation = () => {
         },
         guests: {
           required: true
-        }
-      },
-      messages: {
-        userEmail: {
-          email: "Неверный формат e-mail!"
+        },
+        subscription: {
+          required: true,
+          email: true
         }
       },
       errorPlacement: function(error, element) {

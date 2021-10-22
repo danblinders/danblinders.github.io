@@ -8,7 +8,7 @@ mixin subscription-field(options)
 
   - const {action, field: {isActive, label, state, name, type, value, placeholder = {}, isRequired, isDisabled, mask}} = options
 
-  form.subscription-field(action = action)
+  form.subscription-field.js-validate(action = action)
     +text-field({
       isActive: isActive,
       btn: {icon: "arrow_forward", color: "gradient", btnType: "submit"},
